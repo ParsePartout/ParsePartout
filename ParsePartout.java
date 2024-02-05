@@ -8,7 +8,7 @@ import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 public class ParsePartout {
 
 	public ParsePartout() {
-		
+		//consutrcteur
 	}
 	
 	public static void pdftotext(File f) {
@@ -28,7 +28,7 @@ public class ParsePartout {
 	            //Afficher le contenu de la page sur la console.
 	            System.out.println("Contenu du page : " + content);
 	        }
-	   
+		    
 	        //Fermez le PdfReader.
 	        pdf.close();
 	    
