@@ -11,10 +11,8 @@ public class ParsePartout {
 		
 	}
 	
-	public static void main(String args[]){
-		File f = new File(args[1]);
-	    try 
-	    {
+	public static void pdftotext(File f) {
+		try{
 	        //Créer une instance PdfReader.
 	        PdfReader pdf = new PdfReader(new FileInputStream(f));  
 	   
@@ -37,6 +35,25 @@ public class ParsePartout {
 	    } catch (Exception ex) {
 	        ex.printStackTrace();
 	    }
+	}
+	
+	public static void getAuteur() {
+		
+	}
+	
+	public static void getTitre() {
+		
+	}
+	public static void getNom() {
+		
+	}
+	public static void getAbstract() {
+		
+	}
+	public static void main(String args[]){
+		File f = new File("C:\\dev\\ParsePartout\\src\\parse\\Corpus_2021\\Boudin-Torres-2006.pdf");
+	    pdftotext(f);
+	    
 	  }
 
 }
