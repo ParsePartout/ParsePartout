@@ -30,7 +30,7 @@ public class ParsePartout {
 	            //Afficher le contenu de la page sur la console.
 	            System.out.println("Contenu du page : " + content);
 	        }
-	   
+	   //salut
 	        //Fermez le PdfReader.
 	        pdf.close();
 	    
