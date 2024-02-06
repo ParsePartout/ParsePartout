@@ -8,7 +8,7 @@ import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 public class ParsePartout {
 
 	public ParsePartout() {
-		//consutrcteur
+		//constructeur
 	}
 	
 	public static void pdftotext(File f) {
