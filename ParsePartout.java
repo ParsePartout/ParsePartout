@@ -8,7 +8,11 @@ import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 public class ParsePartout {
 	private static String texte;
 	public ParsePartout() {
+<<<<<<< HEAD
 		texte="";
+=======
+		//constructeur
+>>>>>>> 436644950b2bd08fd67f4f03efb108654633021b
 	}
 	
 	public static void pdftotext(File f) {
