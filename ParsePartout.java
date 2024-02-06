@@ -7,13 +7,8 @@ import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 public class ParsePartout {
 	private static String texte;
-	public ParsePartout() {
-<<<<<<< HEAD
-		texte="";
-=======
-		//constructeur
->>>>>>> 436644950b2bd08fd67f4f03efb108654633021b
-	}
+	private static String nameFile;
+	
 	
 	public static void pdftotext(File f) {
 		try{
@@ -41,6 +36,7 @@ public class ParsePartout {
 	}
 	
 	public static void getAuteur() {
+		ArrayList<String> 
 		String[] words = texte.split(" ");
 		for (int i=0;i<50;i++) {
 			char letter = words[i].charAt(0);
@@ -63,12 +59,14 @@ public class ParsePartout {
 	}
 	public static void creationFichierSansRename() {
 		
+		File file = new File(nameFile.substring(0,nameFile.length()-4) + ".txt");
 	}
 	public static void  creationFichierAvecRename() {
 		
 	}
 	public static void main(String args[]){
 		File f = new File("C:\\dev\\ParsePartout\\src\\parse\\Corpus_2021\\Boudin-Torres-2006.pdf");
+		//nameFile=args[1];
 	    pdftotext(f);
 	    getAuteur();
 	  }
