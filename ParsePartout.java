@@ -6,9 +6,9 @@ import java.io.FileInputStream;
 import com.itextpdf.text.pdf.PdfReader;
 import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 public class ParsePartout {
-
+	private static String texte;
 	public ParsePartout() {
-		//consutrcteur
+		texte="";
 	}
 	
 	public static void pdftotext(File f) {
@@ -24,9 +24,8 @@ public class ParsePartout {
 	        { 
 	            //Extraire le contenu de la page à l'aide de PdfTextExtractor.
 	            String content = PdfTextExtractor.getTextFromPage(pdf, i);
-	   
+	            texte+=content;
 	            //Afficher le contenu de la page sur la console.
-	            System.out.println("Contenu du page : " + content);
 	        }
 		    
 	        //Fermez le PdfReader.
@@ -38,7 +37,15 @@ public class ParsePartout {
 	}
 	
 	public static void getAuteur() {
-		
+		String[] words = texte.split(" ");
+		for (int i=0;i<50;i++) {
+			char letter = words[i].charAt(0);
+			char letterMotSuiv = words[i+1].charAt(0);
+			if(letter==Character.toUpperCase(letter) && letterMotSuiv==Character.toUpperCase(letterMotSuiv)){
+					System.out.println(words[i] + " " + words[i+1]);
+				
+			}
+		}
 	}
 	
 	public static void getTitre() {
@@ -50,10 +57,16 @@ public class ParsePartout {
 	public static void getAbstract() {
 		
 	}
+	public static void creationFichierSansRename() {
+		
+	}
+	public static void  creationFichierAvecRename() {
+		
+	}
 	public static void main(String args[]){
 		File f = new File("C:\\dev\\ParsePartout\\src\\parse\\Corpus_2021\\Boudin-Torres-2006.pdf");
 	    pdftotext(f);
-	    
+	    getAuteur();
 	  }
 
 }
