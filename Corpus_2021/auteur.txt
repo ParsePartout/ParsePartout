@@ -1,0 +1,28 @@
+Florian Boudin
+Marc El-Beze `
+Juan-Manuel Torres-Moreno
+Dipanjan Das
+Andr e F.T. Martins
+Carlos-Emiliano Gonz´ alez-Gallardo
+Iria da Cunha
+Gerardo Sierra
+Tomas Mikolov
+Greg Corrado
+Kai Chen
+Jeffrey Dean
+Alexis Nasr
+Frederic Bechet
+Jean-Franc ¸ois Rey
+Beno ıt Favre
+Joseph Le Roux
+Horacio Saggion
+Eric SanJuan
+Patricia Vel´ azquez-Morales
+Andrei Mikheev
+Remy ´ Kessler
+Nicolas Bechet ´
+Giuseppe Berio
+Gudrun Ledegen
+Frederic Pugniere-Saa ` vedra
+Hongyan Jing
+Kathleen R. McKeown

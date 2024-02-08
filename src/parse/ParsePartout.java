@@ -22,8 +22,8 @@ public class ParsePartout {
                 String content = PdfTextExtractor.getTextFromPage(pdf, i);
                 texte += content;
             }
-
             pdf.close();
+            System.out.println(texte);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -31,38 +31,69 @@ public class ParsePartout {
 
     public static void getAuteur() {
         ArrayList<String> potentialAuthors = new ArrayList<>();
-        Pattern pattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?\\s[A-Z][a-z]+(-[A-Z][a-z]+)?");
-
-        Matcher matcher = pattern.matcher(texte.substring(0, Math.min(texte.length(), 500)));
+        Pattern pattern = Pattern.compile("[A-Z]([A-Z]|[a-z]| ı| | ¸|´ | ` )+(-([A-Z]|[a-z]| ı| | ¸|´ | ` )+)?( ´)?( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z]| ı| | ¸|´ | ` )+(-([A-Z]|[a-z]| ı| | ¸|´ | ` )+)?");
+        
+        Matcher matcher = pattern.matcher(texte.substring(0, Math.min(texte.length(), 300)));
+        
         while (matcher.find()) {
             potentialAuthors.add(matcher.group());
         }
 
-        HashMap<String, Integer> compteur = new HashMap<>();
+        
+        String[] words = texte.split("\\s");
+        Pattern firstnamePattern = Pattern.compile("[A-Z]([A-Z]|[a-z]| ı| | ¸|´ | ` )+(-([A-Z]|[a-z]| ı| | ¸|´ | ` )+)?( ´)?");
+        Pattern lastnamePattern = Pattern.compile("( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z]| ı| | ¸|´ | ` )+(-([A-Z]|[a-z]| ı| | ¸|´ | ` )+)?");
+        
+       
+
+        //compteur email
+        HashMap<String, Integer> compteurEmail = new HashMap<>();
         for (String str : potentialAuthors) {
-            compteur.put(str, 0);
+            compteurEmail.put(str, 0);
         }
-
-        String[] words = texte.split(" ");  
+        //compteur occurence dans texte
+        HashMap<String, Integer> compteurOcc = new HashMap<>();
+        for (String str : potentialAuthors) {
+        	compteurOcc.put(str, 0);
+        }
+        
         for (String word : words) {
-            for (String potAuthor : potentialAuthors) {
-                String[] names = potAuthor.split("\\s");
-                String firstname = names[0];
-                String lastname = names[1];
+          for (String potAuthor : potentialAuthors) {
+        	  Matcher matcherFirstname = firstnamePattern.matcher(potAuthor);
+              Matcher matcherLastname = lastnamePattern.matcher(potAuthor);
+              String firstname = null;
+              if (matcherFirstname.find()) {
+            	firstname = matcherFirstname.group();
+              }
+              String lastname = null;
+              if (matcherLastname.find()) {
+            	  lastname = matcherLastname.group();
+              }
 
-                if (word.contains(firstname) || word.contains(lastname)) {
-                	
-                    int count = compteur.get(potAuthor);
-                    compteur.put(potAuthor, count + 1);
-                }
-            }
+	          if ((word.contains("@")) && (word.contains(firstname.toLowerCase()) || word.contains(lastname.toLowerCase()))) {
+	              
+	        	  int count = compteurEmail.get(potAuthor);
+	              compteurEmail.put(potAuthor, count + 1);
+	          }
+	          if (word.contains(firstname) || word.contains(firstname.toLowerCase()) ||
+	        		  word.contains(lastname) || word.contains(lastname.toLowerCase())) {
+  	              int count = compteurOcc.get(potAuthor);
+  	              compteurOcc.put(potAuthor, count + 1);
+  	          }
+          }
+        	
         }
-        for (Map.Entry m : compteur.entrySet()) {
-            System.out.println("Auteur: "+m.getKey()+", Cpt: "+m.getValue());
+        for (Map.Entry m : compteurEmail.entrySet()) {
+        	System.out.println("clé: "+m.getKey() + " | valeur: " + m.getValue());
+        	if(m.getValue().equals(1)) System.out.println("Auteur : " + m.getKey());
         }
+//        for (Map.Entry m : compteurOcc.entrySet()) {
+//        	System.out.println("clé: "+m.getKey() + " | valeur: " + m.getValue());
+//        	//if(m.getValue().equals(1)) System.out.println("Auteur : " + m.getKey());
+//        }
     }
 
-
+    
 	
 	public static void getTitre() {
 		
@@ -81,8 +112,9 @@ public class ParsePartout {
 		
 	}
     public static void main(String args[]) {
-        File f = new File("C:\\dev\\ParsePartout\\src\\parse\\Corpus_2021\\Boudin-Torres-2006.pdf");
+        File f = new File("C:\\dev\\ParsePartout\\src\\parse\\Corpus_2021\\Nasr.pdf");
         pdfToText(f);
+        
         getAuteur();
     }
 }
