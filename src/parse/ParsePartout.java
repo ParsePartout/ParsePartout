@@ -24,7 +24,7 @@ public class ParsePartout {
                 texte += content;
             }
             pdf.close();
-            //System.out.println(texte);
+            System.out.println(texte);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -42,12 +42,10 @@ public class ParsePartout {
         }
 
         
-        String[] words = texte.split("\\s");
         Pattern firstnamePattern = Pattern.compile("[A-Z]([A-Z]|[a-z]| ı| | ¸|´ | ` )+(-([A-Z]|[a-z]| ı| | ¸|´ | ` )+)?( ´)?");
         Pattern lastnamePattern = Pattern.compile("( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z]| ı| | ¸|´ | ` )+(-([A-Z]|[a-z]| ı| | ¸|´ | ` )+)?");
         
-       
-
+        
         //compteur email
         HashMap<String, Integer> compteurEmail = new HashMap<>();
         for (String str : potentialAuthors) {
@@ -84,8 +82,6 @@ public class ParsePartout {
 	                lastname = replaceChar(lastname);
 
 	            }
-	            System.out.println(lastname);
-	            System.out.println(line);
 		        if ((line.contains("@")) && (line.contains(firstname.toLowerCase()) || line.contains(lastname.toLowerCase().substring(0,1)) || previousline.contains(firstname.toLowerCase()) || previousline.contains(lastname.toLowerCase()))) {
 		        	int count = compteurEmail.get(potAuthor);
 		            compteurEmail.put(potAuthor, count + 1);
@@ -104,7 +100,7 @@ public class ParsePartout {
         }
 //        for (Map.Entry m : compteurOcc.entrySet()) {
 //        	System.out.println("clé: "+m.getKey() + " | valeur: " + m.getValue());
-//        	//if(m.getValue().equals(1)) System.out.println("Auteur : " + m.getKey());
+//        	if(m.getValue().equals(1)) System.out.println("Auteur : " + m.getKey());
 //        }
     }
 
@@ -135,7 +131,7 @@ public class ParsePartout {
 		
 	}
     public static void main(String args[]) {
-        File f = new File("C:\\dev\\ParsePartout\\src\\parse\\Corpus_2021\\Iria_Juan-Manuel_Gerardo.pdf");
+        File f = new File("Corpus_2021/Das_Martins.pdf");//kjhvkhhf dvhfdhvhbdhsbv
         pdfToText(f);
         
         getAuteur();
