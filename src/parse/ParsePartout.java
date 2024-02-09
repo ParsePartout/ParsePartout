@@ -1,6 +1,10 @@
 package parse;
 import java.io.File;
 import java.io.FileInputStream;
+import java.net.MalformedURLException;
+import java.net.URISyntaxException;
+import java.net.URL;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -95,7 +99,12 @@ public class ParsePartout {
         	
         }
         for (Map.Entry<String,Integer> m : compteurEmail.entrySet()) {
+
         	//System.out.println("clé: "+m.getKey() + " | valeur: " + m.getValue());
+
+        	System.out.println("clé: "+m.getKey() + " | valeur: " + m.getValue());
+   
+
         	if(m.getValue()>=1) System.out.println("Auteur : " + m.getKey());
         }
 //        for (Map.Entry m : compteurOcc.entrySet()) {
@@ -131,7 +140,11 @@ public class ParsePartout {
 		
 	}
     public static void main(String args[]) {
+<<<<<<< Updated upstream
         File f = new File("Corpus_2021/Das_Martins.pdf");//kjhvkhhf dvhfdhvhbdhsbv
+=======
+    	File f = new File("Corpus_2021/Das_Martins.pdf");
+>>>>>>> Stashed changes
         pdfToText(f);
         
         getAuteur();
