@@ -4,6 +4,7 @@ import java.io.FileInputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -23,7 +24,7 @@ public class ParsePartout {
                 texte += content;
             }
             pdf.close();
-            System.out.println(texte);
+            //System.out.println(texte);
         } catch (Exception ex) {
             ex.printStackTrace();
         }
@@ -31,11 +32,12 @@ public class ParsePartout {
 
     public static void getAuteur() {
         ArrayList<String> potentialAuthors = new ArrayList<>();
-        Pattern pattern = Pattern.compile("[A-Z]([A-Z]|[a-z]| ı| | ¸|´ | ` )+(-([A-Z]|[a-z]| ı| | ¸|´ | ` )+)?( ´)?( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z]| ı| | ¸|´ | ` )+(-([A-Z]|[a-z]| ı| | ¸|´ | ` )+)?");
+        Pattern pattern = Pattern.compile("[A-Z]([A-Z]|[a-z]| ı| | ¸|´ | ` )+(-([A-Z]|[a-z]| ı| | ¸|´ | ` )+)?( ´)?( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z]| ı| | ¸|´ | ` )+(-([A-Z]|[a-z]| ı| | ¸|´ | `)+)?");
         
-        Matcher matcher = pattern.matcher(texte.substring(0, Math.min(texte.length(), 300)));
+        Matcher matcher = pattern.matcher(texte.substring(30, Math.min(texte.length(), 300)));
         
         while (matcher.find()) {
+        	System.out.println(matcher.group());
             potentialAuthors.add(matcher.group());
         }
 
@@ -57,35 +59,48 @@ public class ParsePartout {
         	compteurOcc.put(str, 0);
         }
         
-        for (String word : words) {
-          for (String potAuthor : potentialAuthors) {
-        	  Matcher matcherFirstname = firstnamePattern.matcher(potAuthor);
-              Matcher matcherLastname = lastnamePattern.matcher(potAuthor);
-              String firstname = null;
-              if (matcherFirstname.find()) {
-            	firstname = matcherFirstname.group();
-              }
-              String lastname = null;
-              if (matcherLastname.find()) {
-            	  lastname = matcherLastname.group();
-              }
+        StringTokenizer tokenizer = new StringTokenizer(texte, "\n");
+        String previousline = null;
+        while (tokenizer.hasMoreTokens()) {
+            String line = tokenizer.nextToken();
+            
+            for (String potAuthor : potentialAuthors) {
+            	Matcher matcherFirstname = firstnamePattern.matcher(potAuthor);
+	            Matcher matcherLastname = lastnamePattern.matcher(potAuthor);
+	            String firstname = null;
+	            if (matcherFirstname.find()) {
+	            	firstname = matcherFirstname.group();
+	            }
+	            String lastname = null;
+	            if (matcherLastname.find()) {
+	            	lastname = matcherLastname.group();
+	            }
+	         
+	            if (firstname != null) {
+	                firstname = replaceChar(firstname);
+	            }
 
-	          if ((word.contains("@")) && (word.contains(firstname.toLowerCase()) || word.contains(lastname.toLowerCase()))) {
-	              
-	        	  int count = compteurEmail.get(potAuthor);
-	              compteurEmail.put(potAuthor, count + 1);
-	          }
-	          if (word.contains(firstname) || word.contains(firstname.toLowerCase()) ||
-	        		  word.contains(lastname) || word.contains(lastname.toLowerCase())) {
-  	              int count = compteurOcc.get(potAuthor);
-  	              compteurOcc.put(potAuthor, count + 1);
-  	          }
-          }
+	            if (lastname != null) {
+	                lastname = replaceChar(lastname);
+
+	            }
+	            System.out.println(lastname);
+	            System.out.println(line);
+		        if ((line.contains("@")) && (line.contains(firstname.toLowerCase()) || line.contains(lastname.toLowerCase().substring(0,1)) || previousline.contains(firstname.toLowerCase()) || previousline.contains(lastname.toLowerCase()))) {
+		        	int count = compteurEmail.get(potAuthor);
+		            compteurEmail.put(potAuthor, count + 1);
+		        }
+		        if (line.contains(firstname) || line.contains(firstname.toLowerCase()) || line.contains(lastname) || line.contains(lastname.toLowerCase())) {
+		        	int count = compteurOcc.get(potAuthor);
+	  	            compteurOcc.put(potAuthor, count + 1);
+	  	        }
+            }
+            previousline=line;
         	
         }
-        for (Map.Entry m : compteurEmail.entrySet()) {
-        	System.out.println("clé: "+m.getKey() + " | valeur: " + m.getValue());
-        	if(m.getValue().equals(1)) System.out.println("Auteur : " + m.getKey());
+        for (Map.Entry<String,Integer> m : compteurEmail.entrySet()) {
+        	//System.out.println("clé: "+m.getKey() + " | valeur: " + m.getValue());
+        	if(m.getValue()>=1) System.out.println("Auteur : " + m.getKey());
         }
 //        for (Map.Entry m : compteurOcc.entrySet()) {
 //        	System.out.println("clé: "+m.getKey() + " | valeur: " + m.getValue());
@@ -94,7 +109,15 @@ public class ParsePartout {
     }
 
     
-	
+    private static String replaceChar(String name) {
+    	return name.replaceAll(" ı", "i")
+                .replaceAll("´ ", "")
+                .replaceAll("c ¸", "c")
+    			.replaceAll(" `", "");
+    	
+           
+        
+    }
 	public static void getTitre() {
 		
 	}
@@ -112,7 +135,7 @@ public class ParsePartout {
 		
 	}
     public static void main(String args[]) {
-        File f = new File("C:\\dev\\ParsePartout\\src\\parse\\Corpus_2021\\Nasr.pdf");
+        File f = new File("C:\\dev\\ParsePartout\\src\\parse\\Corpus_2021\\Iria_Juan-Manuel_Gerardo.pdf");
         pdfToText(f);
         
         getAuteur();
