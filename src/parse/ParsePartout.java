@@ -23,7 +23,6 @@ public class ParsePartout {
 	        
 	        Process process = Runtime.getRuntime().exec(command);
 	        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-	
 	        String line;
 	        while ((line = reader.readLine()) != null) {
 	            text.append(line).append("\n");
@@ -37,7 +36,7 @@ public class ParsePartout {
 
     public static void getAuteur(String texte) {
         ArrayList<String> potentialAuthors = new ArrayList<>();
-        Pattern pattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?( ([A-Z].)+)?( [a-z]*)? [A-Z][a-z]+(-[A-Z][a-z]+)?");
+        Pattern pattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?");
 
         Matcher matcher = pattern.matcher(texte.substring(20, Math.min(texte.length(), 300)));
         
@@ -47,7 +46,8 @@ public class ParsePartout {
         }
        
        Pattern firstnamePattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?");
-       Pattern lastnamePattern = Pattern.compile("( ([A-Z].)+)?( [a-z]*)? [A-Z][a-z]+(-[A-Z][a-z]+)?");
+       Pattern midnamePattern = Pattern.compile("( ([A-Z].)+)?( [a-z]*)?");
+       Pattern lastnamePattern = Pattern.compile(" [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?");
         
         
         //compteur email
@@ -56,39 +56,72 @@ public class ParsePartout {
             compteur.put(str, 0);
         }
         
-        
         StringTokenizer tokenizer = new StringTokenizer(texte, "\n");
         while (tokenizer.hasMoreTokens()) {
             String line = tokenizer.nextToken();
-            
-            for (String potAuthor : potentialAuthors) {
-            	
-				Matcher matcherFirstname = firstnamePattern.matcher(potAuthor);
-	            Matcher matcherLastname = lastnamePattern.matcher(potAuthor);
-	            String firstname = null;
-	            if (matcherFirstname.find()) {
-	            	firstname = matcherFirstname.group();
+            if (line.contains("@")) {
+            	int cbArr=0;
+	            for(int i=0; i<line.length();i++) {
+	            	if(line.charAt(i)=='@') cbArr++;
 	            }
-	            String lastname = null;
-	            if (matcherLastname.find()) {
-	            	lastname = matcherLastname.group();
+	            if(cbArr>1) {
+	            	String[] lineSplit = line.split(" ");
+	            	for(int i =0;i<cbArr;i++) {
+			            for (String potAuthor : potentialAuthors) {
+			            	
+							Matcher matcherFirstname = firstnamePattern.matcher(potAuthor);
+							Matcher matcherMidname = midnamePattern.matcher(potAuthor);
+				            Matcher matcherLastname = lastnamePattern.matcher(potAuthor);
+				            String firstname = null;
+				            if (matcherFirstname.find()) {
+				            	firstname = matcherFirstname.group();
+				            }
+				            String midname = null;
+				            if (matcherMidname.find()) {
+				            	midname = matcherMidname.group();
+				            }
+				            String lastname = null;
+				            if (matcherLastname.find()) {
+				            	lastname = matcherLastname.group();
+				            }
+				            if (lineSplit[i].substring(0,lineSplit[i].indexOf("@")).contains(firstname.toLowerCase()) ||lineSplit[i].substring(0,lineSplit[i].indexOf("@")).contains(lastname.substring(1).toLowerCase())){
+				            	int count = compteur.get(potAuthor);
+							    compteur.put(potAuthor, count + 1);
+				            }
+				        }		        	
+	            	}
 	            }
-	            
-	            if (line.contains("@")) {
-	            	
-	            	int cbArr=0;
-		            for(int i=0; i<line.length();i++) {
-		            	if(line.charAt(i)=='@') cbArr++;
-		            }
-		            for(int i=0;i<cbArr;i++) {
-		            	if (line.substring(0,line.indexOf("@")).contains(firstname.toLowerCase()) || line.substring(0,line.indexOf("@")).contains(lastname.substring(1).toLowerCase())){
-		            		int count = compteur.get(potAuthor);
-					        compteur.put(potAuthor, count + 1);
-		            	}
-		            }		        	
-		        }
+	            else {
+	            	for (String potAuthor : potentialAuthors) {
+		            	
+						Matcher matcherFirstname = firstnamePattern.matcher(potAuthor);
+						Matcher matcherMidname = midnamePattern.matcher(potAuthor);
+			            Matcher matcherLastname = lastnamePattern.matcher(potAuthor);
+			            String firstname = null;
+			            if (matcherFirstname.find()) {
+			            	firstname = matcherFirstname.group();
+			            }
+			            String midname = null;
+			            if (matcherMidname.find()) {
+			            	midname = matcherMidname.group();
+			            }
+			            String lastname = null;
+			            if (matcherLastname.find()) {
+			            	lastname = matcherLastname.group();
+			            }
+//			            System.out.println(firstname);
+//			            System.out.println(lastname);
+//			            String initialName="afm";
+			            //String initialName = firstname.substring(0,1)+midname.substring(0,1)+lastname.substring(0,1);
+			            if (line.substring(0,line.indexOf("@")).contains(firstname.toLowerCase()) ||line.substring(0,line.indexOf("@")).contains(lastname.substring(1).toLowerCase())) { //|| line.contains(initialName.toLowerCase())){
+			            	int count = compteur.get(potAuthor);
+						    compteur.put(potAuthor, count + 1);
+			            }
+	            	}
+	            }
             }
         }
+        
         for (Map.Entry<String,Integer> m : compteur.entrySet()) {
 
         	//System.out.println("clé: "+m.getKey() + " | valeur: " + m.getValue());
