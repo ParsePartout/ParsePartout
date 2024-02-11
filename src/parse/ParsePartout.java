@@ -1,7 +1,9 @@
 package parse;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Paths;
@@ -16,6 +18,7 @@ import java.util.regex.Pattern;
 public class ParsePartout {
     
 	private static String nameFile;
+	
     public static StringBuilder pdfToText(String filepath) {
         StringBuilder text = new StringBuilder();
     	try {
@@ -34,7 +37,7 @@ public class ParsePartout {
     	return text;
     }
 
-    public static void getAuteur(String texte) {
+    public static String getAuteur(String texte) {
         ArrayList<String> potentialAuthors = new ArrayList<>();
         Pattern pattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?");
 
@@ -121,25 +124,31 @@ public class ParsePartout {
 	            }
             }
         }
-        
+
+        String retour ="\n";
+
         for (Map.Entry<String,Integer> m : compteur.entrySet()) {
 
         	//System.out.println("clé: "+m.getKey() + " | valeur: " + m.getValue());
-        	if(m.getValue()>=1) System.out.println("Auteur : " + m.getKey());
+        	if(m.getValue()>=1) {
+        		System.out.println("Auteur : " + m.getKey());
+        		retour += "			"+m.getKey()+"\n";
+        	}
         }
+        return retour;
+        
     
       
     }
-    
 
-    
-	public static void getTitre() {
-		
+	public static String getTitre(String texte) {
+		String retour="Ouais le titre";
+		return retour;
 	}
-	public static void getNom() {
-		
+	public static String getNom(File f) {
+		return f.getName();
 	}
-	public static void getAbstract(String texte) {
+	public static String getAbstract(String texte) {
 		String[] lines = texte.split("\n");
 		ArrayList<String> res = new ArrayList<String>();
 		
@@ -170,35 +179,74 @@ public class ParsePartout {
 		}
 
 		//affichage
+		String retour="			";
 		for(String r : res) {
 			if(r!=null)
-				System.out.println(r);
+				retour+=r;
 		}
+		return retour;
 	}
-	public static void creationFichierSansRename() {
-		
-		File file = new File(nameFile.substring(0,nameFile.length()-4) + ".txt");
+	public static File creationFichierSansRename(File f) {
+		File file = new File("./DejaParséAlorsTuVasFaireQuoi/"+f.getName().substring(0,f.getName().length()-4) + ".txt");
+		if(file.exists()) {
+			try {
+				file.createNewFile();
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return file;
 	}
-	public static void  creationFichierAvecRename() {
-		
+	public static File creationFichierAvecRename(File f,String rename) throws IOException {
+		File file = new File("./DejaParséAlorsTuVasFaireQuoi/"+rename+ ".txt");
+		if(file.exists()) {
+			try {
+				file.createNewFile();
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return file;
+	}
+	public static void putInfo(File from, File out) throws IOException {
+		FileWriter fw = new FileWriter(out);
+		BufferedWriter bw = new BufferedWriter(fw);
+		String block= getString(from.getName());
+		bw.append("Titre :\n");
+		bw.append("			"+getTitre(block)+"\n");
+		bw.append("\nAuteur(s) :\n");
+		bw.append(getAuteur(block));
+		bw.append("\nAbstract :\n");
+		bw.append(getAbstract(block));	
+		bw.close();
+		fw.close();
+	}
+	public static String getString(String nom) {
+    	String homeDirectory = System.getProperty("user.dir");
+    	String filePath = Paths.get(homeDirectory, "Corpus_2021").toString();
+		StringBuilder t = pdfToText(filePath+"/"+nom);
+		return t.toString();
 	}
     public static void main(String args[]) throws IOException {
     	
     	String homeDirectory = System.getProperty("user.dir");
     	String filePath = Paths.get(homeDirectory, "Corpus_2021").toString();
     	File directory = new File(filePath);
-
         // Parcourez les fichiers du répertoire
         File[] files = directory.listFiles();
+        File dir = new File("./DejaParséAlorsTuVasFaireQuoi");
+        dir.mkdir();
+        int boo=0;
         if (files != null) {
             for (File file : files) {
+            	boo+=1;
                 if (file.isFile() && file.getName().endsWith(".pdf")) {
-                    System.out.println("Testing file: " + file.getName());
-                    StringBuilder texte = pdfToText(filePath + "/" + file.getName());
-                    getAuteur(texte.toString());
-                    System.out.println("------------------------");
+//                    putInfo(file, creationFichierSansRename(file));
+                    putInfo(file, creationFichierAvecRename(file, "boobaleroi"+String.valueOf(boo)));
                 }
             }
         }
+
+
     }
 }
