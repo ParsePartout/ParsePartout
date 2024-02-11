@@ -14,7 +14,7 @@ import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-
+/*ParsePartout*/
 public class ParsePartout {
     
 	private static String nameFile;
