@@ -173,16 +173,11 @@ public class ParsePartout {
 		if(retour==null) {
 			for(int i=0; i<lines.length; i++) {		
 				if(lines[i].toUpperCase().contains("INTRODUCTION")) {
-					for(int j=i; j>0; j--) {
-						if(!lines[j].equals("")) {
-							retour = lines[j-1];
-							break;
-							
-						}
-					}
+						retour = lines[i-1];
+						break;
 				}
-			}	
-		}
+			}
+		}	
 		return retour;
 	}
 	public static File creationFichierSansRename(File f) {
