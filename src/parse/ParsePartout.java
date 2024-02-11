@@ -146,8 +146,7 @@ public class ParsePartout {
 
 	public static String getTitre(String texte) {
 		//methode pour retourner le titre du document
-		String retour="Ouais le titre";
-		return retour;
+		return texte.split("\n")[0];
 	}
 	public static String getNom(File f) {
 		//return nom du fichier 
@@ -205,7 +204,6 @@ public class ParsePartout {
 		File file = new File("./DejaParséAlorsTuVasFaireQuoi/"+rename+ ".txt");
 		
 		//verifie la creation
-		
 		if(file.exists()) {
 			try {
 				file.createNewFile();
@@ -247,6 +245,7 @@ public class ParsePartout {
 		}		
 		bw.close();
 		fw.close();
+		
 	}
 	public static String getString(String nom) {
 		//recupere et retourne le texte en vrac
@@ -271,6 +270,7 @@ public class ParsePartout {
                 }
             }
         }
+        System.out.println(getString("Torres-moreno1998.pdf"));
 
 
     }
