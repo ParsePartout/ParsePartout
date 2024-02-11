@@ -155,39 +155,33 @@ public class ParsePartout {
 	}
 	public static String getAbstract(String texte) {
 		String[] lines = texte.split("\n");
-		ArrayList<String> res = new ArrayList<String>();
+		String retour = null;
 		
-		int cpt=0;
-		boolean flag = false;
-		
-		//ajout des lignes depuis abstract a introduction
-		for(String line : lines) {
-			
-			if(line.toUpperCase().contains("ABSTRACT")) {
-				flag=true;
-			}
-			if(line.toUpperCase().contains("INTRODUCTION")) {
-				flag=false;
+		for(int i=0; i<lines.length; i++) {
+			//Si l'abtrsact est en gros titre
+			if(lines[i].toUpperCase().equals("ABSTRACT")) {
+				retour = lines[i+1];
+				break;
+			//si le mot abstract est compris dans l'abstract
+			}else if(lines[i].toUpperCase().contains("ABSTRACT")) {
+				retour = lines[i];
 				break;
 			}
-			if(flag) {
-				res.add(line);
-				cpt++;
-			}
 		}
-
-		//check si trop de ligne (fichier deux collones)
-		if(res.size()>17) {
-			for(int i =1; i<res.size(); i++) {
-				res.remove(i);
-			}
-		}
-
-		//affichage
-		String retour="			";
-		for(String r : res) {
-			if(r!=null)
-				retour+=r;
+		
+		//Si il ny a pas le mot Abstract
+		if(retour==null) {
+			for(int i=0; i<lines.length; i++) {		
+				if(lines[i].toUpperCase().contains("INTRODUCTION")) {
+					for(int j=i; j>0; j--) {
+						if(!lines[j].equals("")) {
+							retour = lines[j-1];
+							break;
+							
+						}
+					}
+				}
+			}	
 		}
 		return retour;
 	}
