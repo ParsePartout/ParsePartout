@@ -1,4 +1,5 @@
 package parse;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -72,12 +73,20 @@ public class ParsePartout {
 	            if (matcherLastname.find()) {
 	            	lastname = matcherLastname.group();
 	            }
-	         
-		        if ((line.contains("@")) && ((line.substring(0,line.indexOf("@")).contains(firstname.toLowerCase())) || (line.substring(0,line.indexOf("@")).contains(lastname.toLowerCase())))){
-		        	int count = compteur.get(potAuthor);
-			        compteur.put(potAuthor, count + 1);
+	            
+	            if (line.contains("@")) {
+	            	
+	            	int cbArr=0;
+		            for(int i=0; i<line.length();i++) {
+		            	if(line.charAt(i)=='@') cbArr++;
+		            }
+		            for(int i=0;i<cbArr;i++) {
+		            	if (line.substring(0,line.indexOf("@")).contains(firstname.toLowerCase()) || line.substring(0,line.indexOf("@")).contains(lastname.substring(1).toLowerCase())){
+		            		int count = compteur.get(potAuthor);
+					        compteur.put(potAuthor, count + 1);
+		            	}
+		            }		        	
 		        }
-
             }
         }
         for (Map.Entry<String,Integer> m : compteur.entrySet()) {
@@ -97,7 +106,7 @@ public class ParsePartout {
 	public static void getNom() {
 		
 	}
-	public static void getAbstract() {
+	public static void getAbstract(String texte) {
 		String[] lines = texte.split("\n");
 		ArrayList<String> res = new ArrayList<String>();
 		
