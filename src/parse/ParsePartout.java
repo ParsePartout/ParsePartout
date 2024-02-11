@@ -1,9 +1,8 @@
 package parse;
+import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileInputStream;
-import java.net.MalformedURLException;
-import java.net.URISyntaxException;
-import java.net.URL;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -12,62 +11,60 @@ import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import com.itextpdf.text.pdf.PdfReader;
-import com.itextpdf.text.pdf.parser.PdfTextExtractor;
 
 public class ParsePartout {
-    private static String texte = "";
+    
 	private static String nameFile;
-    public static void pdfToText(File f) {
-        try {
-            PdfReader pdf = new PdfReader(new FileInputStream(f));
-            int nbrPages = pdf.getNumberOfPages();
-
-            for (int i = 1; i <= nbrPages; i++) {
-                String content = PdfTextExtractor.getTextFromPage(pdf, i);
-                texte += content;
-            }
-            pdf.close();
-            System.out.println(texte);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
+    public static StringBuilder pdfToText(String filepath) {
+        StringBuilder text = new StringBuilder();
+    	try {
+	    	String[] command = {"pdftotext", filepath, "-"};
+	        
+	        Process process = Runtime.getRuntime().exec(command);
+	        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+	
+	        String line;
+	        while ((line = reader.readLine()) != null) {
+	            text.append(line).append("\n");
+	        }
+	        process.waitFor();
+    	} catch (IOException | InterruptedException e) {
+    		e.printStackTrace();
+    	}
+    	return text;
     }
 
-    public static void getAuteur() {
+    public static void getAuteur(String texte) {
+    	//èá
         ArrayList<String> potentialAuthors = new ArrayList<>();
-        Pattern pattern = Pattern.compile("[A-Z]([A-Z]|[a-z]| ı| | ¸|´ | ` )+(-([A-Z]|[a-z]| ı| | ¸|´ | ` )+)?( ´)?( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z]| ı| | ¸|´ | ` )+(-([A-Z]|[a-z]| ı| | ¸|´ | `)+)?");
-        
-        Matcher matcher = pattern.matcher(texte.substring(30, Math.min(texte.length(), 300)));
+        Pattern pattern = Pattern.compile("[A-Z]([A-Z]|[a-z]|é|è|î|á|ç)+(-[A-Z]([A-Z]|[a-z]|é|è|î|á|ç)+)?( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z]|é|è|î|á|ç)+(-[A-Z]([A-Z]|[a-z]|é|è|î|á|ç)+)?");
+        //Pattern pattern = Pattern.compile("[A-Za-zÀ-ÖØ-öø-ÿ]+(-[A-Za-zÀ-ÖØ-öø-ÿ]+)?( ([A-Za-zÀ-ÖØ-öø-ÿ].)+)?");
+        Matcher matcher = pattern.matcher(texte.substring(20, Math.min(texte.length(), 300)));
         
         while (matcher.find()) {
-        	System.out.println(matcher.group());
+        	//System.out.println(matcher.group());
             potentialAuthors.add(matcher.group());
         }
-
-        
-        Pattern firstnamePattern = Pattern.compile("[A-Z]([A-Z]|[a-z]| ı| | ¸|´ | ` )+(-([A-Z]|[a-z]| ı| | ¸|´ | ` )+)?( ´)?");
-        Pattern lastnamePattern = Pattern.compile("( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z]| ı| | ¸|´ | ` )+(-([A-Z]|[a-z]| ı| | ¸|´ | ` )+)?");
+       
+       Pattern firstnamePattern = Pattern.compile("[A-Z]([A-Z]|[a-z]|é|è|î|á|ç)+(-[A-Z]([A-Z]|[a-z]|é|è|î|á|ç)+)?");
+       Pattern lastnamePattern = Pattern.compile("( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z]|é|è|î|á|ç)+(-[A-Z]([A-Z]|[a-z]|é|è|î|á|ç)+)?");
         
         
         //compteur email
-        HashMap<String, Integer> compteurEmail = new HashMap<>();
+        HashMap<String, Integer> compteur = new HashMap<>();
         for (String str : potentialAuthors) {
-            compteurEmail.put(str, 0);
-        }
-        //compteur occurence dans texte
-        HashMap<String, Integer> compteurOcc = new HashMap<>();
-        for (String str : potentialAuthors) {
-        	compteurOcc.put(str, 0);
+            compteur.put(str, 0);
         }
         
+        
         StringTokenizer tokenizer = new StringTokenizer(texte, "\n");
-        String previousline = null;
+        String previousline = "";
         while (tokenizer.hasMoreTokens()) {
             String line = tokenizer.nextToken();
             
             for (String potAuthor : potentialAuthors) {
-            	Matcher matcherFirstname = firstnamePattern.matcher(potAuthor);
+            	
+				Matcher matcherFirstname = firstnamePattern.matcher(potAuthor);
 	            Matcher matcherLastname = lastnamePattern.matcher(potAuthor);
 	            String firstname = null;
 	            if (matcherFirstname.find()) {
@@ -78,51 +75,28 @@ public class ParsePartout {
 	            	lastname = matcherLastname.group();
 	            }
 	         
-	            if (firstname != null) {
-	                firstname = replaceChar(firstname);
-	            }
-
-	            if (lastname != null) {
-	                lastname = replaceChar(lastname);
-
-	            }
-		        if ((line.contains("@")) && (line.contains(firstname.toLowerCase()) || line.contains(lastname.toLowerCase().substring(0,1)) || previousline.contains(firstname.toLowerCase()) || previousline.contains(lastname.toLowerCase()))) {
-		        	int count = compteurEmail.get(potAuthor);
-		            compteurEmail.put(potAuthor, count + 1);
+		        if ((line.contains("@")) && (line.contains(firstname.toLowerCase()) || line.contains(lastname.toLowerCase()))){ // || previousline.contains(firstname.toLowerCase()) || previousline.contains(lastname.toLowerCase()))) {
+		        	int count = compteur.get(potAuthor);
+		            compteur.put(potAuthor, count + 1);
 		        }
-		        if (line.contains(firstname) || line.contains(firstname.toLowerCase()) || line.contains(lastname) || line.contains(lastname.toLowerCase())) {
-		        	int count = compteurOcc.get(potAuthor);
-	  	            compteurOcc.put(potAuthor, count + 1);
-	  	        }
+//		        if (previousline.contains(firstname) || previousline.contains(firstname.toLowerCase()) || previousline.contains(lastname) || previousline.contains(lastname.toLowerCase()) && (line.contains("univ"))) {	
+//		        	int count = compteur.get(potAuthor);
+//	  	            compteur.put(potAuthor, count + 1);
+//	  	        }
             }
             previousline=line;
         	
         }
-        for (Map.Entry<String,Integer> m : compteurEmail.entrySet()) {
+        for (Map.Entry<String,Integer> m : compteur.entrySet()) {
 
         	//System.out.println("clé: "+m.getKey() + " | valeur: " + m.getValue());
-
-        	System.out.println("clé: "+m.getKey() + " | valeur: " + m.getValue());
-   
-
         	if(m.getValue()>=1) System.out.println("Auteur : " + m.getKey());
         }
-//        for (Map.Entry m : compteurOcc.entrySet()) {
-//        	System.out.println("clé: "+m.getKey() + " | valeur: " + m.getValue());
-//        	if(m.getValue().equals(1)) System.out.println("Auteur : " + m.getKey());
-//        }
+    
     }
+    
 
     
-    private static String replaceChar(String name) {
-    	return name.replaceAll(" ı", "i")
-                .replaceAll("´ ", "")
-                .replaceAll("c ¸", "c")
-    			.replaceAll(" `", "");
-    	
-           
-        
-    }
 	public static void getTitre() {
 		
 	}
@@ -139,14 +113,23 @@ public class ParsePartout {
 	public static void  creationFichierAvecRename() {
 		
 	}
-    public static void main(String args[]) {
-<<<<<<< Updated upstream
-        File f = new File("Corpus_2021/Das_Martins.pdf");//kjhvkhhf dvhfdhvhbdhsbv
-=======
-    	File f = new File("Corpus_2021/Das_Martins.pdf");
->>>>>>> Stashed changes
-        pdfToText(f);
-        
-        getAuteur();
+    public static void main(String args[]) throws IOException {
+    	
+    	String homeDirectory = System.getProperty("user.dir");
+    	String filePath = Paths.get(homeDirectory, "Corpus_2021").toString();
+    	File directory = new File(filePath);
+
+        // Parcourez les fichiers du répertoire
+        File[] files = directory.listFiles();
+        if (files != null) {
+            for (File file : files) {
+                if (file.isFile() && file.getName().endsWith(".pdf")) {
+                    System.out.println("Testing file: " + file.getName());
+                    StringBuilder texte = pdfToText(filePath + "/" + file.getName());
+                    getAuteur(texte.toString());
+                    System.out.println("------------------------");
+                }
+            }
+        }
     }
 }
