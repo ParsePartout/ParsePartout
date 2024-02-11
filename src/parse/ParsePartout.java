@@ -164,7 +164,13 @@ public class ParsePartout {
 				break;
 			//si le mot abstract est compris dans l'abstract
 			}else if(lines[i].toUpperCase().contains("ABSTRACT")) {
-				retour = lines[i];
+				//on enleve le mot abstract
+				for(int j=1; j<lines[i].length(); j++) {
+					if(lines[i].charAt(j)>='A' && lines[i].charAt(j)<='Z' ) {
+						retour = lines[i].substring(j);
+						break;
+					}
+				}
 				break;
 			}
 		}
@@ -173,8 +179,8 @@ public class ParsePartout {
 		if(retour==null) {
 			for(int i=0; i<lines.length; i++) {		
 				if(lines[i].toUpperCase().contains("INTRODUCTION")) {
-						retour = lines[i-1];
-						break;
+					retour = lines[i-1];
+					break;
 				}
 			}
 		}	
@@ -235,7 +241,7 @@ public class ParsePartout {
 			bw.append("\nAuteur(s) :\n");
 			bw.append(auteur);
 		}
-		if(!abstrac.equals("			")) {
+		if(abstrac!=null) {
 			bw.append("\nAbstract :\n");
 			bw.append(abstrac);	
 		}		
