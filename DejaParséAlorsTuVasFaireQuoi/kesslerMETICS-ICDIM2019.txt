@@ -1,10 +1,9 @@
 Nom du fichier :
 			kesslerMETICS-ICDIM2019.pdf
 Titre :
-			Ouais le titre
+			A word embedding approach to explore a collection of discussions of people in psychological distress
 
 Auteur(s) :
-
 			Remy Kessler
 			Nicolas Bechet
 

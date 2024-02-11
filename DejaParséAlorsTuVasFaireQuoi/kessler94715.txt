@@ -1,10 +1,9 @@
 Nom du fichier :
 			kessler94715.pdf
 Titre :
-			Ouais le titre
+			Extraction of terminology in the field of construction
 
 Auteur(s) :
-
 			Remy Kessler
 			Nicolas Bechet
 			Giuseppe Berio

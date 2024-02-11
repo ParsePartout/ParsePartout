@@ -1,10 +1,9 @@
 Nom du fichier :
 			Mikolov.pdf
 Titre :
-			Ouais le titre
+			Efficient Estimation of Word Representations in Vector Space
 
 Auteur(s) :
-
 			Greg Corrado
 			Tomas Mikolov
 			Kai Chen

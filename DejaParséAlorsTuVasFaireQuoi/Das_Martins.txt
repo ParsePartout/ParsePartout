@@ -1,10 +1,9 @@
 Nom du fichier :
 			Das_Martins.pdf
 Titre :
-			Ouais le titre
+			A Survey on Automatic Text Summarization
 
 Auteur(s) :
-
 			Dipanjan Das
 
 Abstract :

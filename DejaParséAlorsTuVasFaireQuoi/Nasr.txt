@@ -1,10 +1,9 @@
 Nom du fichier :
 			Nasr.pdf
 Titre :
-			Ouais le titre
+			MACAON An NLP Tool Suite for Processing Word Lattices
 
 Auteur(s) :
-
 			Joseph Le Roux
 			Jean-Francois Rey
 			Alexis Nasr

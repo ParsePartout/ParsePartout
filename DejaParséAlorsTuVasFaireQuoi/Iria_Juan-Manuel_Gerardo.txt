@@ -1,10 +1,9 @@
 Nom du fichier :
 			Iria_Juan-Manuel_Gerardo.pdf
 Titre :
-			Ouais le titre
+			On the Development of the RST Spanish Treebank
 
 Auteur(s) :
-
 			Iria da Cunha
 			Juan-Manuel Torres-Moreno
 

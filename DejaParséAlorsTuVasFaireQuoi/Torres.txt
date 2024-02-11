@@ -1,10 +1,9 @@
 Nom du fichier :
 			Torres.pdf
 Titre :
-			Ouais le titre
+			Summary Evaluation with and without References
 
 Auteur(s) :
-
 			Iria da Cunha
 			Patricia Velazquez-Morales
 			Juan-Manuel Torres-Moreno

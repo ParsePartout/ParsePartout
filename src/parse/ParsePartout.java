@@ -128,7 +128,7 @@ public class ParsePartout {
             }
         }
 
-        String retour ="\n";
+        String retour ="";
 
         for (Map.Entry<String,Integer> m : compteur.entrySet()) {
 
@@ -235,7 +235,7 @@ public class ParsePartout {
 			bw.append("			"+titre+"\n");
 		}
 
-		if(!auteur.equals("\n")) {
+		if(!auteur.equals("")) {
 			bw.append("\nAuteur(s) :\n");
 			bw.append(auteur);
 		}
