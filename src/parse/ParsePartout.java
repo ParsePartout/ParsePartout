@@ -104,7 +104,40 @@ public class ParsePartout {
 		
 	}
 	public static void getAbstract() {
+		String[] lines = texte.split("\n");
+		ArrayList<String> res = new ArrayList<String>();
 		
+		int cpt=0;
+		boolean flag = false;
+		
+		//ajout des lignes depuis abstract a introduction
+		for(String line : lines) {
+			
+			if(line.toUpperCase().contains("ABSTRACT")) {
+				flag=true;
+			}
+			if(line.toUpperCase().contains("INTRODUCTION")) {
+				flag=false;
+				break;
+			}
+			if(flag) {
+				res.add(line);
+				cpt++;
+			}
+		}
+
+		//check si trop de ligne (fichier deux collones)
+		if(res.size()>17) {
+			for(int i =1; i<res.size(); i++) {
+				res.remove(i);
+			}
+		}
+
+		//affichage
+		for(String r : res) {
+			if(r!=null)
+				System.out.println(r);
+		}
 	}
 	public static void creationFichierSansRename() {
 		
