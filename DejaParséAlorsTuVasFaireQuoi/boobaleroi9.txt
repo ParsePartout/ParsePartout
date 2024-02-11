@@ -3,9 +3,9 @@ Titre :
 
 Auteur(s) :
 
-			Remy Kessler
-			Nicolas Bechet
-			Giuseppe Berio
+			Greg Corrado
+			Tomas Mikolov
+			Kai Chen
 
 Abstract :
-			Abstract--We describe a corpus analysis method to extract terminology from a collection of technical specifications in the field of construction. Using statistics and word n-grams analysis, we extract the terminology of the domain and then perform pruning steps with linguistic patterns and internet queries to improve the quality of the final terminology. Results are evaluated by using a manual evaluation carried out by 6 experts in the field.Index Terms--terminology extraction, Internet queries, linguistic patterns.
+			AbstractWe propose two novel model architectures for computing continuous vector representations of words from very large data sets. The quality of these representations is measured in a word similarity task, and the results are compared to the previously best performing techniques based on different types of neural networks. We observe large improvements in accuracy at much lower computational cost, i.e. it takes less than a day to learn high quality word vectors from a 1.6 billion words data set. Furthermore, we show that these vectors provide state-of-the-art performance on our test set for measuring syntactic and semantic word similarities.

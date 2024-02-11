@@ -22,6 +22,7 @@ public class ParsePartout {
     public static StringBuilder pdfToText(String filepath) {
         StringBuilder text = new StringBuilder();
     	try {
+    		
 	    	String[] command = {"pdftotext","-enc","ASCII7", filepath, "-"};
 	        
 	        Process process = Runtime.getRuntime().exec(command);
@@ -131,7 +132,7 @@ public class ParsePartout {
 
         	//System.out.println("clé: "+m.getKey() + " | valeur: " + m.getValue());
         	if(m.getValue()>=1) {
-        		System.out.println("Auteur : " + m.getKey());
+//        		System.out.println("Auteur : " + m.getKey());
         		retour += "			"+m.getKey()+"\n";
         	}
         }
@@ -187,6 +188,7 @@ public class ParsePartout {
 		return retour;
 	}
 	public static File creationFichierSansRename(File f) {
+		System.out.println(f.getName());
 		File file = new File("./DejaParséAlorsTuVasFaireQuoi/"+f.getName().substring(0,f.getName().length()-4) + ".txt");
 		if(file.exists()) {
 			try {
@@ -236,13 +238,10 @@ public class ParsePartout {
         File[] files = directory.listFiles();
         File dir = new File("./DejaParséAlorsTuVasFaireQuoi");
         dir.mkdir();
-        int boo=0;
         if (files != null) {
             for (File file : files) {
-            	boo+=1;
                 if (file.isFile() && file.getName().endsWith(".pdf")) {
 //                    putInfo(file, creationFichierSansRename(file));
-                    putInfo(file, creationFichierAvecRename(file, "boobaleroi"+String.valueOf(boo)));
                 }
             }
         }

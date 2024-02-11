@@ -3,7 +3,11 @@ Titre :
 
 Auteur(s) :
 
-			Remy Kessler
+			Joseph Le Roux
+			Jean-Francois Rey
+			Alexis Nasr
+			Frederic Bechet
+			Benoit Favre
 
 Abstract :
-			Abstract--In order to better adapt to society, an association has developed a web chat application that allows anyone to express and share their concerns and anguishes. Several thousand anonymous conversations have been gathered and form a new corpus of stories about human distress and social violence. We present a method of corpus analysis combining unsupervised learning and word embedding in order to bring out the themes of this particular collection. We compare this approach with a standard algorithm of the literature on a labeled corpus and obtain very good results. An interpretation of the obtained clusters collection confirms the interest of the method.Keywords--word2vec, unsupervised learning, word embedding.
+			AbstractMACAON is a tool suite for standard NLP tasks developed for French. MACAON has been designed to process both human-produced text and highly ambiguous word-lattices produced by NLP tools. MACAON is made of several native modules for common tasks such as a tokenization, a part-of-speech tagging or syntactic parsing, all communicating with each other through XML files . In addition, exchange protocols with external tools are easily definable. MACAON is a fast, modular and open tool, distributed under GNU Public License.

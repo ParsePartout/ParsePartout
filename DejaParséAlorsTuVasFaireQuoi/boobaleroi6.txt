@@ -3,8 +3,9 @@ Titre :
 
 Auteur(s) :
 
-			Iria da Cunha
-			Juan-Manuel Torres-Moreno
+			Remy Kessler
+			Nicolas Bechet
+			Giuseppe Berio
 
 Abstract :
-			AbstractIn this article we present the RST Spanish Treebank, the first corpus annotated with rhetorical relations for this language. We describe the characteristics of the corpus, the annotation criteria, the annotation procedure, the inter-annotator agreement, and other related aspects. Moreover, we show the interface that we have developed to carry out searches over the corpus' annotated texts.
+			Abstract--We describe a corpus analysis method to extract terminology from a collection of technical specifications in the field of construction. Using statistics and word n-grams analysis, we extract the terminology of the domain and then perform pruning steps with linguistic patterns and internet queries to improve the quality of the final terminology. Results are evaluated by using a manual evaluation carried out by 6 experts in the field.Index Terms--terminology extraction, Internet queries, linguistic patterns.
