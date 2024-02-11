@@ -18,7 +18,7 @@ public class ParsePartout {
     public static StringBuilder pdfToText(String filepath) {
         StringBuilder text = new StringBuilder();
     	try {
-	    	String[] command = {"pdftotext", filepath, "-"};
+	    	String[] command = {"pdftotext","-enc","ASCII7", filepath, "-"};
 	        
 	        Process process = Runtime.getRuntime().exec(command);
 	        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -35,10 +35,9 @@ public class ParsePartout {
     }
 
     public static void getAuteur(String texte) {
-    	//èá
         ArrayList<String> potentialAuthors = new ArrayList<>();
-        Pattern pattern = Pattern.compile("[A-Z]([A-Z]|[a-z]|é|è|î|á|ç)+(-[A-Z]([A-Z]|[a-z]|é|è|î|á|ç)+)?( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z]|é|è|î|á|ç)+(-[A-Z]([A-Z]|[a-z]|é|è|î|á|ç)+)?");
-        //Pattern pattern = Pattern.compile("[A-Za-zÀ-ÖØ-öø-ÿ]+(-[A-Za-zÀ-ÖØ-öø-ÿ]+)?( ([A-Za-zÀ-ÖØ-öø-ÿ].)+)?");
+        Pattern pattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?( ([A-Z].)+)?( [a-z]*)? [A-Z][a-z]+(-[A-Z][a-z]+)?");
+
         Matcher matcher = pattern.matcher(texte.substring(20, Math.min(texte.length(), 300)));
         
         while (matcher.find()) {
@@ -46,8 +45,8 @@ public class ParsePartout {
             potentialAuthors.add(matcher.group());
         }
        
-       Pattern firstnamePattern = Pattern.compile("[A-Z]([A-Z]|[a-z]|é|è|î|á|ç)+(-[A-Z]([A-Z]|[a-z]|é|è|î|á|ç)+)?");
-       Pattern lastnamePattern = Pattern.compile("( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z]|é|è|î|á|ç)+(-[A-Z]([A-Z]|[a-z]|é|è|î|á|ç)+)?");
+       Pattern firstnamePattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?");
+       Pattern lastnamePattern = Pattern.compile("( ([A-Z].)+)?( [a-z]*)? [A-Z][a-z]+(-[A-Z][a-z]+)?");
         
         
         //compteur email
@@ -58,7 +57,6 @@ public class ParsePartout {
         
         
         StringTokenizer tokenizer = new StringTokenizer(texte, "\n");
-        String previousline = "";
         while (tokenizer.hasMoreTokens()) {
             String line = tokenizer.nextToken();
             
@@ -75,17 +73,12 @@ public class ParsePartout {
 	            	lastname = matcherLastname.group();
 	            }
 	         
-		        if ((line.contains("@")) && (line.contains(firstname.toLowerCase()) || line.contains(lastname.toLowerCase()))){ // || previousline.contains(firstname.toLowerCase()) || previousline.contains(lastname.toLowerCase()))) {
+		        if ((line.contains("@")) && ((line.substring(0,line.indexOf("@")).contains(firstname.toLowerCase())) || (line.substring(0,line.indexOf("@")).contains(lastname.toLowerCase())))){
 		        	int count = compteur.get(potAuthor);
-		            compteur.put(potAuthor, count + 1);
+			        compteur.put(potAuthor, count + 1);
 		        }
-//		        if (previousline.contains(firstname) || previousline.contains(firstname.toLowerCase()) || previousline.contains(lastname) || previousline.contains(lastname.toLowerCase()) && (line.contains("univ"))) {	
-//		        	int count = compteur.get(potAuthor);
-//	  	            compteur.put(potAuthor, count + 1);
-//	  	        }
+
             }
-            previousline=line;
-        	
         }
         for (Map.Entry<String,Integer> m : compteur.entrySet()) {
 
@@ -93,6 +86,7 @@ public class ParsePartout {
         	if(m.getValue()>=1) System.out.println("Auteur : " + m.getKey());
         }
     
+      
     }
     
 
