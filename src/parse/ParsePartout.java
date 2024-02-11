@@ -22,9 +22,10 @@ public class ParsePartout {
     public static StringBuilder pdfToText(String filepath) {
         StringBuilder text = new StringBuilder();
     	try {
-    		
+    		//commande console, encodage --> Ascii7 permet la gestion des accents
 	    	String[] command = {"pdftotext","-enc","ASCII7", filepath, "-"};
 	        
+	    	//execution de la commande
 	        Process process = Runtime.getRuntime().exec(command);
 	        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
 	        String line;
@@ -35,6 +36,7 @@ public class ParsePartout {
     	} catch (IOException | InterruptedException e) {
     		e.printStackTrace();
     	}
+    	//retourne le texte en vrac
     	return text;
     }
 
@@ -143,10 +145,12 @@ public class ParsePartout {
     }
 
 	public static String getTitre(String texte) {
+		//methode pour retourner le titre du document
 		String retour="Ouais le titre";
 		return retour;
 	}
 	public static String getNom(File f) {
+		//return nom du fichier 
 		return f.getName();
 	}
 	public static String getAbstract(String texte) {
@@ -188,8 +192,10 @@ public class ParsePartout {
 		return retour;
 	}
 	public static File creationFichierSansRename(File f) {
-		System.out.println(f.getName());
+		//creation du fichier texte sans rename
 		File file = new File("./DejaParséAlorsTuVasFaireQuoi/"+f.getName().substring(0,f.getName().length()-4) + ".txt");
+		
+		//verifie la creation
 		if(file.exists()) {
 			try {
 				file.createNewFile();
@@ -200,7 +206,11 @@ public class ParsePartout {
 		return file;
 	}
 	public static File creationFichierAvecRename(File f,String rename) throws IOException {
+		//crée un fichier dans le dossier préparé + le rename selon le parametre
 		File file = new File("./DejaParséAlorsTuVasFaireQuoi/"+rename+ ".txt");
+		
+		//verifie la creation
+		
 		if(file.exists()) {
 			try {
 				file.createNewFile();
@@ -211,19 +221,40 @@ public class ParsePartout {
 		return file;
 	}
 	public static void putInfo(File from, File out) throws IOException {
+		//writer
 		FileWriter fw = new FileWriter(out);
 		BufferedWriter bw = new BufferedWriter(fw);
+		
+		//texte en vrac
 		String block= getString(from.getName());
-		bw.append("Titre :\n");
-		bw.append("			"+getTitre(block)+"\n");
-		bw.append("\nAuteur(s) :\n");
-		bw.append(getAuteur(block));
-		bw.append("\nAbstract :\n");
-		bw.append(getAbstract(block));	
+		
+		//on extraie les variables
+		String titre = getTitre(block);
+		String auteur = getAuteur(block);
+		String abstrac = getAbstract(block);
+		
+		//creation du texte
+		bw.append("Nom du fichier :\n");
+		bw.append("			"+from.getName()+"\n");
+		
+		if(!titre.equals("")) {
+			bw.append("Titre :\n");
+			bw.append("			"+titre+"\n");
+		}
+
+		if(!auteur.equals("\n")) {
+			bw.append("\nAuteur(s) :\n");
+			bw.append(auteur);
+		}
+		if(!abstrac.equals("			")) {
+			bw.append("\nAbstract :\n");
+			bw.append(abstrac);	
+		}		
 		bw.close();
 		fw.close();
 	}
 	public static String getString(String nom) {
+		//recupere et retourne le texte en vrac
     	String homeDirectory = System.getProperty("user.dir");
     	String filePath = Paths.get(homeDirectory, "Corpus_2021").toString();
 		StringBuilder t = pdfToText(filePath+"/"+nom);
@@ -241,7 +272,7 @@ public class ParsePartout {
         if (files != null) {
             for (File file : files) {
                 if (file.isFile() && file.getName().endsWith(".pdf")) {
-//                    putInfo(file, creationFichierSansRename(file));
+                    putInfo(file, creationFichierSansRename(file));
                 }
             }
         }
