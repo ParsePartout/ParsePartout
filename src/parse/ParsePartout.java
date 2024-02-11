@@ -97,7 +97,7 @@ public class ParsePartout {
 	public static void getNom() {
 		
 	}
-	public static void getAbstract() {
+	public static void getAbstract(String texte) {
 		String[] lines = texte.split("\n");
 		ArrayList<String> res = new ArrayList<String>();
 		
