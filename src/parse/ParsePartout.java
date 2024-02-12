@@ -19,6 +19,7 @@ public class ParsePartout {
     
 	private static String nameFile;
 	
+	
     public static StringBuilder pdfToText(String filepath) {
         StringBuilder text = new StringBuilder();
     	try {
@@ -40,7 +41,8 @@ public class ParsePartout {
     	return text;
     }
 
-    public static String getAuteur(String texte) {
+    public static ArrayList<String> getAuteur(String texte) {
+    	
         ArrayList<String> potentialAuthors = new ArrayList<>();
         Pattern pattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?");
 
@@ -134,18 +136,17 @@ public class ParsePartout {
 	        }
             previousline=line;
         }
-
-        String retour ="";
-
+        
+        ArrayList<String>author=new ArrayList<String>();
         for (Map.Entry<String,Integer> m : compteur.entrySet()) {
 
         	//System.out.println("clé: "+m.getKey() + " | valeur: " + m.getValue());
         	if(m.getValue()>=1) {
         		System.out.println("Auteur : " + m.getKey());
-        		retour += "			"+m.getKey()+"\n";
+        		author.add(m.getKey());
         	}
         }
-        return retour;
+        return author;
         
     
       
@@ -234,7 +235,7 @@ public class ParsePartout {
 		
 		//on extraie les variables
 		String titre = getTitre(block);
-		String auteur = getAuteur(block);
+		ArrayList<String> auteurs = getAuteur(block);
 		String abstrac = getAbstract(block);
 		
 		//creation du texte
@@ -246,9 +247,15 @@ public class ParsePartout {
 			bw.append("			"+titre+"\n");
 		}
 
-		if(!auteur.equals("")) {
-			bw.append("\nAuteur(s) :\n");
-			bw.append(auteur);
+		if(auteurs.size()==1) {
+			bw.append("\nAuteur :\n");
+			bw.append("			"+auteurs.get(0));
+		}
+		if(auteurs.size()>1) {
+			bw.append("\nAuteurs :\n");
+			for(String a : auteurs) {
+				bw.append("			"+a);
+			}
 		}
 		if(abstrac!=null) {
 			bw.append("\nAbstract :\n");
@@ -282,7 +289,5 @@ public class ParsePartout {
                 }
             }
         }
-
-
     }
 }
