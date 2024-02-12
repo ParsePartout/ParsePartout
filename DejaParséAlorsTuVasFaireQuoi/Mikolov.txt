@@ -2,7 +2,7 @@ Nom du fichier :
 			Mikolov.pdf
 Titre :
 			Efficient Estimation of Word Representations in Vector Space
-4Nombre d'auteur :
+Nombre d'auteur :
  			4
 Auteurs :
 			Greg Corrado

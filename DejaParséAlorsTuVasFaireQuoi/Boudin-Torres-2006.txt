@@ -2,7 +2,7 @@ Nom du fichier :
 			Boudin-Torres-2006.pdf
 Titre :
 			A Scalable MMR Approach to Sentence Scoring for Multi-Document Update Summarization
-3Nombre d'auteur :
+Nombre d'auteur :
  			3
 Auteurs :
 			Marc El-Beze

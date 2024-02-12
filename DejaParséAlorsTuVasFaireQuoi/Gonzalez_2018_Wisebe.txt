@@ -2,7 +2,7 @@ Nom du fichier :
 			Gonzalez_2018_Wisebe.pdf
 Titre :
 			WiSeBE: Window-Based Sentence Boundary Evaluation
-2Nombre d'auteur :
+Nombre d'auteur :
  			2
 Auteurs :
 			Carlos-Emiliano Gonzalez-Gallardo

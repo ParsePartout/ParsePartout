@@ -2,7 +2,7 @@ Nom du fichier :
 			mikheev J02-3002.pdf
 Titre :
 			Periods, Capitalized Words, etc.
-1Nombre d'auteur :
+Nombre d'auteur :
  			1
 Auteur :
 			Andrei Mikheev

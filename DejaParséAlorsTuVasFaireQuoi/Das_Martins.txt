@@ -2,7 +2,7 @@ Nom du fichier :
 			Das_Martins.pdf
 Titre :
 			A Survey on Automatic Text Summarization
-2Nombre d'auteur :
+Nombre d'auteur :
  			2
 Auteurs :
 			Andre F.T. Martins

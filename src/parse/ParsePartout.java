@@ -343,9 +343,6 @@ public class ParsePartout {
 			bw.append("Titre :\n");
 			bw.append("			"+titre+"\n");
 		}
-		//indique le nombre d'auteurs dans le pdf 
-		bw.append(String.valueOf(nbA));
-		
 		if(nbA!=0&&nbA<=auteurs.size()) {
 			bw.append("Nombre d'auteur :\n ");
 			bw.append("			"+String.valueOf(nbA));

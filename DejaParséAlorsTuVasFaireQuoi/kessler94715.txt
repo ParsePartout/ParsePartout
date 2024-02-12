@@ -2,7 +2,7 @@ Nom du fichier :
 			kessler94715.pdf
 Titre :
 			Extraction of terminology in the field of construction
-3Nombre d'auteur :
+Nombre d'auteur :
  			3
 Auteurs :
 			Remy Kessler
