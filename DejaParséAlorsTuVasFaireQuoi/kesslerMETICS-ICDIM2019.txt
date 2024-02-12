@@ -2,8 +2,12 @@ Nom du fichier :
 			kesslerMETICS-ICDIM2019.pdf
 Titre :
 			A word embedding approach to explore a collection of discussions of people in psychological distress
-4
-Auteur(s) :
-			Remy Kessler			Nicolas Bechet			Frederic Pugniere-Saavedra			Gudrun Ledegen
+4Nombre d'auteur :
+ 			4
+Auteurs :
+			Remy Kessler
+			Nicolas Bechet
+			Frederic Pugniere-Saavedra
+			Gudrun Ledegen
 Abstract :
 In order to better adapt to society, an association has developed a web chat application that allows anyone to express and share their concerns and anguishes. Several thousand anonymous conversations have been gathered and form a new corpus of stories about human distress and social violence. We present a method of corpus analysis combining unsupervised learning and word embedding in order to bring out the themes of this particular collection. We compare this approach with a standard algorithm of the literature on a labeled corpus and obtain very good results. An interpretation of the obtained clusters collection confirms the interest of the method.
