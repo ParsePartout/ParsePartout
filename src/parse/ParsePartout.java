@@ -19,13 +19,12 @@ public class ParsePartout {
     
 	private static String nameFile;
 	
+	
     public static StringBuilder pdfToText(String filepath) {
         StringBuilder text = new StringBuilder();
     	try {
     		//commande console, encodage --> Ascii7 permet la gestion des accents
-    		String pdfPath = System.getProperty("user.dir")+"/lib/xpdf-tools-win-4.05/bin64/pdftotext";
-    		
-	    	String[] command = {pdfPath,"-enc","ASCII7", filepath, "-"};
+	    	String[] command = {"pdftotext","-enc","ASCII7", filepath, "-"};
 	        
 	    	//execution de la commande
 	        Process process = Runtime.getRuntime().exec(command);
@@ -42,11 +41,12 @@ public class ParsePartout {
     	return text;
     }
 
-    public static String getAuteur(String texte) {
+    public static ArrayList<String> getAuteur(String texte) {
+    	
         ArrayList<String> potentialAuthors = new ArrayList<>();
         Pattern pattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?");
 
-        Matcher matcher = pattern.matcher(texte.substring(20, Math.min(texte.length(), 500)));
+        Matcher matcher = pattern.matcher(texte.substring(20, Math.min(texte.length(), 300)));
         
         while (matcher.find()) {
         	//System.out.println(matcher.group());
@@ -54,6 +54,7 @@ public class ParsePartout {
         }
        
        Pattern firstnamePattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?");
+       Pattern midnamePattern = Pattern.compile("( ([A-Z].)+)?( [a-z]*)?");
        Pattern lastnamePattern = Pattern.compile("( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?");
         
         
@@ -76,13 +77,18 @@ public class ParsePartout {
 	            	String[] lineSplit = line.split(" ");
 	            	for(int i =0;i<cbArr;i++) {
 			            for (String potAuthor : potentialAuthors) {
+			            	
 							Matcher matcherFirstname = firstnamePattern.matcher(potAuthor);
+							Matcher matcherMidname = midnamePattern.matcher(potAuthor);
 				            Matcher matcherLastname = lastnamePattern.matcher(potAuthor);
 				            String firstname = null;
 				            if (matcherFirstname.find()) {
 				            	firstname = matcherFirstname.group();
 				            }
-				            
+				            String midname = null;
+				            if (matcherMidname.find()) {
+				            	midname = matcherMidname.group();
+				            }
 				            String lastname = null;
 				            if (matcherLastname.find()) {
 				            	lastname = matcherLastname.group();
@@ -97,12 +103,18 @@ public class ParsePartout {
 	            }
 	            else {
 	            	for (String potAuthor : potentialAuthors) {
-	            		
+		            	ArrayList<String> variableAuthor = new ArrayList<String>();
+
 						Matcher matcherFirstname = firstnamePattern.matcher(potAuthor);
+						Matcher matcherMidname = midnamePattern.matcher(potAuthor);
 			            Matcher matcherLastname = lastnamePattern.matcher(potAuthor);
 			            String firstname = null;
 			            if (matcherFirstname.find()) {
 			            	firstname = matcherFirstname.group();
+			            }
+			            String midname = null;
+			            if (matcherMidname.find()) {
+			            	midname = matcherMidname.group();
 			            }
 			            String lastname = null;
 			            if (matcherLastname.find()) {
@@ -112,7 +124,6 @@ public class ParsePartout {
 //			            System.out.println(lastname);
 //			            String initialName="afm";
 			            //String initialName = firstname.substring(0,1)+midname.substring(0,1)+lastname.substring(0,1);
-			            ArrayList<String> alternateAuthor = getAlternateAuthor(firstname,lastname);
 			            int indexArr=(line.indexOf("@")==0)? line.length() : line.indexOf("@") ;
 			          	int indexArrPrevious = (previousline.indexOf("@")==-1)? previousline.length() : previousline.indexOf("@") ;
 				        if (line.substring(0,indexArr).contains(firstname.toLowerCase()) || line.substring(0,indexArr).contains(lastname.substring(1).toLowerCase()) || previousline.substring(0,indexArrPrevious).contains(firstname.toLowerCase()) || previousline.substring(0,indexArrPrevious).contains(lastname.substring(1).toLowerCase())) { //|| line.contains(initialName.toLowerCase())){
@@ -125,25 +136,23 @@ public class ParsePartout {
 	        }
             previousline=line;
         }
-
-        String retour ="";
-
+        
+        ArrayList<String>author=new ArrayList<String>();
         for (Map.Entry<String,Integer> m : compteur.entrySet()) {
 
         	//System.out.println("clé: "+m.getKey() + " | valeur: " + m.getValue());
         	if(m.getValue()>=1) {
         		System.out.println("Auteur : " + m.getKey());
-        		retour += "			"+m.getKey()+"\n";
+        		author.add(m.getKey());
         	}
         }
-        return retour;
+        return author;
         
     
       
     }
-    public static ArrayList<String> getAlternateAuthor(String firstname, String lastname){
+    public ArrayList<String> getVariableAuthor(String firstname, String midname, String lastname){
     	ArrayList<String> variableAuthor = new ArrayList<String>();
-    	
     	return variableAuthor;
     	
     }
@@ -178,12 +187,20 @@ public class ParsePartout {
 		}
 		
 		//Si il ny a pas le mot Abstract
+		boolean flag=false;
 		if(retour==null) {
 			for(int i=0; i<lines.length; i++) {		
 				if(lines[i].toUpperCase().contains("INTRODUCTION")) {
-					retour = lines[i-1];
-					break;
+					for(int j=i-1; j>0; j--) {
+						if(!lines[j].equals("")) {
+							retour = lines[j];
+							flag=true;
+							break;
+						}
+					}
 				}
+				if(flag)
+					break;
 			}
 		}	
 		return retour;
@@ -226,7 +243,7 @@ public class ParsePartout {
 		
 		//on extraie les variables
 		String titre = getTitre(block);
-		String auteur = getAuteur(block);
+		ArrayList<String> auteurs = getAuteur(block);
 		String abstrac = getAbstract(block);
 		
 		//creation du texte
@@ -238,9 +255,15 @@ public class ParsePartout {
 			bw.append("			"+titre+"\n");
 		}
 
-		if(!auteur.equals("")) {
-			bw.append("\nAuteur(s) :\n");
-			bw.append(auteur);
+		if(auteurs.size()==1) {
+			bw.append("\nAuteur :\n");
+			bw.append("			"+auteurs.get(0));
+		}
+		if(auteurs.size()>1) {
+			bw.append("\nAuteurs :\n");
+			for(String a : auteurs) {
+				bw.append("			"+a);
+			}
 		}
 		if(abstrac!=null) {
 			bw.append("\nAbstract :\n");
@@ -274,7 +297,5 @@ public class ParsePartout {
                 }
             }
         }
-       
     }
 }
-
