@@ -53,7 +53,7 @@ public class ParsePartout {
        
        Pattern firstnamePattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?");
        Pattern midnamePattern = Pattern.compile("( ([A-Z].)+)?( [a-z]*)?");
-       Pattern lastnamePattern = Pattern.compile(" [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?");
+       Pattern lastnamePattern = Pattern.compile("( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?");
         
         
         //compteur email
@@ -63,6 +63,7 @@ public class ParsePartout {
         }
         
         StringTokenizer tokenizer = new StringTokenizer(texte, "\n");
+        String previousline="";
         while (tokenizer.hasMoreTokens()) {
             String line = tokenizer.nextToken();
             if (line.contains("@")) {
@@ -90,7 +91,8 @@ public class ParsePartout {
 				            if (matcherLastname.find()) {
 				            	lastname = matcherLastname.group();
 				            }
-				            if (lineSplit[i].substring(0,lineSplit[i].indexOf("@")).contains(firstname.toLowerCase()) ||lineSplit[i].substring(0,lineSplit[i].indexOf("@")).contains(lastname.substring(1).toLowerCase())){
+				            int indexArr=(lineSplit[i].indexOf("@")==0)? lineSplit[i].length() : lineSplit[i].indexOf("@") ;
+				            if (lineSplit[i].substring(0,indexArr).contains(firstname.toLowerCase()) ||lineSplit[i].substring(0,indexArr).contains(lastname.substring(1).toLowerCase())){
 				            	int count = compteur.get(potAuthor);
 							    compteur.put(potAuthor, count + 1);
 				            }
@@ -99,7 +101,8 @@ public class ParsePartout {
 	            }
 	            else {
 	            	for (String potAuthor : potentialAuthors) {
-		            	
+		            	ArrayList<String> variableAuthor = new ArrayList<String>();
+
 						Matcher matcherFirstname = firstnamePattern.matcher(potAuthor);
 						Matcher matcherMidname = midnamePattern.matcher(potAuthor);
 			            Matcher matcherLastname = lastnamePattern.matcher(potAuthor);
@@ -119,13 +122,17 @@ public class ParsePartout {
 //			            System.out.println(lastname);
 //			            String initialName="afm";
 			            //String initialName = firstname.substring(0,1)+midname.substring(0,1)+lastname.substring(0,1);
-			            if (line.substring(0,line.indexOf("@")).contains(firstname.toLowerCase()) ||line.substring(0,line.indexOf("@")).contains(lastname.substring(1).toLowerCase())) { //|| line.contains(initialName.toLowerCase())){
-			            	int count = compteur.get(potAuthor);
+			            int indexArr=(line.indexOf("@")==0)? line.length() : line.indexOf("@") ;
+			          	int indexArrPrevious = (previousline.indexOf("@")==-1)? previousline.length() : previousline.indexOf("@") ;
+				        if (line.substring(0,indexArr).contains(firstname.toLowerCase()) || line.substring(0,indexArr).contains(lastname.substring(1).toLowerCase()) || previousline.substring(0,indexArrPrevious).contains(firstname.toLowerCase()) || previousline.substring(0,indexArrPrevious).contains(lastname.substring(1).toLowerCase())) { //|| line.contains(initialName.toLowerCase())){
+				            	
+				        	int count = compteur.get(potAuthor);
 						    compteur.put(potAuthor, count + 1);
-			            }
+				        }
 	            	}
 	            }
-            }
+	        }
+            previousline=line;
         }
 
         String retour ="";
@@ -134,7 +141,7 @@ public class ParsePartout {
 
         	//System.out.println("clé: "+m.getKey() + " | valeur: " + m.getValue());
         	if(m.getValue()>=1) {
-//        		System.out.println("Auteur : " + m.getKey());
+        		System.out.println("Auteur : " + m.getKey());
         		retour += "			"+m.getKey()+"\n";
         	}
         }
@@ -143,7 +150,11 @@ public class ParsePartout {
     
       
     }
-
+    public ArrayList<String> getVariableAuthor(String firstname, String midname, String lastname){
+    	ArrayList<String> variableAuthor = new ArrayList<String>();
+    	return variableAuthor;
+    	
+    }
 	public static String getTitre(String texte) {
 		//methode pour retourner le titre du document
 		return texte.split("\n")[0];
@@ -265,12 +276,12 @@ public class ParsePartout {
         dir.mkdir();
         if (files != null) {
             for (File file : files) {
+            	System.out.println(file.getName());
                 if (file.isFile() && file.getName().endsWith(".pdf")) {
                     putInfo(file, creationFichierSansRename(file));
                 }
             }
         }
-        System.out.println(getString("Torres-moreno1998.pdf"));
 
 
     }
