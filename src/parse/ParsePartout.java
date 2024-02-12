@@ -22,10 +22,8 @@ public class ParsePartout {
     public static StringBuilder pdfToText(String filepath) {
         StringBuilder text = new StringBuilder();
     	try {
-    		//commande console, encodage --> Ascii7 permet la gestion des accents
-    		String pdfPath = System.getProperty("user.dir")+"/lib/xpdf-tools-win-4.05/bin64/pdftotext";
-    		
-	    	String[] command = {pdfPath,"-enc","ASCII7", filepath, "-"};
+    		//commande console, encodage --> Ascii7 permet la gestion des accents    		
+	    	String[] command = {"pdftotext","-enc","ASCII7", filepath, "-"};
 	        
 	    	//execution de la commande
 	        Process process = Runtime.getRuntime().exec(command);
@@ -42,7 +40,7 @@ public class ParsePartout {
     	return text;
     }
 
-    public static String getAuteur(String texte) {
+    public static ArrayList<String> getAuteur(String texte) {
         ArrayList<String> potentialAuthors = new ArrayList<>();
         Pattern pattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?");
 
@@ -137,17 +135,16 @@ public class ParsePartout {
             previousline=line;
         }
 
-        String retour ="";
-
+        ArrayList<String>au=new ArrayList<String>();
         for (Map.Entry<String,Integer> m : compteur.entrySet()) {
 
         	//System.out.println("clé: "+m.getKey() + " | valeur: " + m.getValue());
         	if(m.getValue()>=1) {
-        		System.out.println("Auteur : " + m.getKey());
-        		retour += "			"+m.getKey()+"\n";
+//        		System.out.println("Auteur : " + m.getKey());
+        		au.add(m.getKey());
         	}
         }
-        return retour;
+        return au;
         
     
       
@@ -155,7 +152,7 @@ public class ParsePartout {
     public static ArrayList<String> getAlternateAuthor(String firstname, String lastname){
     	ArrayList<String> alternateAuthor = new ArrayList<String>();
     	String[] lastnameTwoParts = lastname.split(" ");
-    	System.out.println(lastnameTwoParts.length);
+//    	System.out.println(lastnameTwoParts.length);
     	if(lastnameTwoParts.length>1) alternateAuthor.add(firstname.substring(0,1).toLowerCase() + lastname.substring(1,2).toLowerCase()); //Florient Boudin -> fb
     	else alternateAuthor.add(firstname.substring(0,1).toLowerCase() + lastnameTwoParts[0].substring(0,1).toLowerCase() + lastnameTwoParts[1].substring(0,1).toLowerCase());//Andre F.T. Martins -> afm
     	if(firstname.length()>3) alternateAuthor.add(firstname.substring(0,3));
@@ -164,6 +161,33 @@ public class ParsePartout {
     	
     	return alternateAuthor;
     	
+    }
+    public static int getNbAutheurMail(String texte) {
+    	//essaie de deviner le nombre d'auteurs dans un texte
+    	int nb = 0;
+    	String[]txt = texte.split("\n");
+    	for(String t : txt) {
+    		if(t.contains("abstract")||t.contains("introduction")) {
+    			return nb;
+    		}
+    		if(t.contains("@")) {
+    			for(int i=0;i<t.length();i++) {
+    				if(String.valueOf(t.charAt(i)).equals("@")) {
+    					nb+=1;
+    				}
+    			}
+    			String[]spliter=t.split("@");
+    			if(spliter[0].contains(",")) {
+    				for(int i=0;i<spliter[0].length();i++) {
+        				if(String.valueOf(t.charAt(i)).equals(",")) {
+        					nb+=1;
+        				}
+        			}
+    			}
+    			
+    		}
+    	}
+    	return nb;
     }
 	public static String getTitre(String texte) {
 		//methode pour retourner le titre du document
@@ -244,8 +268,9 @@ public class ParsePartout {
 		
 		//on extraie les variables
 		String titre = getTitre(block);
-		String auteur = getAuteur(block);
+		ArrayList<String>auteurs=getAuteur(block);
 		String abstrac = getAbstract(block);
+		int nbA = getNbAutheurMail(block);
 		
 		//creation du texte
 		bw.append("Nom du fichier :\n");
@@ -255,11 +280,20 @@ public class ParsePartout {
 			bw.append("Titre :\n");
 			bw.append("			"+titre+"\n");
 		}
-
-		if(!auteur.equals("")) {
-			bw.append("\nAuteur(s) :\n");
-			bw.append(auteur);
+		//indique le nombre d'auteurs dans le pdf 
+		bw.append(String.valueOf(nbA));
+		
+		
+		if(auteurs.size()==1) {
+			bw.append("\nAuteur :\n");
+			bw.append("			"+auteurs.get(0));
 		}
+		if(auteurs.size()>1) {
+			bw.append("\nAuteur(s) :\n");
+			for(String a : auteurs)
+			bw.append("			"+a);
+		}
+
 		if(abstrac!=null) {
 			bw.append("\nAbstract :\n");
 			bw.append(abstrac);	
@@ -286,13 +320,12 @@ public class ParsePartout {
         dir.mkdir();
         if (files != null) {
             for (File file : files) {
-            	System.out.println(file.getName());
+//            	System.out.println(file.getName());
                 if (file.isFile() && file.getName().endsWith(".pdf")) {
                     putInfo(file, creationFichierSansRename(file));
                 }
             }
         }
-      // System.out.println(getString("jing-cutepaste.pdf"));
     }
 }
 
