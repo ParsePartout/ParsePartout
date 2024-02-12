@@ -190,7 +190,10 @@ public class ParsePartout {
 		if(retour==null) {
 			for(int i=0; i<lines.length; i++) {		
 				if(lines[i].toUpperCase().contains("INTRODUCTION")) {
-					retour = lines[i-1];
+					if(lines[i-1].equals(""))
+						retour = lines[i-2];
+					else
+						retour = lines[i-1];
 					break;
 				}
 			}
