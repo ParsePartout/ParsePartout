@@ -83,22 +83,22 @@ public class StringBuilders {
 	     }
 		
 	    //getter and setter 
-		public static StringBuilder getPdfInfo() {
+		public static String getPdfInfo() {
 			return pdfInfo;
 		}
-		public static void setPdfInfo(StringBuilder pdfInfo) {
+		public static void setPdfInfo(String pdfInfo) {
 			StringBuilders.pdfInfo = pdfInfo;
 		}
 		public static StringBuilder getPdfToText() {
 			return pdfToText;
 		}
-		public static void setPdfToText(StringBuilder pdfToText) {
+		public static void setPdfToText(String pdfToText) {
 			StringBuilders.pdfToText = pdfToText;
 		}
-		public static StringBuilder getPdfToTextFirstPage() {
+		public static String getPdfToTextFirstPage() {
 			return pdfToTextFirstPage;
 		}
-		public static void setPdfToTextFirstPage(StringBuilder pdfToTextFirstPage) {
+		public static void setPdfToTextFirstPage(String pdfToTextFirstPage) {
 			StringBuilders.pdfToTextFirstPage = pdfToTextFirstPage;
 		}
 }
