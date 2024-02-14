@@ -8,287 +8,27 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.ConcurrentModificationException;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.Map;
 import java.util.StringTokenizer;
-import java.util.regex.Matcher;				
+import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /*ParsePartout*/
 public class ParsePartout {
     
-	private static String nameFile;
+	private static String os;
+	private static String homedir;
+	private static String corpusPath;
 	
-    public static StringBuilder pdfToText(String filepath) {
-        StringBuilder text = new StringBuilder();
-    	try {
-
-    		//commande console, encodage --> Ascii7 permet la gestion des accents    		
-
-
-	    	String[] command = {"pdftotext","-enc","ASCII7", filepath, "-"};
-	        
-	    	//execution de la commande
-	        Process process = Runtime.getRuntime().exec(command);
-	        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-	        String line;
-	        while ((line = reader.readLine()) != null) {
-	            text.append(line).append("\n");
-	        }
-	        process.waitFor();
-    	} catch (IOException | InterruptedException e) {
-    		e.printStackTrace();
-    	}
-    	//retourne le texte en vrac
-    	return text;
-    }
-    
-    public static StringBuilder pdfToTextFirst(String fileP) {
- 	   StringBuilder text = new StringBuilder();
-    	try {
-    		//commande console, encodage --> Ascii7 permet la gestion des accents    		
-	    	String[] command = {"pdftotext","-enc","ASCII7","-l","1", fileP, "-"};
-	        
-	    	//execution de la commande
-	        Process process = Runtime.getRuntime().exec(command);
-	        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
-	        String line;
-	        while ((line = reader.readLine()) != null) {
-	            text.append(line).append("\n");
-	        }
-	        process.waitFor();
-    	} catch (IOException | InterruptedException e) {
-    		e.printStackTrace();
-    	}
-    	//retourne le texte en vrac
-    	return text;
-    }
-    
-    public static ArrayList<String> getAuteur(String texte, String texteF) {
-        ArrayList<String> potentialAuthors = new ArrayList<>();
-        Pattern pattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?");
-
-        Matcher matcher = pattern.matcher(texte.substring(20, Math.min(texte.length(), 500)));
-        
-        while (matcher.find()) {
-        	//System.out.println(matcher.group());
-            potentialAuthors.add(matcher.group());
-        }
-       
-       Pattern firstnamePattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?");
-       Pattern lastnamePattern = Pattern.compile("( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?");
-        
-        
-        //compteur email
-        HashMap<String, Integer> compteur = new HashMap<>();
-        for (String str : potentialAuthors) {
-            compteur.put(str, 0);
-        }
-        
-        StringTokenizer tokenizer = new StringTokenizer(texte, "\n");
-        String previousline="";
-        while (tokenizer.hasMoreTokens()) {
-            String line = tokenizer.nextToken();
-            if (line.contains("@")) {
-            	int cbArr=0;
-	            for(int i=0; i<line.length();i++) {
-	            	if(line.charAt(i)=='@') cbArr++;
-	            }
-	            
-	            if(cbArr>1) {
-	            	String[] lineSplit = line.split(" ");
-	            	for(int i =0;i<cbArr;i++) {
-			            for (String potAuthor : potentialAuthors) {
-							Matcher matcherFirstname = firstnamePattern.matcher(potAuthor);
-				            Matcher matcherLastname = lastnamePattern.matcher(potAuthor);
-				            String firstname = null;
-				            if (matcherFirstname.find()) {
-				            	firstname = matcherFirstname.group();
-				            }
-				            
-				            String lastname = null;
-				            if (matcherLastname.find()) {
-				            	lastname = matcherLastname.group();
-				            }
-				            ArrayList<String> alternateAuthor = getAlternateAuthor(firstname,lastname);
-				            for(String author : alternateAuthor) {
-					            int indexArr=(lineSplit[i].indexOf("@")==0)? lineSplit[i].length() : lineSplit[i].indexOf("@") ;
-					            if (lineSplit[i].substring(0,indexArr).contains(firstname.toLowerCase()) 
-					            		|| lineSplit[i].substring(0,indexArr).contains(lastname.substring(1).toLowerCase())
-					            		|| lineSplit[i].substring(0,indexArr).contains(author)){
-					            	int count = compteur.get(potAuthor);
-								    compteur.put(potAuthor, count + 1);
-								    break;
-					            }
-				            }
-				        }		        	
-	            	}
-	            }
-	            else {
-	            	
-	            	for (String potAuthor : potentialAuthors) {
-	            		//System.out.println(potAuthor);
-						Matcher matcherFirstname = firstnamePattern.matcher(potAuthor);
-			            Matcher matcherLastname = lastnamePattern.matcher(potAuthor);
-			            String firstname = null;
-			            if (matcherFirstname.find()) {
-			            	firstname = matcherFirstname.group();
-			            }
-			            String lastname = null;
-			            if (matcherLastname.find()) {
-			            	lastname = matcherLastname.group();
-			            }
-
-			            ArrayList<String> alternateAuthor = getAlternateAuthor(firstname,lastname);
-			            
-			            if(getNbAuteurWithCompteurEmail(compteur)>=getNbAuteurMail(texteF)) break;			            	
-			            int indexArr=(line.indexOf("@")==0)? line.length() : line.indexOf("@") ;
-				        int indexArrPrevious = (previousline.indexOf("@")==-1)? previousline.length() : previousline.indexOf("@");
-					    if (line.substring(0,indexArr).contains(firstname.toLowerCase()) || line.substring(0,indexArr).contains(lastname.substring(1).toLowerCase()) 
-				        	|| previousline.substring(0,indexArrPrevious).contains(firstname.toLowerCase()) || previousline.substring(0,indexArrPrevious).contains(lastname.substring(1).toLowerCase())){					            	
-				        	int count = compteur.get(potAuthor);
-						    compteur.put(potAuthor, count + 1);
-						    break;
-					        }
-			            }
-	            	
-	            	
-	            	if(getNbAuteurMail(texteF)>getNbAuteurWithCompteurEmail(compteur)) {
-	            		for (String potAuthor : potentialAuthors) {
-		            		
-							Matcher matcherFirstname = firstnamePattern.matcher(potAuthor);
-				            Matcher matcherLastname = lastnamePattern.matcher(potAuthor);
-				            String firstname = null;
-				            if (matcherFirstname.find()) firstname = matcherFirstname.group();
-				            String lastname = null;
-				            if (matcherLastname.find()) lastname = matcherLastname.group();
-				            
-				            ArrayList<String> alternateAuthor = getAlternateAuthor(firstname,lastname);
-				            for(String author : alternateAuthor) {
-				            	int indexArr=(line.indexOf("@")==0)? line.length() : line.indexOf("@") ;
-						        if (line.substring(0,indexArr).contains(author)) { 
-						        	int count = compteur.get(potAuthor);
-								    compteur.put(potAuthor, count + 1);
-								    break;
-						        }
-				            }
-		            	}
-	            	}
-	            }
-	        }
-            previousline=line;
-        }
-
-        ArrayList<String>au=new ArrayList<String>();
-        for (Map.Entry<String,Integer> m : compteur.entrySet()) {
-        	if(m.getValue()>=1) {
-        		//System.out.println("Auteur : " + m.getKey());
-        		au.add(m.getKey());
-        	}
-        }
-        return au;
-        
-    
-      
-    }
-    public static ArrayList<String> getAlternateAuthor(String firstname, String lastname){
-
-    	ArrayList<String>  alternateAuthor = new ArrayList<String>();
-    	String[] lastnameTwoParts = lastname.substring(1).split(" ");
-
-    	if(lastnameTwoParts.length<2) alternateAuthor.add(firstname.trim().substring(0,1).toLowerCase() + lastname.substring(1,2).toLowerCase()); //Florient Boudin -> fb
-    	else alternateAuthor.add(firstname.substring(0,1).toLowerCase() + lastnameTwoParts[0].substring(0,1).toLowerCase() + lastnameTwoParts[1].substring(0,1).toLowerCase());//Andre F.T. Martins -> afm
-    	if(firstname.length()>3) alternateAuthor.add(firstname.substring(0,3).toLowerCase());
-    	if(lastname.length()>3) alternateAuthor.add(lastname.substring(0,3));
-
-    	
-    	return alternateAuthor;
-	}
-    public static int getNbAuteurWithCompteurEmail(HashMap<String, Integer> cptMail){
-    	int cpt = 0;
-    	for (Map.Entry<String,Integer> m : cptMail.entrySet()) {
-        	if(m.getValue()>=1) cpt++;
-    	}
-    	return cpt;
-    }
-    public static int getNbAuteurMail(String texte) {
-        //essaie de deviner le nombre d'auteurs dans un texte
-        int nb = 0;
-        String[]txt = texte.split("\n");
-        for(String t : txt) {
-//            if(t.contains("abstract")t.contains("introduction")t.contains("Abstract")t.contains("Introduction")t.contains("ABSTRACT")t.contains("INTRODUCTION")) {
-//                return nb;
-//            }
-            if(t.contains("@")) {
-                for(int i=0;i<t.length();i++) {
-                    if(String.valueOf(t.charAt(i)).equals("@")) {
-                        nb+=1;
-                    }
-                }
-                String[] spliter=t.split("@");
-                if(spliter[0].contains("{")||spliter[0].contains("(")) {
-                    //System.out.println(spliter[0]);
-                    for(int i=0;i<spliter[0].length();i++) {
-                        if(String.valueOf(t.charAt(i)).equals(",")) {
-                            nb+=1;
-                        }
-                    }
-                }
-            }
-        }
-        return nb;
-    }
-
-	public static String getTitre(String texte) {
-		//methode pour retourner le titre du document
-		return texte.split("\n")[0];
+	public ParsePartout() {
+		os=System.getProperty("os.name").toLowerCase();
+		homedir = System.getProperty("user.dir");
+		corpusPath = Paths.get(homedir,"Corpus_2021").toString();
 	}
 	public static String getNom(File f) {
 		//return nom du fichier 
 		return f.getName();
-	}
-	public static String getAbstract(String texte) {
-		String[] lines = texte.split("\n");
-		String retour = null;
-		
-		for(int i=0; i<lines.length; i++) {
-			//Si l'abtrsact est en gros titre
-			if(lines[i].toUpperCase().equals("ABSTRACT")) {
-				retour = lines[i+1];
-				break;
-			//si le mot abstract est compris dans l'abstract
-			}else if(lines[i].toUpperCase().contains("ABSTRACT")) {
-				//on enleve le mot abstract
-				for(int j=1; j<lines[i].length(); j++) {
-					if(lines[i].charAt(j)>='A' && lines[i].charAt(j)<='Z' ) {
-						retour = lines[i].substring(j);
-						break;
-					}
-				}
-				break;
-			}
-		}
-		
-		//Si il ny a pas le mot Abstract
-		boolean flag=false; 
-		if(retour==null) {
-			for(int i=0; i<lines.length; i++) {		
-				if(lines[i].toUpperCase().contains("INTRODUCTION")) {
-					retour = lines[i-1];
-					for(int j=i-1; j>0; j--) { 
-						if(!lines[j].equals("")) { 
-							retour = lines[j]; 
-							flag=true; 
-							break;
-						}
-					} 
-				}
-				if(flag) break; 
-			} 
-		}	 
-		return retour;
 	}
 	public static File creationFichierSansRename(File f) {
 		//creation du fichier texte sans rename
@@ -319,21 +59,27 @@ public class ParsePartout {
 		return file;
 	}
 	public static void putInfo(File from, File out) throws IOException {
-		//writer
+		//pour remplir le fichier 
 		FileWriter fw = new FileWriter(out);
 		BufferedWriter bw = new BufferedWriter(fw);
 		
 		//texte en vrac
-		String block= getString(from.getName());
-		String blockf= getStringFirst(from.getName());
-
+		String block = getString(from.getName());
+		String blockf = getStringFirst(from.getName());	
 		
 		//on extraie les variables
 		String titre = getTitre(block);
 		ArrayList<String>auteurs=getAuteur(block,blockf);
 		String abstrac = getAbstract(block);
-
-		int nbA = getNbAuteurMail(blockf);
+		
+		//on extraie les metadonnees
+		String titreData = getTitreData(from);
+		ArrayList<String> auteursData=getAuteurData(from);
+		
+		//on compare pour savoir quelle est la bonne variable a prendre en compte
+		String bonTitre = getBonTitre(titre,titreData);
+//		ArrayList<String> bonAuteurs = getBonAuteurs(auteurs,auteursData);
+//		int nbAuteur = bonAuteurs.size();
 		
 		//creation du texte
 		bw.append("Nom du fichier :\n");
@@ -341,60 +87,32 @@ public class ParsePartout {
 		
 		if(!titre.equals("")) {
 			bw.append("Titre :\n");
-			bw.append("			"+titre+"\n");
+			bw.append("			"+bonTitre+"\n");
 		}
-		if(nbA!=0&&nbA<=auteurs.size()) {
+		/*
+		if(nbAuteur!=0&&nbAuteur<=auteurs.size()) {
 			bw.append("Nombre d'auteur :\n ");
-			bw.append("			"+String.valueOf(nbA));
+			bw.append("			"+String.valueOf(nbAuteur));
 		}
 		if(auteurs.size()==1) {
 			bw.append("\nAuteur :\n");
-			bw.append("			"+auteurs.get(0));
+			bw.append("			"+bonAuteurs.get(0));
 		}
 		if(auteurs.size()>1) {
 			bw.append("\nAuteurs :");
-			for(String a : auteurs)
+			for(String a : bonAuteurs)
 				bw.append("\n			"+a);
 		}
-
+		*/
 		if(abstrac!=null) {
 			bw.append("\nAbstract :\n");
-			bw.append(abstrac);	
+			bw.append("			"+abstrac+"\n");	
 		}		
 		bw.close();
 		fw.close();
-		
+	
 	}
-	public static String getString(String nom) {
-		//recupere et retourne le texte en vrac
-    	String homeDirectory = System.getProperty("user.dir");
-    	String filePath = Paths.get(homeDirectory, "Corpus_2021").toString();
-		StringBuilder t = pdfToText(filePath+"/"+nom);
-		return t.toString();
-	}
-	public static String getStringFirst(String nom) {
-		//recupere et retourne la premiere page du texte en vrac
-    	String homeDirectory = System.getProperty("user.dir");
-    	String filePath = Paths.get(homeDirectory, "Corpus_2021").toString();
-		StringBuilder t = pdfToTextFirst(filePath+"/"+nom);
-		return t.toString();
-	}
-    public static void main(String args[]) throws IOException {
-    	
-    	String homeDirectory = System.getProperty("user.dir");
-    	String filePath = Paths.get(homeDirectory, "Corpus_2021").toString();
-    	File directory = new File(filePath);
-        // Parcourez les fichiers du répertoire
-        File[] files = directory.listFiles();
-        File dir = new File("./DejaParséAlorsTuVasFaireQuoi");
-        dir.mkdir();
-        if (files != null) {
-            for (File file : files) {
-                if (file.isFile() && file.getName().endsWith(".pdf")) {
-                    putInfo(file, creationFichierSansRename(file));
-                }
-            }
-        }
-    }
-}
+	
 
+
+}

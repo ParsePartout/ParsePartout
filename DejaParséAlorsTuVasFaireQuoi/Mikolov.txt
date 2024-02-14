@@ -1,7 +1,7 @@
 Nom du fichier :
 			Mikolov.pdf
 Titre :
-			Efficient Estimation of Word Representations in Vector Space
+			arXiv:1301.3781v3 [cs.CL] 7 Sep 2013
 Nombre d'auteur :
  			4
 Auteurs :
