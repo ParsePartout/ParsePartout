@@ -1,30 +1,35 @@
 package parse;
 
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.file.Paths;
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.StringTokenizer;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /*ParsePartout*/
 public class ParsePartout {
     
-	private static String os;
 	private static String homedir;
 	private static String corpusPath;
+	private static StringBuilders sb;
+	private static Titre t;
+	private static Auteur au;
+	private static Abstrac ab;
+	private static File f;
 	
-	public ParsePartout() {
-		os=System.getProperty("os.name").toLowerCase();
+
+	
+	public ParsePartout(File file) {
+		f=file;
 		homedir = System.getProperty("user.dir");
-		corpusPath = Paths.get(homedir,"Corpus_2021").toString();
+		corpusPath = homedir + "/Corpus_2021";
+		sb = new StringBuilders(f.getName());
+		t = new Titre(f,sb.extractPdfToText());
+		au = new Auteur(f,sb.extractPdfToText(),sb.extractPdfToTextFirst());
+		ab = new Abstrac(sb.extractPdfToText());
+		
+		
+		
 	}
 	public static String getNom(File f) {
 		//return nom du fichier 
@@ -58,34 +63,21 @@ public class ParsePartout {
 		}
 		return file;
 	}
-	public static void putInfo(File from, File out) throws IOException {
+	public static void putInfo(File out) throws IOException {
 		//pour remplir le fichier 
 		FileWriter fw = new FileWriter(out);
 		BufferedWriter bw = new BufferedWriter(fw);
-		
-		//texte en vrac
-		String block = getString(from.getName());
-		String blockf = getStringFirst(from.getName());	
-		
-		//on extraie les variables
-		String titre = getTitre(block);
-		ArrayList<String>auteurs=getAuteur(block,blockf);
-		String abstrac = getAbstract(block);
-		
-		//on extraie les metadonnees
-		String titreData = getTitreData(from);
-		ArrayList<String> auteursData=getAuteurData(from);
-		
+
 		//on compare pour savoir quelle est la bonne variable a prendre en compte
-		String bonTitre = getBonTitre(titre,titreData);
-//		ArrayList<String> bonAuteurs = getBonAuteurs(auteurs,auteursData);
-//		int nbAuteur = bonAuteurs.size();
+		String bonTitre = t.getBonTitre();
+		ArrayList<String> bonAuteurs = au.getBonAuteur();
+		int nbAuteur = bonAuteurs.size();
 		
 		//creation du texte
 		bw.append("Nom du fichier :\n");
-		bw.append("			"+from.getName()+"\n");
+		bw.append("			"+f.getName()+"\n");
 		
-		if(!titre.equals("")) {
+		if(!bonTitre.equals("")) {
 			bw.append("Titre :\n");
 			bw.append("			"+bonTitre+"\n");
 		}
@@ -104,9 +96,9 @@ public class ParsePartout {
 				bw.append("\n			"+a);
 		}
 		*/
-		if(abstrac!=null) {
+		if(ab!=null) {
 			bw.append("\nAbstract :\n");
-			bw.append("			"+abstrac+"\n");	
+			bw.append("			"+ab+"\n");	
 		}		
 		bw.close();
 		fw.close();

@@ -14,18 +14,21 @@ public class Auteur {
 	//liste d'auteur detecte dans les meta donnees
 	private static ArrayList<String> auteurMeta;
 	//liste d'auteur evalue comme etant le plus propice d'etre correct
-	private static ArrayList<String> auteurTitre;
-	
+	private static ArrayList<String> bonAuteur;
+	private static String corpusPath;
+	private static File file;
 	public Auteur(File f,String texte,String texteF) {
+		file=f;
 		auteurParse=parseAuteur(texte,texteF);
-		auteurMeta=extractAuteur(f);
-		auteurTitre=compareAuteur(auteurParse,auteurMeta);
+		auteurMeta=extractAuteur();
+		bonAuteur=compareAuteur(auteurParse,auteurMeta);
+		corpusPath = System.getProperty("user.dir") + "/Corpus_2021";
 	}
-    public static ArrayList<String> extractAuteur(File f) {
+    public static ArrayList<String> extractAuteur() {
         ArrayList<String> al= new ArrayList<String>();
-        String fileName= f.getName();
-        StringBuilder info = pdfInfo(corpusPath +"/"+ fileName);
-        String infoParse = info.toString();
+        String fileName= file.getName();
+        StringBuilders sb = new StringBuilders(corpusPath +"/"+ fileName);
+        String infoParse = sb.extractPdfInfo();
         int i=0;
         for(String s :infoParse.split("\n")) {
             if(s.contains("Author") ) {
@@ -212,10 +215,10 @@ public class Auteur {
 	public static void setAuteurParse(ArrayList<String> auteurParse) {
 		Auteur.auteurParse = auteurParse;
 	}
-	public static ArrayList<String> getAuteurTitre() {
-		return auteurTitre;
+	public static ArrayList<String> getBonAuteur() {
+		return bonAuteur;
 	}
 	public static void setAuteurTitre(ArrayList<String> auteurTitre) {
-		Auteur.auteurTitre = auteurTitre;
+		Auteur.bonAuteur = auteurTitre;
 	}
 }

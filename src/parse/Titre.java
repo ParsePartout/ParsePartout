@@ -9,10 +9,12 @@ public class Titre {
 	private static String titreMeta;
 	//titre evalue comme etant le plus propice d'etre correct
 	private static String bonTitre;
-	
+	private static String corpusPath;
+	private static File file;
 	public Titre(File f, String texte) {
+		file = f;
 		titreParse=parseTitre(texte);
-		titreMeta=extractTitre(f);
+		titreMeta=extractTitre();
 		bonTitre=compareTitre(titreParse,titreMeta);
 	}
 
@@ -21,10 +23,10 @@ public class Titre {
 		//methode pour retourner le titre du document
 		return texte.split("\n")[0];
 	}
-	public static String extractTitre(File f) {
-        String fileName= f.getName();
-        StringBuilder info = pdfInfo(corpusPath +"/"+ fileName);
-        String infoParse = info.toString();
+	public static String extractTitre() {
+        String fileName= file.getName();
+        StringBuilders sb = new StringBuilders(corpusPath +"/"+ fileName);
+        String infoParse = sb.extractPdfInfo();
         int i=0;
         for(String s :infoParse.split("\n")) {
             if(s.contains("Title")) {
