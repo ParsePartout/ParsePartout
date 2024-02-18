@@ -18,17 +18,19 @@ public class Auteur {
 	private static String corpusPath;
 	private static File file;
 	public Auteur(File f,String texte,String texteF) {
+
+		corpusPath = System.getProperty("user.dir") + "/Corpus_2021";
 		file=f;
 		auteurParse=parseAuteur(texte,texteF);
 		auteurMeta=extractAuteur();
 		bonAuteur=compareAuteur(auteurParse,auteurMeta);
-		corpusPath = System.getProperty("user.dir") + "/Corpus_2021";
 	}
     public static ArrayList<String> extractAuteur() {
         ArrayList<String> al= new ArrayList<String>();
         String fileName= file.getName();
         StringBuilders sb = new StringBuilders(corpusPath +"/"+ fileName);
         String infoParse = sb.extractPdfInfo();
+
         int i=0;
         for(String s :infoParse.split("\n")) {
             if(s.contains("Author") ) {
@@ -47,7 +49,7 @@ public class Auteur {
         Pattern pattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?");
 
         Matcher matcher = pattern.matcher(texte.substring(20, Math.min(texte.length(), 500)));
-        
+
         while (matcher.find()) {
         	//System.out.println(matcher.group());
             potentialAuthors.add(matcher.group());
@@ -151,8 +153,33 @@ public class Auteur {
         return authors;
     }
 	private static ArrayList<String> compareAuteur(ArrayList<String> auteurs, ArrayList<String> auteursData) {
-		return null;
-	}
+		//methode pour comparer deux listes d'auteurs
+
+        //verification si le premier string de l'arraylist est vide
+        if(auteurs.size()==0 || auteurs.get(0).equals("") || auteurs.get(0)==null)
+        	return auteursData;
+        if(auteursData.size()==0 ||auteursData.get(0).equals("") || auteursData.get(0)==null)
+            return auteurs;
+
+        //verification si chaque élément de l'array liste est composé de lettres
+        for(String a: auteurs) {
+            for(int i=0; i<a.length(); i++) {
+                if(a.toUpperCase().charAt(i)<='A' && a.toUpperCase().charAt(i)>='Z' ) {
+                    if(a.charAt(i)!='-' && a.charAt(i)!='.') 
+                        return auteursData;
+                }
+            }
+        }
+        for(String aD: auteurs) {
+            for(int i=0; i<aD.length(); i++) {
+                if(aD.toUpperCase().charAt(i)<='A' && aD.toUpperCase().charAt(i)>='Z' ) {
+                    if(aD.charAt(i)!='-' && aD.charAt(i)!='.') 
+                        return auteurs;
+                }
+            }
+        }
+        return auteurs;
+    }
 	
 	//Aide au parse
 	public static int getNbAuteurWithCompteurEmail(HashMap<String, Integer> cptMail){

@@ -30,6 +30,7 @@ public class StringBuilders {
 	        try {
 	            //commande console, encodage --> Ascii7 permet la gestion des accents4
 	        	String toolPath = os.contains("windows") ? homedir + "\\lib\\xpdf-tools-win-4.05\\bin64\\pdfinfo" : homedir + "/lib/xpdf-tools-linux-4.05/bin64/pdfinfo";
+
 	            String[] command = {toolPath, filePath};
 	            //execution de la commande
 	            Process process = Runtime.getRuntime().exec(command);
@@ -38,12 +39,13 @@ public class StringBuilders {
 	            while ((line = reader.readLine()) != null) {
 	                text.append(line).append("\n");
 	            }
+	            
 
 	        } catch (IOException  e) {
 	            e.printStackTrace();
 	        }
 	        //retourne le texte en vrac
-
+	        //System.out.println(text.toString());
 	        return text.toString();
 	    }
 	    public static String extractPdfToText() {
@@ -54,7 +56,7 @@ public class StringBuilders {
 	    		
 	        	String toolPath = os.contains("windows") ? homedir + "\\lib\\xpdf-tools-win-4.05\\bin64\\pdftotext" : homedir + "/lib/xpdf-tools-linux-4.05/bin64/pdftotext";
 		    	String[] command = {toolPath,"-enc","ASCII7", filePath, "-"};
-		        
+		    	
 		    	//execution de la commande
 		        Process process = Runtime.getRuntime().exec(command);
 		        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
@@ -66,6 +68,7 @@ public class StringBuilders {
 	    	} catch (IOException | InterruptedException e) {
 	    		e.printStackTrace();
 	    	}
+	    	//System.out.println(text.toString());
 	    	//retourne le texte en vrac
 	    	return text.toString();
 	    }
@@ -86,6 +89,7 @@ public class StringBuilders {
 	     	} catch (IOException | InterruptedException e) {
 	     		e.printStackTrace();
 	     	}
+	     	//System.out.println(text.toString());
 	     	//retourne le texte en vrac
 	     	return text.toString();
 	     }

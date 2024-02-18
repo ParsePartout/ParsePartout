@@ -22,11 +22,15 @@ public class ParsePartout {
 	public ParsePartout(File file) {
 		f=file;
 		homedir = System.getProperty("user.dir");
-		corpusPath = homedir + "/Corpus_2021";
-		sb = new StringBuilders(f.getName());
-		t = new Titre(f,sb.extractPdfToText());
-		au = new Auteur(f,sb.extractPdfToText(),sb.extractPdfToTextFirst());
-		ab = new Abstrac(sb.extractPdfToText());
+		corpusPath = homedir + "\\Corpus_2021\\";
+		sb = new StringBuilders(file.getPath());
+		String text=sb.extractPdfToText();
+		String textF=sb.extractPdfToTextFirst();
+		t = new Titre(f,text);
+		System.out.println(t.getBonTitre());
+		au = new Auteur(f,text,textF);
+
+		ab = new Abstrac(text);
 		
 		
 		
@@ -98,7 +102,7 @@ public class ParsePartout {
 		*/
 		if(ab!=null) {
 			bw.append("\nAbstract :\n");
-			bw.append("			"+ab+"\n");	
+			bw.append("			"+ab.getAbstractParse()+"\n");	
 		}		
 		bw.close();
 		fw.close();
