@@ -19,6 +19,7 @@ public class Main {
                 if (file.isFile() && file.getName().endsWith(".pdf")) {
                 	ParsePartout pp = new ParsePartout(file);
                     pp.putInfo(pp.creationFichierSansRename(file));
+                    System.out.println("test");
                 }
             }
         }
