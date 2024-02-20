@@ -16,6 +16,7 @@ public class Titre {
 		titreParse=parseTitre(texte);
 		titreMeta=extractTitre();
 		bonTitre=compareTitre(titreParse,titreMeta);
+		corpusPath = System.getProperty("user.dir") + "\\Corpus_2021\\";
 	}
 
 	//Methodes d'extraction et de comparaison des titres

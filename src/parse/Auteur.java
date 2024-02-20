@@ -28,7 +28,6 @@ public class Auteur {
 		auteurMeta=extractAuteur();
 		bonAuteur=compareAuteur(auteurParse,auteurMeta);
 		mails=getMail(texteF);
-//		System.out.println(f.getName()+"-->"+bonAuteur+"---->"+mails);
 	}
     public static ArrayList<String> extractAuteur() {
         ArrayList<String> al= new ArrayList<String>();
@@ -56,7 +55,6 @@ public class Auteur {
         Matcher matcher = pattern.matcher(texte.substring(debut, Math.min(texte.length(), fin)));
 
         while (matcher.find()) {
-        	//System.out.println(matcher.group());
             potentialAuthors.add(matcher.group());
         }
         Pattern firstnamePattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?");
@@ -102,7 +100,6 @@ public class Auteur {
 	            	
 	            	for (String potAuthor : potentialAuthors) {
 	            		if(authors.size()>=getNbAuteurMail(texteF)) break;
-	            		//System.out.println(potAuthor);
 						Matcher matcherFirstname = firstnamePattern.matcher(potAuthor);
 			            Matcher matcherLastname = lastnamePattern.matcher(potAuthor);
 			            String firstname = null;
@@ -184,6 +181,13 @@ public class Auteur {
         	return auteursData;
         if(auteurs.size()>auteursData.size()) 
         	return auteurs;
+        
+        //Verification si array liste auteurs supérieure à auteursData et inversement
+        if(auteurs.size()<auteursData.size())
+            return auteursData;
+        if(auteurs.size()>auteursData.size())
+            return auteurs;
+        
         return auteurs;
     }
 	
@@ -222,30 +226,7 @@ public class Auteur {
         }
         return nb;
     }
-    
-    public static ArrayList<String>getMail(String texte){
-        ArrayList<String>mails=new ArrayList<String>();
-        String[]txt = texte.split("\n");
-        for(String t : txt) {
-            if (t.contains("@")) {
-                String[]affinage=t.split(" ");
-                for(String a : affinage) {
-                    if(a.contains("@")) {
-                    	if(a.contains("{")) {
-                    		
-                    		String avantArobase=a.split("@")[0];
-                    		System.out.println(avantArobase);
-                    	}
-//                        String resultString = a.replaceAll("[()]", "");
-//                        mails.add(resultString);
-                        }
-                    }
-                }
-            }
 
-        
-        return mails;
-    }
     public static ArrayList<String> getAlternateAuthor(String firstname, String lastname){
 
     	ArrayList<String>  alternateAuthor = new ArrayList<String>();
@@ -259,6 +240,34 @@ public class Auteur {
     	
     	return alternateAuthor;
 	}
+    public static ArrayList<String>getMail(String texte){
+        ArrayList<String>mail=new ArrayList<String>();
+        String[]txt = texte.split("\n");
+        for(String t : txt) {
+            if (t.contains("@")) {
+            	if(t.contains("}")) {
+            		String mailAccolade = t.split("}")[1];
+            		String listePotential = t.split("}")[0].replaceAll("[{]", "");
+            		String[]listAccolade=listePotential.split(",");
+            		for (String s : listAccolade) {
+            			mail.add(s.trim()+mailAccolade);
+            		}
+            	}
+                String[]affinage=t.split(" ");
+                for(String a : affinage) {
+                    if(a.contains("@")) {
+                        if(a.contains("{")) {
+                            String avantArobase=a.split("@")[0];
+                        }
+//                        String resultString = a.replaceAll("[()]", "");
+//                        mails.add(resultString);
+                        }
+                    }
+                }
+            }
+        return mail;
+    }
+
     //getter et setter
 	public static ArrayList<String> getAuteurMeta() {
 		return auteurMeta;

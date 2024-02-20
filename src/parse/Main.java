@@ -13,19 +13,18 @@ public class Main {
         // Parcourez les fichiers du répertoire
         File[] files = directory.listFiles();
         File dir = new File("./DejaParséAlorsTuVasFaireQuoi");
+        File dirxml = new File("./boumXMLkeskiamaintenant");
         dir.mkdir();
+        dirxml.mkdir();
         if (files != null) {
             for (File file : files) {
                 if (file.isFile() && file.getName().endsWith(".pdf")) {
                 	ParsePartout pp = new ParsePartout(file);
                     pp.putInfo(pp.creationFichierSansRename(file));
+                    pp.toXML(pp.creationFichierXML(file));
                 }
             }
         }
-        
-        
-        ParsePartout pp = new ParsePartout(new File(corpusPath+"\\Nasr.pdf"));
-        
-
+                      
     }
 }

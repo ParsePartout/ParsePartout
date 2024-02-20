@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="0d94c7ba-1abc-4f01-9e7e-4c4fb734a5bf" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.project" beforeDir="false" afterPath="$PROJECT_DIR$/.project" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Corpus_2021/Mikolov.txt" beforeDir="false" afterPath="$PROJECT_DIR$/Corpus_2021/Mikolov.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/Boudin-Torres-2006.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/Boudin-Torres-2006.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/Das_Martins.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/Das_Martins.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/Gonzalez_2018_Wisebe.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/Gonzalez_2018_Wisebe.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/Iria_Juan-Manuel_Gerardo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/Iria_Juan-Manuel_Gerardo.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/Mikolov.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/Mikolov.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/Nasr.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/Nasr.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/Torres-moreno1998.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/Torres-moreno1998.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/Torres.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/Torres.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/jing-cutepaste.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/jing-cutepaste.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/kessler94715.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/kessler94715.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/kesslerMETICS-ICDIM2019.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/kesslerMETICS-ICDIM2019.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/mikheev J02-3002.txt" beforeDir="false" afterPath="$PROJECT_DIR$/DejaParséAlorsTuVasFaireQuoi/mikheev J02-3002.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/ANNOUNCE" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/ANNOUNCE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/CHANGES" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/CHANGES" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/COPYING" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/COPYING" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/COPYING3" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/COPYING3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/INSTALL" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/INSTALL" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/README" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/README" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/doc/pdfdetach.1" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/doc/pdfdetach.1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/doc/pdffonts.1" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/doc/pdffonts.1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/doc/pdfimages.1" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/doc/pdfimages.1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/doc/pdfinfo.1" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/doc/pdfinfo.1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/doc/pdftohtml.1" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/doc/pdftohtml.1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/doc/pdftopng.1" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/doc/pdftopng.1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/doc/pdftoppm.1" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/doc/pdftoppm.1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/doc/pdftops.1" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/doc/pdftops.1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/doc/pdftotext.1" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/doc/pdftotext.1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/doc/sample-xpdfrc" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/doc/sample-xpdfrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/doc/xpdfrc.5" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-linux-4.05/doc/xpdfrc.5" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/ANNOUNCE" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/ANNOUNCE" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/CHANGES" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/CHANGES" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/COPYING" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/COPYING" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/COPYING3" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/COPYING3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/INSTALL" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/INSTALL" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/README" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/README" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/doc/pdfdetach.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/doc/pdfdetach.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/doc/pdffonts.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/doc/pdffonts.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/doc/pdfimages.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/doc/pdfimages.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/doc/pdfinfo.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/doc/pdfinfo.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/doc/pdftohtml.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/doc/pdftohtml.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/doc/pdftopng.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/doc/pdftopng.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/doc/pdftoppm.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/doc/pdftoppm.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/doc/pdftops.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/doc/pdftops.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/doc/pdftotext.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/doc/pdftotext.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/doc/sample-xpdfrc" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/doc/sample-xpdfrc" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/doc/xpdfrc.txt" beforeDir="false" afterPath="$PROJECT_DIR$/lib/xpdf-tools-win-4.05/doc/xpdfrc.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parse/Abstrac.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parse/Abstrac.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parse/ParsePartout.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parse/ParsePartout.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/parse/Titre.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/parse/Titre.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectColorInfo"><![CDATA[{
+  "customColor": "",
+  "associatedIndex": 5
+}]]></component>
+  <component name="ProjectId" id="2cdC4t1gEeQOGTcf2gf7bNPoeuA" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "master",
+    "kotlin-language-version-configured": "true",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="jdk-20.0.2-corretto-20.0.2.1-4caba194b151-5bc9ecd2" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="0d94c7ba-1abc-4f01-9e7e-4c4fb734a5bf" name="Changes" comment="" />
+      <created>1708431882726</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1708431882726</updated>
+      <workItem from="1708431884673" duration="25000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>

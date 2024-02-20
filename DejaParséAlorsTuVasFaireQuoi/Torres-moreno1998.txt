@@ -1,7 +1,7 @@
 Nom du fichier :
 			Torres-moreno1998.pdf
 Titre :
-			LETTER
+			Efficient Adaptive Learning for Classification Tasks with Binary Units
 Nombre d'auteur :
  			1
 Auteur :
