@@ -98,7 +98,7 @@ public class ParsePartout {
 		}
 		return file;
 	}
-	public static void putInfo(File out) throws IOException {
+	public static void putInfoTxt(File out) throws IOException {
 		//pour remplir le fichier 
 		FileWriter fw = new FileWriter(out);
 		BufferedWriter bw = new BufferedWriter(fw);
@@ -138,6 +138,8 @@ public class ParsePartout {
 		bw.close();
 		fw.close();
 	
+	}
+	public static void putInfoXml(File out) throws IOException {
 	}
 	public StringBuilders getSb() {
 		return sb;
