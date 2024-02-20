@@ -180,8 +180,10 @@ public class Auteur {
             }
         }
         //Verification si array liste auteurs supérieure à auteursData et inversement
-        if(auteurs.size()<auteursData.size()) return auteursData;
-        if(auteurs.size()>auteursData.size()) return auteurs;
+        if(auteurs.size()<auteursData.size()) 
+        	return auteursData;
+        if(auteurs.size()>auteursData.size()) 
+        	return auteurs;
         return auteurs;
     }
 	
