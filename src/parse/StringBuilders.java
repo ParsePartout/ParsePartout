@@ -19,9 +19,7 @@ public class StringBuilders {
 			pdfInfo = extractPdfInfo();
 			pdfToText=extractPdfToText();
 			pdfToTextFirstPage=extractPdfToTextFirst();
-			
-			
-			
+
 		}
 		
 		//extracteur d'infos

@@ -7,7 +7,7 @@ public class Main {
 	private static String corpusPath;
 
     public static void main(String args[]) throws IOException {
-		corpusPath = System.getProperty("user.dir") + "/Corpus_2021";
+		corpusPath = System.getProperty("user.dir") + "\\Corpus_2021";
 
     	File directory = new File(corpusPath);
         // Parcourez les fichiers du répertoire
@@ -19,9 +19,13 @@ public class Main {
                 if (file.isFile() && file.getName().endsWith(".pdf")) {
                 	ParsePartout pp = new ParsePartout(file);
                     pp.putInfo(pp.creationFichierSansRename(file));
-                    System.out.println("test");
                 }
             }
         }
+        
+        
+        ParsePartout pp = new ParsePartout(new File(corpusPath+"\\Nasr.pdf"));
+        
+
     }
 }

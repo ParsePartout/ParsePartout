@@ -15,15 +15,20 @@ public class Auteur {
 	private static ArrayList<String> auteurMeta;
 	//liste d'auteur evalue comme etant le plus propice d'etre correct
 	private static ArrayList<String> bonAuteur;
+	//liste de mail
+	private static ArrayList<String> mails;
 	private static String corpusPath;
 	private static File file;
-	public Auteur(File f,String texte,String texteF) {
+	
+	public Auteur(File f,String texte,String texteF,int debut,int fin) {
 
 		corpusPath = System.getProperty("user.dir") + "/Corpus_2021";
 		file=f;
-		auteurParse=parseAuteur(texte,texteF);
+		auteurParse=parseAuteur(texte,texteF,debut,fin);
 		auteurMeta=extractAuteur();
 		bonAuteur=compareAuteur(auteurParse,auteurMeta);
+		mails=getMail(texteF);
+//		System.out.println(f.getName()+"-->"+bonAuteur+"---->"+mails);
 	}
     public static ArrayList<String> extractAuteur() {
         ArrayList<String> al= new ArrayList<String>();
@@ -35,7 +40,6 @@ public class Auteur {
         for(String s :infoParse.split("\n")) {
             if(s.contains("Author") ) {
                 for(String ss : infoParse.split("\n")[i].replace("Author:         ", "").split(";")) {
-
                     al.add(ss.trim());
                 }
             }
@@ -43,21 +47,20 @@ public class Auteur {
         }
         return al;
     }
-	public static ArrayList<String> parseAuteur(String texte, String texteF) {
+	public static ArrayList<String> parseAuteur(String texte, String texteF, int debut, int fin) {
         ArrayList<String> potentialAuthors = new ArrayList<>();
         ArrayList<String> authors = new ArrayList<>();
         Pattern pattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?");
-
-        Matcher matcher = pattern.matcher(texte.substring(20, Math.min(texte.length(), 500)));
+        
+        //reduit la zone à la fin du titre et le début de l'abstract
+        Matcher matcher = pattern.matcher(texte.substring(debut, Math.min(texte.length(), fin)));
 
         while (matcher.find()) {
         	//System.out.println(matcher.group());
             potentialAuthors.add(matcher.group());
         }
-       
-       Pattern firstnamePattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?");
-       Pattern lastnamePattern = Pattern.compile("( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?");
-        
+        Pattern firstnamePattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?");
+        Pattern lastnamePattern = Pattern.compile("( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?");
         
         StringTokenizer tokenizer = new StringTokenizer(texte, "\n");
         String previousline="";
@@ -108,9 +111,7 @@ public class Auteur {
 	                        firstname = matcherFirstname.group();
 	                        lastname = matcherLastname.group();
 			            }
-			            
-			            	
-			            
+
 			            int indexArr=(line.indexOf("@")==0)? line.length() : line.indexOf("@") ;
 				        int indexArrPrevious = (previousline.indexOf("@")==-1)? previousline.length() : previousline.indexOf("@");
 					    if (line.substring(0,indexArr).contains(firstname.toLowerCase()) 
@@ -122,8 +123,7 @@ public class Auteur {
 						    break;
 					        }
 			         }
-	            	
-	            	
+
 	            	if(getNbAuteurMail(texteF)>authors.size()) {
 	            		for (String potAuthor : potentialAuthors) {
 		            		
@@ -172,12 +172,16 @@ public class Auteur {
         }
         for(String aD: auteurs) {
             for(int i=0; i<aD.length(); i++) {
-                if(aD.toUpperCase().charAt(i)<='A' && aD.toUpperCase().charAt(i)>='Z' ) {
-                    if(aD.charAt(i)!='-' && aD.charAt(i)!='.') 
-                        return auteurs;
+                if(aD.toUpperCase().charAt(i)<='A' && aD.toUpperCase().charAt(i)>='Z') {
+                    if(aD.charAt(i)!='-' && aD.charAt(i)!='.') {
+                    	return auteurs;
+                    }
                 }
             }
         }
+        //Verification si array liste auteurs supérieure à auteursData et inversement
+        if(auteurs.size()<auteursData.size()) return auteursData;
+        if(auteurs.size()>auteursData.size()) return auteurs;
         return auteurs;
     }
 	
@@ -215,6 +219,30 @@ public class Auteur {
             }
         }
         return nb;
+    }
+    
+    public static ArrayList<String>getMail(String texte){
+        ArrayList<String>mails=new ArrayList<String>();
+        String[]txt = texte.split("\n");
+        for(String t : txt) {
+            if (t.contains("@")) {
+                String[]affinage=t.split(" ");
+                for(String a : affinage) {
+                    if(a.contains("@")) {
+                    	if(a.contains("{")) {
+                    		
+                    		String avantArobase=a.split("@")[0];
+                    		System.out.println(avantArobase);
+                    	}
+//                        String resultString = a.replaceAll("[()]", "");
+//                        mails.add(resultString);
+                        }
+                    }
+                }
+            }
+
+        
+        return mails;
     }
     public static ArrayList<String> getAlternateAuthor(String firstname, String lastname){
 
