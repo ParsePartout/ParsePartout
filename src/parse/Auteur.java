@@ -244,6 +244,72 @@ public class Auteur {
         
         return mails;
     }
+    public static ArrayList<String>checkMail(String texte){ 
+        ArrayList<String>mail=new ArrayList<String>(); 
+        String[]txt = texte.split("\n"); 
+        for(String t : txt) { 
+        	if (t.contains("@")) { 
+                if(t.contains("}")) { 
+                    String mailAccolade = t.split("}")[1]; 
+                    String listePotentialA = t.split("}")[0].replaceAll("[{]", ""); 
+                    String[]listeAccolade=listePotentialA.split(","); 
+                    for (String a : listeAccolade) { 
+                        if(!mail.contains(a.trim()+mailAccolade)&&getNbAuteurMail(texte)>mail.size())mail.add(cutPoint(a+mailAccolade)); 
+                    } 
+                } 
+                if(t.contains(")")) { 
+                    String mailParenthese = t.split("\\)")[1]; 
+                    String listePotentialP = t.split("\\)")[0].replaceAll("[(]", ""); 
+                    String[]listeParenthese=listePotentialP.split(","); 
+                    for (String p : listeParenthese) { 
+                    	if(mailParenthese.contains("@")) { 
+                    		if(!mail.contains(p.trim()+mailParenthese)&&getNbAuteurMail(texte)>mail.size())mail.add(cutPoint(p+mailParenthese)); 
+                    	} 
+                    } 
+                } 
+                String[]affinage=t.split(" "); 
+                for(String a : affinage) { 
+                	if(a.contains("@")) { 
+                		if(a.contains(")")) { 
+                			if(!mail.contains(a.replaceAll("[()]",""))&&getNbAuteurMail(texte)>mail.size()) { 
+                				mail.add(cutPoint(a.replaceAll("[()]",""))); 
+                				break; 
+                			} 
+                		} 
+                	if(!mail.contains(a)&&getNbAuteurMail(texte)>mail.size())mail.add(cutPoint(a)); 
+                	} 
+                } 
+            } 
+        	if(t.contains("Q")&&!texte.contains("@")){ 
+        		String[]gestionQ=t.split(" "); 
+        		int index = getIndex(gestionQ,"Q"); 
+        		if(index!=-1) { 
+        			String mailQ = "@"+gestionQ[index].split("Q")[1]; 
+        			if(!mail.contains(gestionQ[index])&&bonAuteur.size()>mail.size()) mail.add(cutPoint(gestionQ[index].replaceAll("Q", "@"))); 
+        			for(int i=1;i<bonAuteur.size();i++) { 
+            			if(!mail.contains(gestionQ[index-i]+mailQ)&&bonAuteur.size()>mail.size())mail.add(cutPoint(gestionQ[index-i]+mailQ)); 
+        			} 
+        		} 
+        		 
+        	} 
+        } 
+        return mail; 
+    } 
+    public static String cutPoint(String t) { 
+    	if (t.endsWith(".")) { 
+            return t.substring(0, t.length() - 1); 
+        } else { 
+        	t= t.replaceAll(" ",""); 
+        	return t.replaceAll(",",""); 
+        } 
+    } 
+    public static int getIndex(String[]s,String r) { 
+        for (int i = 0; i < s.length; i++) { 
+        	if (s[i].contains(r))return i; 
+        } 
+        return -1;  
+         
+    } 
     public static ArrayList<String> getAlternateAuthor(String firstname, String lastname){
 
     	ArrayList<String>  alternateAuthor = new ArrayList<String>();
@@ -276,4 +342,10 @@ public class Auteur {
 	public static void setAuteurTitre(ArrayList<String> auteurTitre) {
 		Auteur.bonAuteur = auteurTitre;
 	}
+	public static ArrayList<String> getMails() { 
+		return mails; 
+	} 
+	public static void setMails(ArrayList<String> mails) { 
+		Auteur.mails = mails; 
+	} 
 }

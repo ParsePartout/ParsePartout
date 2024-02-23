@@ -1,0 +1,23 @@
+<article>
+	<preamble>Nasr.pdf</preamble>
+	<title>MACAON An NLP Tool Suite for Processing Word Lattices</title>
+	<auteurs>
+		<auteur>
+			<name>Alexis Nasr</name>
+		</auteur>
+		<auteur>
+			<name>Frederic Bechet</name>
+		</auteur>
+		<auteur>
+			<name>Jean-Francois Rey</name>
+		</auteur>
+		<auteur>
+			<name>Benoit Favre</name>
+		</auteur>
+		<auteur>
+			<name>Joseph Le Roux</name>
+		</auteur>
+	</auteurs>
+	<abstract>MACAON is a tool suite for standard NLP tasks developed for French. MACAON has been designed to process both human-produced text and highly ambiguous word-lattices produced by NLP tools. MACAON is made of several native modules for common tasks such as a tokenization, a part-of-speech tagging or syntactic parsing, all communicating with each other through XML files . In addition, exchange protocols with external tools are easily definable. MACAON is a fast, modular and open tool, distributed under GNU Public License.</abstract>
+	<biblio> </biblio>
+</article>

@@ -72,7 +72,7 @@ public class ParsePartout {
 	}
 	public static File creationFichierSansRename(String dossier, File f, String extension) {
 		//creation du fichier texte sans rename
-		File file = new File(dossier+f.getName().substring(0,f.getName().length()-4) + extension);
+		File file = new File("./"+dossier+"/"+f.getName().substring(0,f.getName().length()-4) + extension);
 		
 		//verifie la creation
 		if(file.exists()) {

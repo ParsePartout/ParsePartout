@@ -20,14 +20,22 @@ public class Main {
                     if (file.isFile() && file.getName().endsWith(".pdf")) {
                     	ParsePartout pp = new ParsePartout(file);
                     	if(args[2].equals("-t")) {
-                            pp.putInfo(pp.creationFichierSansRename("./DejaParséAlorsTuVasFaireQuoi/", file, ".txt")); 
+                    		File dirText = new File("./DejaParséAlorsTuVasFaireQuoi/");
+                            dirText.mkdir();
+                            pp.putInfo(pp.creationFichierSansRename(dirText.getName(), file, ".txt")); 
                     	}
                     	else if(args[2].equals("-x")) {
-                            pp.toXML(pp.creationFichierSansRename("./boumXMLkeskiamaintenant/", file, ".xml")); 
+                    		File dirXml = new File("./boumXMLkeskiamaintenant/");
+                            dirXml.mkdir();
+                            pp.toXML(pp.creationFichierSansRename(dirXml.getName(), file, ".xml")); 
                     	}
                     	else if(args[2].equals("-all")) {
-                            pp.putInfo(pp.creationFichierSansRename("./DejaParséAlorsTuVasFaireQuoi/", file, ".txt")); 
-                            pp.toXML(pp.creationFichierSansRename("./boumXMLkeskiamaintenant/", file, ".xml")); 
+                    		File dirText = new File("./DejaParséAlorsTuVasFaireQuoi/");
+                            dirText.mkdir();
+                            File dirXml = new File("./boumXMLkeskiamaintenant/");
+                            dirXml.mkdir();
+                            pp.putInfo(pp.creationFichierSansRename(dirText.getName(), file, ".txt")); 
+                            pp.toXML(pp.creationFichierSansRename(dirXml.getName(), file, ".xml")); 
                     	}
                     }
                 }
@@ -41,17 +49,17 @@ public class Main {
         		i+=1;
         	}
         	if(args[i].equals("-t")) {
-        		File dir = new File("./parsingText");
-                dir.mkdir();
+        		File dirText = new File("./DejaParséAlorsTuVasFaireQuoi/");
+                dirText.mkdir();
         		for(ParsePartout pp : output) {
-        			pp.putInfo(pp.creationFichierSansRename("./DejaParséAlorsTuVasFaireQuoi/", pp.getFile(), ".txt")); 
+        			pp.putInfo(pp.creationFichierSansRename(dirText.getName(), pp.getFile(), ".txt")); 
         		}
         	}
         	else if(args[i].equals("-x")) {
-        		File dir = new File("./parsingXML");
-                dir.mkdir();
+        		File dirXml = new File("./parsingXML");
+                dirXml.mkdir();
         		for(ParsePartout pp : output) {
-        			pp.toXML(pp.creationFichierSansRename("./boumXMLkeskiamaintenant/", pp.getFile(), ".xml"));
+        			pp.toXML(pp.creationFichierSansRename(dirXml.getName(), pp.getFile(), ".xml"));
         		}
         	}
         	else if(args[i].equals("-all")) {
@@ -60,8 +68,8 @@ public class Main {
                 File dirXml = new File("./parsingXML");
                 dirXml.mkdir();
         		for(ParsePartout pp : output) {
-        			pp.putInfo(pp.creationFichierSansRename("./DejaParséAlorsTuVasFaireQuoi/", pp.getFile(), ".txt")); 
-        			 pp.toXML(pp.creationFichierSansRename("./boumXMLkeskiamaintenant/", pp.getFile(), ".xml"));
+        			pp.putInfo(pp.creationFichierSansRename(dirText.getName(), pp.getFile(), ".txt")); 
+        			 pp.toXML(pp.creationFichierSansRename(dirXml.getName(), pp.getFile(), ".xml"));
         		}
         	}
         		
