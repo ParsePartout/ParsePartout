@@ -4,17 +4,17 @@
 	<auteurs>
 		<auteur>
 			<name>Iria da Cunha</name>
-			<mail></mail>
+			<mail>iria.dacunha@upf.edu</mail>
 		</auteur>
 		<auteur>
 			<name>Juan-Manuel Torres-Moreno</name>
-			<mail></mail>
+			<mail>juan-manuel.torres@univavignon.fr</mail>
 		</auteur>
 		<auteur>
 			<name>Gerardo Sierra</name>
-			<mail></mail>
+			<mail>gsierram@iingen.unam</mail>
 		</auteur>
 	</auteurs>
 	<abstract>In this article we present the RST Spanish Treebank, the first corpus annotated with rhetorical relations for this language. We describe the characteristics of the corpus, the annotation criteria, the annotation procedure, the inter-annotator agreement, and other related aspects. Moreover, we show the interface that we have developed to carry out searches over the corpus' annotated texts.</abstract>
-	<biblio></biblio>
+	<biblio> </biblio>
 </article>

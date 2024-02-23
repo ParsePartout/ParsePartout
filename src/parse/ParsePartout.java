@@ -23,7 +23,6 @@ public class ParsePartout {
 		f=file;
 		homedir = System.getProperty("user.dir");
 		setCorpusPath(homedir + "\\Corpus_2021\\");
-		corpusPath = homedir + "\\Corpus_2021\\";
 		sb = new StringBuilders(file.getPath());
 		String text=sb.extractPdfToText();
 		String textF=sb.extractPdfToTextFirst();
@@ -53,26 +52,27 @@ public class ParsePartout {
 	
 	//renvoie l'indice du debut du abstract
 	private static int getFinZone(String textF, String abstrac) {
-        for(int i=0;i<textF.length();i++) {
-            int j=0;
-            int k=i;
-            while(textF.charAt(k)==abstrac.charAt(j)) {
-                k+=1;
-                j+=1;
-                if(j==abstrac.length()) {
-                    return i;
-                }
-            }
-        }
-        return abstrac.length();
-    }
+		for(int i=0;i<textF.length();i++) {
+			int j=0;
+			int k=i;
+			while(textF.charAt(k)==abstrac.charAt(j)) {
+				k+=1;
+				j+=1;
+				if(j==abstrac.length()) {
+					return i;
+				}
+			}
+			
+		}
+		return abstrac.length();
+	}
 	public static String getNom(File f) {
 		//return nom du fichier 
 		return f.getName();
 	}
-	public static File creationFichierSansRename(File f) {
+	public static File creationFichierSansRename(String dossier, File f, String extension) {
 		//creation du fichier texte sans rename
-		File file = new File("./DejaParséAlorsTuVasFaireQuoi/"+f.getName().substring(0,f.getName().length()-4) + ".txt");
+		File file = new File(dossier+f.getName().substring(0,f.getName().length()-4) + extension);
 		
 		//verifie la creation
 		if(file.exists()) {
@@ -98,19 +98,6 @@ public class ParsePartout {
 		}
 		return file;
 	}
-	
-	public static File creationFichierXML(File f) {
-		File file = new File("./boumXMLkeskiamaintenant/"+f.getName().substring(0,f.getName().length()-4) + ".xml");
-		if(file.exists()) {
-			try {
-				file.createNewFile();
-			}catch(IOException e) {
-				e.printStackTrace();
-			}
-		}
-		return file;		
-	}
-	
 	public static void putInfo(File out) throws IOException {
 		//pour remplir le fichier 
 		FileWriter fw = new FileWriter(out);
@@ -120,6 +107,8 @@ public class ParsePartout {
 		String bonTitre = t.getBonTitre();
 		ArrayList<String> bonAuteurs = au.getBonAuteur();
 		int nbAuteur = bonAuteurs.size();
+		ArrayList<String> mail = au.getMails();
+		int nbMail=mail.size();
 		
 		//creation du texte
 		bw.append("Nom du fichier :\n");
@@ -142,6 +131,16 @@ public class ParsePartout {
 			bw.append("\nAuteurs :");
 			for(String a : bonAuteurs)
 				bw.append("\n			"+a);
+		}
+		
+		if(nbMail==1) {
+			bw.append("\nMail :\n");
+			bw.append("			"+mail.get(0));
+		}
+		if(nbMail>1) {
+			bw.append("\nMails :");
+			for(String m : mail)
+				bw.append("\n			"+m);
 		}
 		
 		if(ab!=null) {
@@ -171,15 +170,16 @@ public class ParsePartout {
 		
 		for(int i=0; i<au.getBonAuteur().size(); i++ ) {
 			retour  += "		<auteur>\n"
-					+  "			<name>"+au.getBonAuteur().get(i)+"</name>\n"
-					+  "			<mail>"+/*au.getMail().get(i)+*/"</mail>\n"
-					+  "		</auteur>\n";
+					+  "			<name>"+au.getBonAuteur().get(i)+"</name>\n";
+			if(!au.getMails().isEmpty()) 
+					retour += "			<mail>"+au.getMails().get(i)+"</mail>\n";
+			retour += "		</auteur>\n";
 		}
 
 		retour+= 
 		  "	</auteurs>\n"
 		+ "	<abstract>"+ab.getAbstractParse()+"</abstract>\n"
-		+ "	<biblio></biblio>\n"
+		+ "	<biblio> </biblio>\n"
 		+ "</article>";
 		FileWriter fw = new FileWriter(out);
 		BufferedWriter bw = new BufferedWriter(fw);
