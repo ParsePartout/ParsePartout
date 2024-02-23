@@ -70,9 +70,9 @@ public class ParsePartout {
 		//return nom du fichier 
 		return f.getName();
 	}
-	public static File creationFichierSansRename(File f) {
+	public static File creationFichierSansRename(String dossier, File f, String extension) {
 		//creation du fichier texte sans rename
-		File file = new File("./DejaParséAlorsTuVasFaireQuoi/"+f.getName().substring(0,f.getName().length()-4) + ".txt");
+		File file = new File(dossier+f.getName().substring(0,f.getName().length()-4) + extension);
 		
 		//verifie la creation
 		if(file.exists()) {
@@ -98,7 +98,7 @@ public class ParsePartout {
 		}
 		return file;
 	}
-	public static void putInfoTxt(File out) throws IOException {
+	public static void putInfo(File out) throws IOException {
 		//pour remplir le fichier 
 		FileWriter fw = new FileWriter(out);
 		BufferedWriter bw = new BufferedWriter(fw);
@@ -107,6 +107,8 @@ public class ParsePartout {
 		String bonTitre = t.getBonTitre();
 		ArrayList<String> bonAuteurs = au.getBonAuteur();
 		int nbAuteur = bonAuteurs.size();
+		ArrayList<String> mail = au.getMails();
+		int nbMail=mail.size();
 		
 		//creation du texte
 		bw.append("Nom du fichier :\n");
@@ -131,6 +133,16 @@ public class ParsePartout {
 				bw.append("\n			"+a);
 		}
 		
+		if(nbMail==1) {
+			bw.append("\nMail :\n");
+			bw.append("			"+mail.get(0));
+		}
+		if(nbMail>1) {
+			bw.append("\nMails :");
+			for(String m : mail)
+				bw.append("\n			"+m);
+		}
+		
 		if(ab!=null) {
 			bw.append("\nAbstract :\n");
 			bw.append("			"+ab.getAbstractParse()+"\n");	
@@ -138,8 +150,6 @@ public class ParsePartout {
 		bw.close();
 		fw.close();
 	
-	}
-	public static void putInfoXml(File out) throws IOException {
 	}
 	public StringBuilders getSb() {
 		return sb;
@@ -149,6 +159,36 @@ public class ParsePartout {
 	}
 	public static void setCorpusPath(String corpusPath) {
 		ParsePartout.corpusPath = corpusPath;
+	}
+	
+	public static void toXML(File out) throws IOException {
+		String retour = 
+		  "<article>\n"
+		+ "	<preamble>"+f.getName()+"</preamble>\n"
+		+ "	<title>"+t.getBonTitre()+"</title>\n"
+		+ "	<auteurs>\n";
+		
+		for(int i=0; i<au.getBonAuteur().size(); i++ ) {
+			retour  += "		<auteur>\n"
+					+  "			<name>"+au.getBonAuteur().get(i)+"</name>\n";
+			if(!au.getMails().isEmpty()) 
+					retour += "			<mail>"+au.getMails().get(i)+"</mail>\n";
+			retour += "		</auteur>\n";
+		}
+
+		retour+= 
+		  "	</auteurs>\n"
+		+ "	<abstract>"+ab.getAbstractParse()+"</abstract>\n"
+		+ "	<biblio> </biblio>\n"
+		+ "</article>";
+		FileWriter fw = new FileWriter(out);
+		BufferedWriter bw = new BufferedWriter(fw);
+		bw.append(retour);
+		bw.close();
+		fw.close();
+	}
+	public File getFile() {
+		return f;
 	}
 	
 
