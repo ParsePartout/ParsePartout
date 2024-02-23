@@ -16,7 +16,7 @@ public class ParsePartout {
 	private static Auteur au;
 	private static Abstrac ab;
 	private static File f;
-	
+	private static Reference ref;
 
 	
 	public ParsePartout(File file) {
@@ -31,6 +31,8 @@ public class ParsePartout {
 		int debut = getDebutZone(textF,t.getBonTitre());
 		int fin = getFinZone(textF,ab.getAbstractParse());
 		au = new Auteur(f,text,textF, debut, fin);	
+		String textRaw=sb.extractPdfToTextRaw();
+		ref = new Reference(textRaw);
 		
 	}
 	
@@ -146,7 +148,11 @@ public class ParsePartout {
 		if(ab!=null) {
 			bw.append("\nAbstract :\n");
 			bw.append("			"+ab.getAbstractParse()+"\n");	
-		}		
+		}	
+		if(ref!=null) {
+            bw.append("\nReferences :");
+            bw.append(ref.getRefParse()+"\n");
+        }
 		bw.close();
 		fw.close();
 	

@@ -91,6 +91,30 @@ public class StringBuilders {
 	     	//retourne le texte en vrac
 	     	return text.toString();
 	     }
+	    public static String extractPdfToTextRaw() {
+	        StringBuilder text = new StringBuilder();
+	    	try {
+
+	    		//commande console, encodage --> Ascii7 permet la gestion des accents    		
+	    		
+	        	String toolPath = os.contains("windows") ? homedir + "\\lib\\xpdf-tools-win-4.05\\bin64\\pdftotext" : homedir + "/lib/xpdf-tools-linux-4.05/bin64/pdftotext";
+		    	String[] command = {toolPath,"-raw","-enc","ASCII7", filePath, "-"};
+		    	
+		    	//execution de la commande
+		        Process process = Runtime.getRuntime().exec(command);
+		        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+		        String line;
+		        while ((line = reader.readLine()) != null) {
+		            text.append(line).append("\n");
+		        }
+		        process.waitFor();
+	    	} catch (IOException | InterruptedException e) {
+	    		e.printStackTrace();
+	    	}
+	    	//System.out.println(text.toString());
+	    	//retourne le texte en vrac
+	    	return text.toString();
+	    }
 		
 	    //getter and setter 
 		public static String getPdfInfo() {
