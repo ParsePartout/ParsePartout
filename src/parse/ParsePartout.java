@@ -184,8 +184,8 @@ public class ParsePartout {
 
 		retour+= 
 		  "	</auteurs>\n"
-		+ "	<abstract>"+ab.getAbstractParse()+"</abstract>\n"
-		+ "	<biblio> </biblio>\n"
+		+ "	<abstract>" + ab.getAbstractParse() + "</abstract>\n"
+		+ "	<biblio>" + "	" + ref.getRefParse() + "\n" + "	</biblio>\n"
 		+ "</article>";
 		FileWriter fw = new FileWriter(out);
 		BufferedWriter bw = new BufferedWriter(fw);
