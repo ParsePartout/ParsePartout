@@ -6,8 +6,14 @@
 			<name>Andrei Mikheev</name>
 		</auteur>
 	</auteurs>
-	<abstract>In this article we present an approach for tackling three important aspects of text normalization: sentence boundary disambiguation, disambiguation of capitalized words in positions where capitalization is expected, and identification of abbreviations. As opposed to the two dominant techniques of computing statistics or writing specialized grammars, our document-centered approach works by considering suggestive local contexts and repetitions of individual words within a document. This approach proved to be robust to domain shifts and new lexica and produced performance on the level with the highest reported results. When incorporated into a part-of-speech tagger, it helped reduce the error rate significantly on capitalized words and sentence boundaries. We also investigated the portability to other languages and obtained encouraging results.</abstract>
-	<biblio>	
+	<abstract>
+	In this article we present an approach for tackling three important aspects of text normalization: sentence boundary disambiguation, disambiguation of capitalized words in positions where capitalization is expected, and identification of abbreviations. As opposed to the two dominant techniques of computing statistics or writing specialized grammars, our document-centered approach works by considering suggestive local contexts and repetitions of individual words within a document. This approach proved to be robust to domain shifts and new lexica and produced performance on the level with the highest reported results. When incorporated into a part-of-speech tagger, it helped reduce the error rate significantly on capitalized words and sentence boundaries. We also investigated the portability to other languages and obtained encouraging results.
+	</abstract>
+	<introduction>
+	Disambiguation of sentence boundaries and normalization of capitalized words, as well as identification of abbreviations, however small in comparison to other tasks of text processing, are of primary importance in the developing of practical textprocessing applications. These tasks are usually performed before actual "intelligent" text processing starts, and errors made at this stage are very likely to cause more errors at later stages and are therefore very dangerous.
+	</introduction>
+	<biblio>
+	
 			Aberdeen, John S., John D. Burger, David S.
 			Day, Lynette Hirschman, Patricia
 			Robinson, and Marc Vilain. 1995. "Mitre:

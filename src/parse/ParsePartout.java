@@ -17,6 +17,7 @@ public class ParsePartout {
 	private static Abstrac ab;
 	private static File f;
 	private static Reference ref;
+	private static Introduction intro;
 
 	
 	public ParsePartout(File file) {
@@ -33,7 +34,7 @@ public class ParsePartout {
 		au = new Auteur(f,text,textF, debut, fin);	
 		String textRaw=sb.extractPdfToTextRaw();
 		ref = new Reference(textRaw);
-		
+		intro = new Introduction(text);		
 	}
 	
 	//renvoie l'indice de fin du titre
@@ -181,15 +182,15 @@ public class ParsePartout {
 					retour += "			<mail>"+au.getMails().get(i)+"</mail>\n";
 			retour += "		</auteur>\n";
 		}
-
 		retour+= 
 		  "	</auteurs>\n"
-		+ "	<abstract>" + ab.getAbstractParse() + "</abstract>\n"
-		+ "	<biblio>" + "	" + ref.getRefParse() + "\n" + "	</biblio>\n"
+		+ "	<abstract>\n	" + ab.getAbstractParse() + "\n	</abstract>\n"
+		+ "	<introduction>\n	" + intro.getIntroduction() + "\n	</introduction>\n"
+		+ "	<biblio>\n	" + ref.getRefParse() + "\n	</biblio>\n"
 		+ "</article>";
 		FileWriter fw = new FileWriter(out);
 		BufferedWriter bw = new BufferedWriter(fw);
-		bw.append(retour);
+		bw.append(retour.replaceAll("&", "&amp;"));
 		bw.close();
 		fw.close();
 	}

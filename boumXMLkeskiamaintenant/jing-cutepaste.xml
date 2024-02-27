@@ -9,8 +9,14 @@
 			<name>Kathleen R. McKeown</name>
 		</auteur>
 	</auteurs>
-	<abstract>We present a cut and paste based text summarizer, which uses operations derived from an analysis of human written abstracts. The summarizer edits extracted sentences, using reduction to remove inessential phrases and combination to merge resuiting phrases together as coherent sentences. Our work includes a statistically based sentence decomposition program that identifies where the phrases of a summary originate in the original document, producing an aligned corpus of summaries and articles which we used to develop the summarizer.</abstract>
-	<biblio>	
+	<abstract>
+	We present a cut and paste based text summarizer, which uses operations derived from an analysis of human written abstracts. The summarizer edits extracted sentences, using reduction to remove inessential phrases and combination to merge resuiting phrases together as coherent sentences. Our work includes a statistically based sentence decomposition program that identifies where the phrases of a summary originate in the original document, producing an aligned corpus of summaries and articles which we used to develop the summarizer.
+	</abstract>
+	<introduction>
+	There is a big gap between the summaries produced by current automatic summarizers and the abstracts written by human professionals. Certainly one factor contributing to this gap is that automatic systems can not always correctly identify the important topics of an article. Another factor, however, which has received little attention, is that automatic summarizers have poor text generation techniques. Most automatic summarizers rely on extracting key sentences or paragraphs from an article to produce a summary. Since the extracted sentences are disconnected in the original article, when they are strung together, the resulting summary can be inconcise, incoherent, and sometimes even misleading.
+	</introduction>
+	<biblio>
+	
 			ANSI. 1997. Guidelines for abstracts. Technical Re- port Z39.14-1997, NISO Press, Bethesda, Mary- land.
 			L. Baum. 1972. An inequality and associated max- imization technique in statistical estimation of probabilistic functions of a markov process. In- equalities, (3):1-8.
 			Edward T. Cremmins. 1982. The Art of Abstracting.

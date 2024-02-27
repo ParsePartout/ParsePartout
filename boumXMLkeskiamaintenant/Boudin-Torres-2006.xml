@@ -12,8 +12,14 @@
 			<name>Juan-Manuel Torres-Moreno</name>
 		</auteur>
 	</auteurs>
-	<abstract>We present SMMR, a scalable sentence scoring method for query-oriented update summarization. Sentences are scored thanks to a criterion combining query relevance and dissimilarity with already read documents (history). As the amount of data in history increases, non-redundancy is prioritized over query-relevance. We show that SMMR achieves promising results on the DUC 2007 update corpus.</abstract>
-	<biblio>	
+	<abstract>
+	We present SMMR, a scalable sentence scoring method for query-oriented update summarization. Sentences are scored thanks to a criterion combining query relevance and dissimilarity with already read documents (history). As the amount of data in history increases, non-redundancy is prioritized over query-relevance. We show that SMMR achieves promising results on the DUC 2007 update corpus.
+	</abstract>
+	<introduction>
+	Extensive experiments on query-oriented multidocument summarization have been carried out over the past few years. Most of the strategies to produce summaries are based on an extraction method, which identifies salient textual segments, most often sentences, in documents. Sentences containing the most salient concepts are selected, ordered and assembled according to their relevance to produce summaries (also called extracts) (Mani and Maybury, 1999).
+	</introduction>
+	<biblio>
+	
 			Boudin, F. and J.M. Torres-Moreno. 2007. A Co- sine Maximization-Minimization approach for User-
 			Oriented Multi-Document Update Summarization.
 			In Recent Advances in Natural Language Processing

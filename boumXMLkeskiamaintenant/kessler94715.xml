@@ -12,8 +12,14 @@
 			<name>Giuseppe Berio</name>
 		</auteur>
 	</auteurs>
-	<abstract>We describe a corpus analysis method to extract terminology from a collection of technical specifications in the field of construction. Using statistics and word n-grams analysis, we extract the terminology of the domain and then perform pruning steps with linguistic patterns and internet queries to improve the quality of the final terminology. Results are evaluated by using a manual evaluation carried out by 6 experts in the field.</abstract>
-	<biblio>	
+	<abstract>
+	We describe a corpus analysis method to extract terminology from a collection of technical specifications in the field of construction. Using statistics and word n-grams analysis, we extract the terminology of the domain and then perform pruning steps with linguistic patterns and internet queries to improve the quality of the final terminology. Results are evaluated by using a manual evaluation carried out by 6 experts in the field.
+	</abstract>
+	<introduction>
+	The current era is increasingly influenced by the prominence of smart data and mobile applications. The work presented in this paper has been carried out in one industrial project (VOCAGEN) aiming at automating the production of structured data from human machine dialogues. Specifically, the targeted application drives dialogues with people working in a construction area for populating a database reporting key data extracted from those dialogues. This application requires complex processing for both transcripting speeches but also for driving dialogues. The first process is required for good speech recognition in a noisy environment. The second processing is required because the database needs to be populated with both right and complete data; indeed, people tend to apply a broad (colloquial) vocabulary and the transcripted words need to be used for filling in the corresponding data. Additionally, if some data populate the database, additional data may be required for completeness, thus the dialogue should enable to get those additional data (e.g. if the word "room" is recognised and used to populate the database, the location of the room must also be got; this can be done by driving the dialogue).
+	</introduction>
+	<biblio>
+	
 			[1] S. Meignier and T. Merlin, "Lium spkdiarization: an open source toolkit for diarization," in in CMU SPUD Workshop, 2010.
 			[2] P. Pauwels and W. Terkaj, "Express to owl for construction industry: Towards a recommendable and usable ifcowl ontology," Automation in Construction, vol. 63, pp. 100-133, 03 2016.
 			[3] H. Cunningham, "Gate, a general architecture for text engineering," in Computers and the Humanities, vol. 36, 2002, pp. 223-254.
@@ -34,7 +40,7 @@
 			[18] B. Daille, "Study and implementation of combined techniques for automatic extraction of terminology," The Balancing Act: Combining Symbolic and Statistical Approaches to Language, 12 2002.
 			[19] C. Lang, R. Schneider, and K. Suchowolec, "Extracting specialized terminology from linguistic corpora," GRAMMAR AND CORPORA, p. 425, 2018.
 			[20] E. Amjadian, D. Inkpen, T. S. Paribakht, and F. Faez, "Local-global vectors to improve unigram terminology extraction," in Proceedings of the 5th International Workshop on Computational Terminology, 2016.
-			[21] G. Wohlgenannt and F. Minic, "Using word2vec to build a simple ontology learning system." in International Semantic Web Conference (Posters & Demos), 2016.
+			[21] G. Wohlgenannt and F. Minic, "Using word2vec to build a simple ontology learning system." in International Semantic Web Conference (Posters &amp; Demos), 2016.
 			[22] H. Schmid, "Probabilistic part-of-speech tagging using decision trees," 1994.
 			[23] E. Altman, "Financial ratios, discriminant analysis and the predic- tion of corporate bankruptcy." in The Journal of Finance, 23(4). doi:10.2307/2978933, 1968, pp. 589-609.
 			[24] J. Cohen, "A Coefficient of Agreement for Nominal Scales," Educational and Psychological Measurement, vol. 20, no. 1, p. 37, 1960.
