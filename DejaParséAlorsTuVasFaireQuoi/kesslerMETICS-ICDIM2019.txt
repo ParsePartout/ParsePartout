@@ -12,7 +12,7 @@ Auteurs :
 Abstract :
 			In order to better adapt to society, an association has developed a web chat application that allows anyone to express and share their concerns and anguishes. Several thousand anonymous conversations have been gathered and form a new corpus of stories about human distress and social violence. We present a method of corpus analysis combining unsupervised learning and word embedding in order to bring out the themes of this particular collection. We compare this approach with a standard algorithm of the literature on a labeled corpus and obtain very good results. An interpretation of the obtained clusters collection confirms the interest of the method.
 
-References :
+References :			
 			[1] D. Fassin, "Et la souffrance devint sociale," in Critique. 680(1), 2004, pp. 16-29.
 			[2] ----, "Souffrir par le social, gouverner par l' ecoute," in Politix. 73(1), 2006, pp. 137-157.
 			[3] MacQueen, J., "Some methods for classification and analysis of multi- variate observations," in Proceedings of the Fifth Berkeley Symposium on Mathematical Statistics and Probability, Vol. 1: Statistics. USA: University of California Press, 1967, pp. 281-297.
@@ -30,3 +30,28 @@ References :
 			[15] C. D. Manning and H. Sch utze, Foundations of Statistical Natural Language Processing. Cambridge, MA, USA: MIT Press, 1999.
 			[16] C. Goutte and E. Gaussier, " A Probabilistic Interpretation of Precision, Recall and F-Score, with Implication for Evaluation," ECIR 2005, pp. 345-359, 2005.
 			[17] M. Hoffman, F. R. Bach, and D. M. Blei, "Online learning for latent dirichlet allocation," in Advances in Neural Information Processing Systems, J. D. Lafferty, C. K. I. Williams, J. Shawe-Taylor, R. S. Zemel, and A. Culotta, Eds. 23, 2010, pp. 856-864.
+
+Conclusion :
+			In this article, we presented an unsupervised approach to
+			exploring a collection of stories about human distress. This
+			approach uses a word embedding model to build vectors
+			containing only vocabulary from the linguistic context of the
+			model. We evaluated the quality of the approach on a col-
+			lection labeled with classical measures. The detailed analysis
+			showed very good results (average Fscore of 0.54) compared
+			to the other systems tested. This method of analysis has also
+			made it possible to highlight semantic universes and thematic
+			groupings. We first intend to study in more detail the influence
+			of each of the parameters on the results obtained. We are also
+			planning to be able to assign several tags to each discussion,
+			which would allow thematic overlaps to be taken into account.
+			The analysis reinforces the cluster approach to highlight the
+			defining features of this type of speech production and to
+			reveal its inner workings. This entry by the discursive routines
+			is only one example which will then make it possible to
+			approach other explorations with a particular focus on the
+			argumentative forms and on the forms of intensity.
+
+
+Discussion :
+

@@ -71,7 +71,6 @@ public class Auteur {
 	            for(int i=0; i<line.length();i++) {
 	            	if(line.charAt(i)=='@') cbArr++;
 	            }
-	            
 	            if(cbArr>1) {
 	            	String[] lineSplit = line.split(" ");
 	            	for(int i =0;i<cbArr;i++) {

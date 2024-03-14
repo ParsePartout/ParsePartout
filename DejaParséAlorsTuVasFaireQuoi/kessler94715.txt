@@ -11,7 +11,7 @@ Auteurs :
 Abstract :
 			We describe a corpus analysis method to extract terminology from a collection of technical specifications in the field of construction. Using statistics and word n-grams analysis, we extract the terminology of the domain and then perform pruning steps with linguistic patterns and internet queries to improve the quality of the final terminology. Results are evaluated by using a manual evaluation carried out by 6 experts in the field.
 
-References :
+References :			
 			[1] S. Meignier and T. Merlin, "Lium spkdiarization: an open source toolkit for diarization," in in CMU SPUD Workshop, 2010.
 			[2] P. Pauwels and W. Terkaj, "Express to owl for construction industry: Towards a recommendable and usable ifcowl ontology," Automation in Construction, vol. 63, pp. 100-133, 03 2016.
 			[3] H. Cunningham, "Gate, a general architecture for text engineering," in Computers and the Humanities, vol. 36, 2002, pp. 223-254.
@@ -38,3 +38,28 @@ References :
 			[24] J. Cohen, "A Coefficient of Agreement for Nominal Scales," Educational and Psychological Measurement, vol. 20, no. 1, p. 37, 1960.
 			[25] M. L. McHugh, "Interrater reliability: the kappa statistic," in Biochemia medica, 2012.
 			[26] M. Apidianaki, S. M. Mohammad, J. May, E. Shutova, S. Bethard, and M. Carpuat, "Proceedings of the 12th international workshop on semantic evaluation," in Proceedings of The 12th International Workshop on Semantic Evaluation. Association for Computational Linguistics, 2018. [Online]. Available: http://aclweb.org/anthology/S18-1000
+
+Conclusion :
+			The paper reports our experiments and results for building
+			a precise and large terminology for the construction domain.
+			Collecting terminology is indeed the first step towards a
+			complete knowledge model containing both concepts and
+			relationships. During our work we were faced to several
+			problems: finding resources and selecting them for building
+			an appropriate corpus, thinking and developing pre-processing
+			for cleaning those resources, experimenting distinct measures
+			for n-grams and selecting the most appropriate, improving
+			results by adding linguistic patterns and Internet queries. The
+			current results are quite promising according to the evaluation
+			of the extracted terminology carried out by 6 experts in the
+			field. As a perspective, we will develop generic modules and
+			guidelines for adapting these pre-processing modules to other
+			languages. Most importantly, the results of our work are useful
+			for extracting taxonomical and non-taxonomical relationships.
+			For the both purposes, we are currently working on SemEval
+			collection [26]. Applying our method to other domain corpora
+			and datasets is another future direction for this research.
+
+
+Discussion :
+

@@ -11,7 +11,7 @@ Auteurs :
 Abstract :
 			We present SMMR, a scalable sentence scoring method for query-oriented update summarization. Sentences are scored thanks to a criterion combining query relevance and dissimilarity with already read documents (history). As the amount of data in history increases, non-redundancy is prioritized over query-relevance. We show that SMMR achieves promising results on the DUC 2007 update corpus.
 
-References :
+References :			
 			Boudin, F. and J.M. Torres-Moreno. 2007. A Co- sine Maximization-Minimization approach for User-
 			Oriented Multi-Document Update Summarization.
 			In Recent Advances in Natural Language Processing
@@ -43,3 +43,25 @@ References :
 			Understanding Conference (DUC).
 			Ye, S., L. Qiu, T.S. Chua, and M.Y. Kan. 2005. NUS at DUC 2005: Understanding documents via con- cept links. In Document Understanding Conference
 			(DUC).
+
+Conclusion :
+
+
+Discussion :
+			In this paper we have described SMMR, a scal-
+			able sentence scoring method based on MMR that
+			achieves very promising results. An important as-
+			pect of our sentence scoring method is that it does
+			not requires re-ranking nor linguistic knowledge,
+			which makes it a simple and fast approach to the
+			issue of update summarization. It was pointed out
+			at the DUC 2007 workshop that Question Answer-
+			ing and query-oriented summarization have been
+			converging on a common task. The value added
+			by summarization lies in the linguistic quality. Ap-
+			proaches mixing IR techniques are well suited for
+			query-oriented summarization but they require in-
+			tensive work for making the summary fluent and
+			coherent. Among the others, this is a point that we
+			think is worthy of further investigation.
+

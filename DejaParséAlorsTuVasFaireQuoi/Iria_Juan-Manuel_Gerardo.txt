@@ -11,7 +11,7 @@ Auteurs :
 Abstract :
 			In this article we present the RST Spanish Treebank, the first corpus annotated with rhetorical relations for this language. We describe the characteristics of the corpus, the annotation criteria, the annotation procedure, the inter-annotator agreement, and other related aspects. Moreover, we show the interface that we have developed to carry out searches over the corpus' annotated texts.
 
-References :
+References :			
 			Ron Artstein, and Massimo Poesio. 2008. Survey
 			Article: Inter-Coder Agreement for Computational
 			Linguistics. Computational Linguistics, 34(4):555-
@@ -134,3 +134,50 @@ References :
 			Hai Zhao, Yan Song, and Chunyu Kit. 2010. How Large a Corpus Do We Need: Statistical Method Versus
 			Rule-based Method. In Proceedings of the Seventh conference on International Language Resources and
 			Evaluation (LREC'10).
+
+Conclusion :
+			We think that this work means an important step
+			for the RST research in Spanish, and that the RST
+			Spanish Treebank will be useful to carry out
+			diverse researches about RST in this language,
+			from a descriptive point of view (ex. analysis of
+			texts from different domains or genres) and an
+			applied point of view (development of discourse
+			parsers and NLP applications, like automatic
+			summarization, automatic translation, IE, etc.).
+			For the moment the corpus' size is acceptable
+			and, though the percentage of double-annotated
+			texts is not very high, we think that having 10
+			annotators (using the same annotation manual)
+			avoids the bias of only one annotator. In addition,
+			the corpus includes texts of diverse domains and
+			genres, which provides us with a heterogeneous
+			Spanish corpus. Moreover, the corpus interface
+			that we have designed allows the user to select a
+			subcorpus and to analyze it statistically. In
+			addition, we think that it is essential to release a
+			free corpus, on-line and dynamic, that is, in
+			continuous growth. Nevertheless, we are conscious
+			that our work still has certain limitations, which we
+			will try to solve in the future. In the short term, we
+			have 5 aims:
+			a) To add one more annotator for the test corpus
+			and to measure inter-annotator agreement.
+			b) To use more agreement measures, like kappa.
+			c) To reach a consensus on the annotation of the
+			test corpus, in order to establish a set of texts
+			considered as a preliminary gold standard.
+			d) To finish and to evaluate the IE tool.
+			e) To analyze the corpus to extract linguistic
+			patterns for the automatic relations detection.
+			In the long term, we consider other aims:
+			f) To increase the corpus, by adding non-
+			specialized texts, and new domains and genres.
+			g) To annotate all the texts by 3 people, to get a
+			representative gold-standard for Spanish (this aim
+			will depend on the funding of the project).
+			8
+
+
+Discussion :
+

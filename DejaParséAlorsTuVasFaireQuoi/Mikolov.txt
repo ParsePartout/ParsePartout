@@ -12,7 +12,7 @@ Auteurs :
 Abstract :
 			We propose two novel model architectures for computing continuous vector representations of words from very large data sets. The quality of these representations is measured in a word similarity task, and the results are compared to the previously best performing techniques based on different types of neural networks. We observe large improvements in accuracy at much lower computational cost, i.e. it takes less than a day to learn high quality word vectors from a 1.6 billion words data set. Furthermore, we show that these vectors provide state-of-the-art performance on our test set for measuring syntactic and semantic word similarities.
 
-References :
+References :			
 			[1] Y. Bengio, R. Ducharme, P. Vincent. A neural probabilistic language model. Journal of Ma- chine Learning Research, 3:1137-1155, 2003.
 			[2] Y. Bengio, Y. LeCun. Scaling learning algorithms towards AI. In: Large-Scale Kernel Ma- chines, MIT Press, 2007.
 			[3] T. Brants, A. C. Popat, P. Xu, F. J. Och, and J. Dean. Large language models in machine translation. In Proceedings of the Joint Conference on Empirical Methods in Natural Language Processing and Computational Language Learning, 2007.
@@ -45,3 +45,31 @@ References :
 			[30] P. D. Turney. Measuring Semantic Similarity by Latent Relational Analysis. In: Proc. Interna- tional Joint Conference on Artificial Intelligence, 2005.
 			[31] A. Zhila, W.T. Yih, C. Meek, G. Zweig, T. Mikolov. Combining Heterogeneous Models for Measuring Relational Similarity. NAACL HLT 2013.
 			[32] G. Zweig, C.J.C. Burges. The Microsoft Research Sentence Completion Challenge, Microsoft Research Technical Report MSR-TR-2011-129, 2011.
+
+Conclusion :
+			In this paper we studied the quality of vector representations of words derived by various models on
+			a collection of syntactic and semantic language tasks. We observed that it is possible to train high
+			quality word vectors using very simple model architectures, compared to the popular neural network
+			models (both feedforward and recurrent). Because of the much lower computational complexity, it
+			is possible to compute very accurate high dimensional word vectors from a much larger data set.
+			Using the DistBelief distributed framework, it should be possible to train the CBOW and Skip-gram
+			models even on corpora with one trillion words, for basically unlimited size of the vocabulary. That
+			is several orders of magnitude larger than the best previously published results for similar models.
+			An interesting task where the word vectors have recently been shown to significantly outperform the
+			previous state of the art is the SemEval-2012 Task 2 [11]. The publicly available RNN vectors were
+			used together with other techniques to achieve over 50% increase in Spearman's rank correlation
+			over the previous best result [31]. The neural network based word vectors were previously applied
+			to many other NLP tasks, for example sentiment analysis [12] and paraphrase detection [28]. It can
+			be expected that these applications can benefit from the model architectures described in this paper.
+			Our ongoing work shows that the word vectors can be successfully applied to automatic extension
+			of facts in Knowledge Bases, and also for verification of correctness of existing facts. Results
+			from machine translation experiments also look very promising. In the future, it would be also
+			interesting to compare our techniques to Latent Relational Analysis [30] and others. We believe that
+			our comprehensive test set will help the research community to improve the existing techniques for
+			estimating the word vectors. We also expect that high quality word vectors will become an important
+			building block for future NLP applications.
+			10
+
+
+Discussion :
+

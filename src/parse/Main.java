@@ -9,6 +9,7 @@ public class Main {
 
     public static void main(String args[]) throws IOException {
 		corpusPath = System.getProperty("user.dir") + "\\Corpus_2021";
+		
         if(args[0].equals("-d")) {
         	File directory = new File(args[1]);
             // Parcourez les fichiers du répertoire
@@ -79,5 +80,6 @@ public class Main {
         	System.out.println("usage : parsePartout [-d <directory> | -f <file>] [-output]");
         }
         
+		
     }
 }

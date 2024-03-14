@@ -10,7 +10,7 @@ Auteurs :
 Abstract :
 			We present a cut and paste based text summarizer, which uses operations derived from an analysis of human written abstracts. The summarizer edits extracted sentences, using reduction to remove inessential phrases and combination to merge resuiting phrases together as coherent sentences. Our work includes a statistically based sentence decomposition program that identifies where the phrases of a summary originate in the original document, producing an aligned corpus of summaries and articles which we used to develop the summarizer.
 
-References :
+References :			
 			ANSI. 1997. Guidelines for abstracts. Technical Re- port Z39.14-1997, NISO Press, Bethesda, Mary- land.
 			L. Baum. 1972. An inequality and associated max- imization technique in statistical estimation of probabilistic functions of a markov process. In- equalities, (3):1-8.
 			Edward T. Cremmins. 1982. The Art of Abstracting.
@@ -49,3 +49,30 @@ References :
 			American Schools. The Atlantic Monthly Press,
 			INC., Boston.
 			A.J. Viterbi. 1967. Error bounds for convolution codes and an asymptotically optimal decoding al- gorithm. IEEE Transactions on Information The- ory, 13:260-269.
+
+Conclusion :
+			This paper presents a novel architecture for text
+			summarization using cut and paste techniques ob-
+			served in human-written abstracts. In order to auto-
+			matically analyze a large quantity of human-written
+			abstracts, we developed a decomposition program.
+			The automatic decomposition allows us to build
+			large corpora for studying sentence reduction and
+			sentence combination, which are two effective op-
+			erations in cut and paste. We developed a sentence
+			reduction module that makes reduction decisions us-
+			ing multiple sources of knowledge. We also investi-
+			gated possible sentence combination operations and
+			implemented the combination module. A sentence
+			extraction module was developed and used as the
+			front end of the summarization system.
+			We are preparing the task-based evaluation of the
+			overall system. We also plan to evaluate the porta-
+			bility of the system by testing it on another corpus.
+			We will also extend the system to query-based sum-
+			marization and investigate whether the system can
+			be modified for multiple document summarization.
+
+
+Discussion :
+

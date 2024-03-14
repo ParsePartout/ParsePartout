@@ -53,7 +53,7 @@ public class StringBuilders {
 	    		//commande console, encodage --> Ascii7 permet la gestion des accents    		
 	    		
 	        	String toolPath = os.contains("windows") ? homedir + "\\lib\\xpdf-tools-win-4.05\\bin64\\pdftotext" : homedir + "/lib/xpdf-tools-linux-4.05/bin64/pdftotext";
-		    	String[] command = {toolPath,"-enc","ASCII7", filePath, "-"};
+		    	String[] command = {toolPath,"-enc","ASCII7","-nopgbrk", filePath, "-"};
 		    	
 		    	//execution de la commande
 		        Process process = Runtime.getRuntime().exec(command);
@@ -98,7 +98,7 @@ public class StringBuilders {
 	    		//commande console, encodage --> Ascii7 permet la gestion des accents    		
 	    		
 	        	String toolPath = os.contains("windows") ? homedir + "\\lib\\xpdf-tools-win-4.05\\bin64\\pdftotext" : homedir + "/lib/xpdf-tools-linux-4.05/bin64/pdftotext";
-		    	String[] command = {toolPath,"-raw","-enc","ASCII7", filePath, "-"};
+		    	String[] command = {toolPath,"-raw","-enc","ASCII7","-nopgbrk", filePath, "-"};
 		    	
 		    	//execution de la commande
 		        Process process = Runtime.getRuntime().exec(command);

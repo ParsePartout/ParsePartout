@@ -10,7 +10,7 @@ Auteurs :
 Abstract :
 			The increasing availability of online information has necessitated intensive research in the area of automatic text summarization within the Natural Language Processing (NLP) community. Over the past half a century, the problem has been addressed from many different perspectives, in varying domains and using various paradigms. This survey intends to investigate some of the most relevant approaches both in the areas of single-document and multipledocument summarization, giving special emphasis to empirical methods and extractive techniques. Some promising approaches that concentrate on specific details of the summarization problem are also discussed. Special attention is devoted to automatic evaluation of summarization systems, as future research on summarization is strongly dependent on progress in this area.
 
-References :
+References :			
 			Amari, S.-I. and Nagaoka, H. (2001). Methods of Information Geometry (Transla- tions of Mathematical Monographs). Oxford University Press. [20]
 			Aone, C., Okurowski, M. E., Gorlinsky, J., and Larsen, B. (1999). A trainable summarizer with knowledge acquired from robust nlp techniques. In Mani, I. and Maybury, M. T., editors, Advances in Automatic Text Summarization, pages
 			71-80. MIT Press. [4, 5]
@@ -99,3 +99,33 @@ References :
 			Svore, K., Vanderwende, L., and Burges, C. (2007). Enhancing single-document summarization by combining RankNet and third-party sources. In Proceedings of the EMNLP-CoNLL, pages 448-457. [7, 8]
 			Witbrock, M. J. and Mittal, V. O. (1999). Ultra-summarization (poster abstract): a statistical approach to generating highly condensed non-extractive summaries.
 			In Proceedings of SIGIR '99, pages 315-316, New York, NY, USA. [18]
+
+Conclusion :
+			The rate of information growth due to the World Wide Web has called for a need
+			to develop efficient and accurate summarization systems. Although research on
+			summarization started about 50 years ago, there is still a long trail to walk in
+			this field. Over time, attention has drifted from summarizing scientific articles to
+			news articles, electronic mail messages, advertisements, and blogs. Both abstractive
+			and extractive approaches have been attempted, depending on the application at
+			hand. Usually, abstractive summarization requires heavy machinery for language
+			generation and is difficult to replicate or extend to broader domains. In contrast,
+			simple extraction of sentences have produced satisfactory results in large-scale ap-
+			plications, specially in multi-document summarization. The recent popularity of
+			effective newswire summarization systems confirms this claim.
+			This survey emphasizes extractive approaches to summarization using statisti-
+			cal methods. A distinction has been made between single document and multi-
+			document summarization. Since a lot of interesting work is being done far from
+			the mainstream research in this field, we have chosen to include a brief discussion
+			on some methods that we found relevant to future research, even if they focus only
+			on small details related to a general summarization process and not on building an
+			entire summarization system.
+			Finally, some recent trends in automatic evaluation of summarization systems
+			have been surveyed. The low inter-annotator agreement figures observed during
+			manual evaluations suggest that the future of this research area heavily depends on
+			the ability to find efficient ways of automatically evaluating these systems and on
+			the development of measures that are objective enough to be commonly accepted
+			by the research community.
+
+
+Discussion :
+

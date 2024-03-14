@@ -19,6 +19,9 @@ public class ParsePartout {
 	private static Reference ref;
 	private static Introduction intro;
 
+	private static Conclusion conclusion;
+	private static Discussion discussion;
+
 	
 	public ParsePartout(File file) {
 		f=file;
@@ -34,7 +37,11 @@ public class ParsePartout {
 		au = new Auteur(f,text,textF, debut, fin);	
 		String textRaw=sb.extractPdfToTextRaw();
 		ref = new Reference(textRaw);
+
 		intro = new Introduction(text);		
+
+		conclusion=new Conclusion(textRaw);
+		discussion=new Discussion(textRaw);
 	}
 	
 	//renvoie l'indice de fin du titre
@@ -152,7 +159,15 @@ public class ParsePartout {
 		}	
 		if(ref!=null) {
             bw.append("\nReferences :");
-            bw.append(ref.getRefParse()+"\n");
+            bw.append("			"+ref.getRefParse()+"\n");
+        }
+		if(conclusion!=null) {
+            bw.append("\nConclusion :\n");
+            bw.append(conclusion.getConcluParse()+"\n");
+        }
+		if(discussion!=null) {
+            bw.append("\nDiscussion :\n");
+            bw.append(discussion.getDiscuParse()+"\n");
         }
 		bw.close();
 		fw.close();
