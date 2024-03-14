@@ -8,6 +8,8 @@ import java.util.StringTokenizer;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import extract.StringBuilders;
+
 public class Auteur {
 	//liste d'auteur detecte grace au contenu du texte
 	private static ArrayList<String> auteurParse;

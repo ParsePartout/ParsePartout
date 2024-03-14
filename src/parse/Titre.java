@@ -2,6 +2,8 @@ package parse;
 
 import java.io.File;
 
+import extract.StringBuilders;
+
 public class Titre {
 	//titre detecte grace au contenu du texte
 	private static String titreParse;
