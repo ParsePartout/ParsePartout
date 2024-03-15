@@ -31,6 +31,8 @@ public class ParsePartout {
 	private static Conclusion conclusion;
 	private static Discussion discussion;
 	private static String textRaw;
+	private static Index i;
+	
 
 	
 	public ParsePartout(File file) {
@@ -38,19 +40,19 @@ public class ParsePartout {
 		homedir = System.getProperty("user.dir");
 		setCorpusPath(homedir + "\\Corpus_2021\\");
 		sb = new StringBuilders(file.getPath());
-		String text=sb.extractPdfToText();
-		String textF=sb.extractPdfToTextFirst();
-		textRaw=sb.extractPdfToTextRaw();
-		t = new Titre(f,text);
-		ab = new Abstrac(text);
-		int debut = getDebutZone(textF,t.getBonTitre());
-		int fin = getFinZone(textF,ab.getAbstractParse());
-		au = new Auteur(f,text,textF, debut, fin);	
-		textRaw=sb.extractPdfToTextRaw();
-		ref = new Reference(textRaw);
-		intro = new Introduction(text);		
-		conclusion=new Conclusion(textRaw);
-		discussion=new Discussion(textRaw);
+		String text=StringBuilders.extractPdfToText();
+		String textF=StringBuilders.extractPdfToTextFirst();
+		textRaw=StringBuilders.extractPdfToTextRaw();
+		i=new Index(textRaw);
+//		t = new Titre(f,text);
+//		ab = new Abstrac(text);
+//		int debut = getDebutZone(textF,Titre.getBonTitre());
+//		int fin = getFinZone(textF,Abstrac.getAbstractParse());
+//		au = new Auteur(f,text,textF, debut, fin);	
+//		ref = new Reference(textRaw);
+//		intro = new Introduction(text);		
+//		conclusion=new Conclusion(textRaw);
+//		discussion=new Discussion(textRaw);
 	}
 	
 	//renvoie l'indice de fin du titre
@@ -222,7 +224,6 @@ public class ParsePartout {
 		return f;
 	}
 	public static void testIndex(String dossier, File f, String extension) throws IOException {
-		Index i = new Index(textRaw);
 		File file = new File("./"+dossier+"/"+f.getName().substring(0,f.getName().length()-4)+extension);
 		FileWriter fw = new FileWriter(file);
 		BufferedWriter bw = new BufferedWriter(fw);
@@ -261,8 +262,8 @@ public class ParsePartout {
 		}
 		bw.append("intro = "+intro+"\n"
 				+ "\n Corps = "+corps+"\n"
-				+ "\n Conclu = "+discu+"\n"
-				+ "\n Discu = "+conclu+"\n"
+				+ "\n Conclu = "+conclu+"\n"
+				+ "\n Discu = "+discu+"\n"
 				+ "\n Ref = "+ref+"\n");
 		bw.close();
 		fw.close();

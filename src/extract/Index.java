@@ -7,24 +7,36 @@ public class Index {
     private static int[]corps= {0,0};
     private static int[]conclu= {0,0};
     private static int[]discu= {0,0};
+    private static boolean concluFlag=false;
     private static int reference=0;
-    private static String texte;
+    private static String[]li;
 
     public Index (String tRow) {
-        texte=tRow;
-        definir();
-        
+        li=tRow.split("\n");
+        for(int i=0;i<li.length;i++) {
+//        	System.out.println(i+li[i]);
+        }
+        definirIntro();
+        definirCorps();
+        chercheConcluDiscu();
+        if(conclu[0]>discu[0]) {
+        	definirDiscuFromConclu();
+        }else {
+        	definirConcluFromDiscu();
+        }
+        definirReference();
     }
-
-    public static void definir() {
-    	String[]li=texte.split("\n");
-    	//ajout index introduction
+    
+    public static void definirIntro() {
+    	//ajout premier index intro
     	for(int i=0; i<li.length; i++) {
 			if(li[i].toUpperCase().contains("INTRODUCTION")){
 				intro[0] = i;
 				break;
 			}
 		}
+    }
+    public static void definirCorps() {
     	//ajout index corps
     	for(int i=intro[0];i<li.length;i++) {
     		if(li[i].startsWith("2.")
@@ -36,76 +48,70 @@ public class Index {
     			break;
     		}
     	}
-    	
-    	//ajout index conclusion
+    }
+    public static void chercheConcluDiscu() {
+    	//cherche index conclusion
     	for(int i=corps[0];i<li.length;i++) {
 			if(li[i].toUpperCase().contains("CONCLUSION") && (li[i].split(" ")[0].matches("\\d+")
 					||li[i].split(" ")[0].matches("[I-X]+\\."))) {
 				corps[1]=i-1;
 				conclu[0]=i;
-				conclu[1]=1;
-				System.out.println("on passe conclu");
-
+				concluFlag=true;
 				break;
 			}
-		}
-    	
-    	//ajout index discussion
-    	int startD=0;
-    	if(conclu[1]==1) {
-    		startD=conclu[0];
-    	}else {
-    		startD=corps[0];
-    	}
-    	for(int i=startD;i<li.length;i++) {
-			if((li[i].toUpperCase().contains("DISCUSSION")
-					||li[i].toUpperCase().contains("ACKNOWLEDGEMENTS"))  && (li[i].split(" ")[0].matches("[0-9]+.?")
-					||li[i].split(" ")[0].matches("[I-X]+\\."))) {
-				if(conclu[1]==1) {
-					conclu[1]=i-1;
-				}else {
-					conclu[0]=0;
-					conclu[1]=0;
-					corps[1]=i-1;
-				}
+    	//cherche index discu
+			if(li[i].toUpperCase().startsWith("DISCUSSION")
+					||li[i].toUpperCase().startsWith("ACKNOWLEDGEMENTS")
+					||li[i].toUpperCase().startsWith("ACKNOWLEDGMENTS")) {
+				corps[1]=i-1;
 				discu[0]=i;
-				discu[1]=1;
-				break;
-			}
-		}
-    	//ajout index reference
-    	int startR=0;
-    	if(discu[1]==1) {
-    		startR=discu[0];
-    	}else {
-    		if(conclu[1]==1) {
-        		startR=conclu[0];
-    		}else {
-    			startR=corps[0];
-    		}
-    	}
-    	for(int i=startR;i<li.length;i++) {
-    		if(li[i].toUpperCase().startsWith("REFERENCES")) {
-				if(discu[1]==1) {
-		    		discu[1]=i-1;
-		    	}else {
-		    		if(conclu[1]==1) {
-		        		conclu[1]=i-1;
-		        		discu[0]=0;
-		        		discu[1]=0;
-		    		}else {
-		    			corps[1]=i-1;
-		    			discu[0]=0;
-		        		discu[1]=0;
-		        		conclu[0]=0;
-		        		conclu[1]=0;
-		    		}
-		    	}
-				reference=i;
 				break;
 			}
 		}
     }
+    public static void definirDiscuFromConclu() {
+    	for(int i=conclu[0];i<li.length;i++) {
+    		//cherche index discu
+			if(li[i].toUpperCase().startsWith("ACKNOWLEDGEMENTS")
+					||li[i].toUpperCase().startsWith("ACKNOWLEDGMENTS")
+					||li[i].toUpperCase().startsWith("DISCUSSION")){
+				conclu[1]=i-1;
+				concluFlag=false;
+				discu[0]=i;
+				break;
+			}
+    	}
+    }
+    public static void definirConcluFromDiscu() {
+    	//cherche index conclusion
+    	for(int i=discu[0];i<li.length;i++) {
+			if(li[i].toUpperCase().contains("CONCLUSION") && (li[i].split(" ")[0].matches("\\d+")
+					||li[i].split(" ")[0].matches("[I-X]+\\."))) {
+				discu[1]=i-1;
+				conclu[0]=i;
+				concluFlag=true;
+				break;
+			}
+    	}
+    }
+    public static void definirReference() {
+    	//definirReference
+    	int startR;
+    	if(concluFlag) {
+    		startR=conclu[0];
+    	}else startR=discu[0];
+    	for(int i=startR;i<li.length;i++) {
+    		if(li[i].toUpperCase().startsWith("REFERENCES")) {
+    			reference=i;
+    			if(concluFlag) {
+    				conclu[1]=i-1;
+    			}else discu[1]=i-1;
+    			break;
+    		}
+    	}
+    }
+ 
+
     public static int[] getIntro() {
         return intro;
     }

@@ -10,10 +10,10 @@ public class Main {
 	private static String corpusPath;
 
     public static void main(String args[]) throws IOException {
-		corpusPath = System.getProperty("user.dir") + "\\Corpus_2021";
+		corpusPath = System.getProperty("user.dir") + "\\Corpus_2021_test";
 		File directory = new File("./testIndex");
 		directory.mkdir();
-		File f = new File(corpusPath+"\\Boudin-Torres-2006.pdf");
+		File f = new File(corpusPath+"\\Das-Martins.pdf");
 		File[] ff=new File(corpusPath).listFiles();
 		for(File fi : ff) {
 			System.out.println(fi.getName());
@@ -22,7 +22,7 @@ public class Main {
 		}
 //		ParsePartout pp = new ParsePartout(f);
 //		ParsePartout.testIndex(directory.getName(), f, ".txt");
-		
+    
 		
 //        if(args[0].equals("-d")) {
 //        	File directory = new File(args[1]);
