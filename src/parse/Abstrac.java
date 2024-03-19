@@ -8,7 +8,7 @@ public class Abstrac {
     }
 
     //methode pour recup l'abstract via le parsing
-    public static String parseAbstract(String texte) {
+    public  String parseAbstract(String texte) {
         String[] lines = texte.split("\n");
         String retour = null;
 
@@ -50,10 +50,10 @@ public class Abstrac {
         return retour;
     }
     //getter et setter
-    public static String getAbstractParse() {
+    public  String getAbstractParse() {
         return abstractParse;
     }
-    public static void setAbstractParse(String abstractParse) {
+    public  void setAbstractParse(String abstractParse) {
         Abstrac.abstractParse = abstractParse;
     }
 }

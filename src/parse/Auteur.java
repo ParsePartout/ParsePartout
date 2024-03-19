@@ -32,7 +32,7 @@ public class Auteur {
 		mails=getMail(texteF);
 //		System.out.println(f.getName()+"-->"+bonAuteur+"---->"+mails);
 	}
-    public static ArrayList<String> extractAuteur() {
+    public  ArrayList<String> extractAuteur() {
         ArrayList<String> al= new ArrayList<String>();
         String fileName= file.getName();
         StringBuilders sb = new StringBuilders(corpusPath +"/"+ fileName);
@@ -49,7 +49,7 @@ public class Auteur {
         }
         return al;
     }
-	public static ArrayList<String> parseAuteur(String texte, String texteF, int debut, int fin) {
+	public  ArrayList<String> parseAuteur(String texte, String texteF, int debut, int fin) {
         ArrayList<String> potentialAuthors = new ArrayList<>();
         ArrayList<String> authors = new ArrayList<>();
         Pattern pattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?");
@@ -153,7 +153,7 @@ public class Auteur {
         }
         return authors;
     }
-	private static ArrayList<String> compareAuteur(ArrayList<String> auteurs, ArrayList<String> auteursData) {
+	private  ArrayList<String> compareAuteur(ArrayList<String> auteurs, ArrayList<String> auteursData) {
 		//methode pour comparer deux listes d'auteurs
 
         //verification si le premier string de l'arraylist est vide
@@ -187,14 +187,14 @@ public class Auteur {
     }
 	
 	//Aide au parse
-	public static int getNbAuteurWithCompteurEmail(HashMap<String, Integer> cptMail){
+	public  int getNbAuteurWithCompteurEmail(HashMap<String, Integer> cptMail){
     	int cpt = 0;
     	for (Map.Entry<String,Integer> m : cptMail.entrySet()) {
         	if(m.getValue()>=1) cpt++;
     	}
     	return cpt;
     }
-    public static int getNbAuteurMail(String texte) {
+    public  int getNbAuteurMail(String texte) {
         //essaie de deviner le nombre d'auteurs dans un texte
         int nb = 0;
         String[]txt = texte.split("\n");
@@ -222,7 +222,7 @@ public class Auteur {
         return nb;
     }
     
-    public static ArrayList<String>getMail(String texte){
+    public  ArrayList<String>getMail(String texte){
         ArrayList<String>mails=new ArrayList<String>();
         String[]txt = texte.split("\n");
         for(String t : txt) {
@@ -245,7 +245,7 @@ public class Auteur {
         
         return mails;
     }
-    public static ArrayList<String>checkMail(String texte){ 
+    public  ArrayList<String>checkMail(String texte){ 
         ArrayList<String>mail=new ArrayList<String>(); 
         String[]txt = texte.split("\n"); 
         for(String t : txt) { 
@@ -296,7 +296,7 @@ public class Auteur {
         } 
         return mail; 
     } 
-    public static String cutPoint(String t) { 
+    public  String cutPoint(String t) { 
     	if (t.endsWith(".")) { 
             return t.substring(0, t.length() - 1); 
         } else { 
@@ -304,14 +304,14 @@ public class Auteur {
         	return t.replaceAll(",",""); 
         } 
     } 
-    public static int getIndex(String[]s,String r) { 
+    public  int getIndex(String[]s,String r) { 
         for (int i = 0; i < s.length; i++) { 
         	if (s[i].contains(r))return i; 
         } 
         return -1;  
          
     } 
-    public static ArrayList<String> getAlternateAuthor(String firstname, String lastname){
+    public  ArrayList<String> getAlternateAuthor(String firstname, String lastname){
 
     	ArrayList<String>  alternateAuthor = new ArrayList<String>();
     	String[] lastnameTwoParts = lastname.substring(1).split(" ");
@@ -325,28 +325,28 @@ public class Auteur {
     	return alternateAuthor;
 	}
     //getter et setter
-	public static ArrayList<String> getAuteurMeta() {
+	public  ArrayList<String> getAuteurMeta() {
 		return auteurMeta;
 	}
-	public static void setAuteurMeta(ArrayList<String> auteurMeta) {
+	public  void setAuteurMeta(ArrayList<String> auteurMeta) {
 		Auteur.auteurMeta = auteurMeta;
 	}
-	public static ArrayList<String> getAuteurParse() {
+	public  ArrayList<String> getAuteurParse() {
 		return auteurParse;
 	}
-	public static void setAuteurParse(ArrayList<String> auteurParse) {
+	public  void setAuteurParse(ArrayList<String> auteurParse) {
 		Auteur.auteurParse = auteurParse;
 	}
-	public static ArrayList<String> getBonAuteur() {
+	public  ArrayList<String> getBonAuteur() {
 		return bonAuteur;
 	}
-	public static void setAuteurTitre(ArrayList<String> auteurTitre) {
+	public  void setAuteurTitre(ArrayList<String> auteurTitre) {
 		Auteur.bonAuteur = auteurTitre;
 	}
-	public static ArrayList<String> getMails() { 
+	public  ArrayList<String> getMails() { 
 		return mails; 
 	} 
-	public static void setMails(ArrayList<String> mails) { 
+	public  void setMails(ArrayList<String> mails) { 
 		Auteur.mails = mails; 
 	} 
 }

@@ -36,13 +36,13 @@ public class ParsePartout {
 		homedir = System.getProperty("user.dir");
 		setCorpusPath(homedir + "\\Corpus_2021\\");
 		sb = new StringBuilders(file.getPath());
-		String text=StringBuilders.extractPdfToText();
-		String textF=StringBuilders.extractPdfToTextFirst();
-		textRaw=StringBuilders.extractPdfToTextRaw();
+		String text=sb.extractPdfToText();
+		String textF=sb.extractPdfToTextFirst();
+		textRaw=sb.extractPdfToTextRaw();
 		t = new Titre(f,text);
 		ab = new Abstrac(text);
-		int debut = getDebutZone(textF,Titre.getBonTitre());
-		int fin = getFinZone(textF,Abstrac.getAbstractParse());
+		int debut = getDebutZone(textF,t.getBonTitre());
+		int fin = getFinZone(textF,ab.getAbstractParse());
 		au = new Auteur(f,text,textF, debut, fin);	
 		//on recupere intro/corps/conclu/discu/ref
 		i = new Index(textRaw);
@@ -50,7 +50,7 @@ public class ParsePartout {
 	}
 	
 	//renvoie l'indice de fin du titre
-	private static int getDebutZone(String textF, String titre) {
+	private  int getDebutZone(String textF, String titre) {
 		for(int i=0;i<textF.length();i++) {
 			int j=0;
 			int k=i;
@@ -66,7 +66,7 @@ public class ParsePartout {
 	}
 	
 	//renvoie l'indice du debut du abstract
-	private static int getFinZone(String textF, String abstrac) {
+	private  int getFinZone(String textF, String abstrac) {
 		for(int i=0;i<textF.length();i++) {
 			int j=0;
 			int k=i;
@@ -80,11 +80,11 @@ public class ParsePartout {
 		}
 		return abstrac.length();
 	}
-	public static String getNom(File f) {
+	public  String getNom(File f) {
 		//return nom du fichier 
 		return f.getName();
 	}
-	public static File creationFichierSansRename(String dossier, File f, String extension) {
+	public  File creationFichierSansRename(String dossier, File f, String extension) {
 		//creation du fichier texte sans rename
 		File file = new File("./"+dossier+"/"+f.getName().substring(0,f.getName().length()-4) + extension);
 		
@@ -98,7 +98,7 @@ public class ParsePartout {
 		}
 		return file;
 	}
-	public static File creationFichierAvecRename(File f,String rename) throws IOException {
+	public  File creationFichierAvecRename(File f,String rename) throws IOException {
 		//crée un fichier dans le dossier préparé + le rename selon le parametre
 		File file = new File("./DejaParséAlorsTuVasFaireQuoi/"+rename+ ".txt");
 		
@@ -112,7 +112,7 @@ public class ParsePartout {
 		}
 		return file;
 	}
-	public static void putInfo(File out) throws IOException {
+	public  void putInfo(File out) throws IOException {
 		//pour remplir le fichier 
 		FileWriter fw = new FileWriter(out);
 		BufferedWriter bw = new BufferedWriter(fw);
@@ -194,14 +194,14 @@ public class ParsePartout {
 	public StringBuilders getSb() {
 		return sb;
 	}
-	public static String getCorpusPath() {
+	public  String getCorpusPath() {
 		return corpusPath;
 	}
-	public static void setCorpusPath(String corpusPath) {
+	public  void setCorpusPath(String corpusPath) {
 		ParsePartout.corpusPath = corpusPath;
 	}
 	
-	public static void toXML(File out) throws IOException {
+	public  void toXML(File out) throws IOException {
 		String retour = 
 		  "<article>\n"
 		+ "	<preamble>"+f.getName()+"</preamble>\n"
@@ -230,7 +230,7 @@ public class ParsePartout {
 	public File getFile() {
 		return f;
 	}
-	public static void setupIndex () throws IOException {
+	public  void setupIndex () throws IOException {
 		String[]l=textRaw.split("\n");
 		System.out.println("intro :"+i.getIntro()[0]+"--"+i.getIntro()[1]);
 		

@@ -22,7 +22,7 @@ public class StringBuilders {
 		}
 		
 		//extracteur d'infos
-		public static String extractPdfInfo() {
+		public  String extractPdfInfo() {
 	        StringBuilder text = new StringBuilder();
 	        try {
 	            //commande console, encodage --> Ascii7 permet la gestion des accents4
@@ -45,7 +45,7 @@ public class StringBuilders {
 	        //System.out.println(text.toString());
 	        return text.toString();
 	    }
-	    public static String extractPdfToText() {
+	    public String extractPdfToText() {
 	        StringBuilder text = new StringBuilder();
 	    	try {
 
@@ -69,7 +69,7 @@ public class StringBuilders {
 	    	//retourne le texte en vrac
 	    	return text.toString();
 	    }
-	    public static String extractPdfToTextFirst() {
+	    public  String extractPdfToTextFirst() {
 	  	   StringBuilder text = new StringBuilder();
 	     	try {
 	     		//commande console, encodage --> Ascii7 permet la gestion des accents    		
@@ -90,7 +90,7 @@ public class StringBuilders {
 	     	//retourne le texte en vrac
 	     	return text.toString();
 	     }
-	    public static String extractPdfToTextRaw() {
+	    public  String extractPdfToTextRaw() {
 	        StringBuilder text = new StringBuilder();
 	    	try {
 
@@ -116,25 +116,25 @@ public class StringBuilders {
 	    }
 		
 	    //getter and setter 
-		public static String getPdfInfo() {
+		public  String getPdfInfo() {
 			return pdfInfo;
 		}
-		public static void setPdfInfo(String pdfInfo) {
+		public  void setPdfInfo(String pdfInfo) {
 			StringBuilders.pdfInfo = pdfInfo;
 		}
-		public static String getPdfToText() {
+		public  String getPdfToText() {
 			return pdfToText;
 		}
-		public static void setPdfToText(String pdfToText) {
+		public  void setPdfToText(String pdfToText) {
 			StringBuilders.pdfToText = pdfToText;
 		}
-		public static String getPdfToTextFirstPage() {
+		public  String getPdfToTextFirstPage() {
 			return pdfToTextFirstPage;
 		}
-		public static void setPdfToTextFirstPage(String pdfToTextFirstPage) {
+		public  void setPdfToTextFirstPage(String pdfToTextFirstPage) {
 			StringBuilders.pdfToTextFirstPage = pdfToTextFirstPage;
 		}
-		public static String getHomedir() {
+		public  String getHomedir() {
 			return homedir;
 		}
 }	

@@ -21,11 +21,11 @@ public class Titre {
 	}
 
 	//Methodes d'extraction et de comparaison des titres
-	public static String parseTitre(String texte) {
+	public  String parseTitre(String texte) {
 		//methode pour retourner le titre du document
 		return texte.split("\n")[0];
 	}
-	public static String extractTitre() {
+	public  String extractTitre() {
         String fileName= file.getName();
         StringBuilders sb = new StringBuilders(corpusPath +"/"+ fileName);
         String infoParse = sb.extractPdfInfo();
@@ -38,7 +38,7 @@ public class Titre {
         }
         return "";
     }
-    public static String compareTitre(String titre, String titreData) {
+    public  String compareTitre(String titre, String titreData) {
     	//methode pour comparer deux titre
         String[] t = {titre, titreData};
         //verif string vide
@@ -72,22 +72,22 @@ public class Titre {
     }
 
     //getter et setter
-	public static String getTitreParse() {
+	public  String getTitreParse() {
 		return titreParse;
 	}
-	public static void setTitreParse(String titreParse) {
+	public  void setTitreParse(String titreParse) {
 		Titre.titreParse = titreParse;
 	}
-	public static String getTitreMeta() {
+	public  String getTitreMeta() {
 		return titreMeta;
 	}
-	public static void setTitreMeta(String titreMeta) {
+	public  void setTitreMeta(String titreMeta) {
 		Titre.titreMeta = titreMeta;
 	}
-	public static String getBonTitre() {
+	public String getBonTitre() {
 		return bonTitre;
 	}
-	public static void setBonTitre(String bonTitre) {
+	public  void setBonTitre(String bonTitre) {
 		Titre.bonTitre = bonTitre;
 	}
 }
