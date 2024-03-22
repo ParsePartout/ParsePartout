@@ -1,0 +1,176 @@
+Nom du fichier :
+			Torres.pdf
+Titre :
+			Summary Evaluation with and without References
+Nombre d'auteur :
+ 			5
+Auteurs :
+			Juan-Manuel Torres-Moreno
+			Eric SanJuan
+			Horacio Saggion
+			Iria da Cunha
+			Patricia Velazquez-Morales
+Abstract :
+			We study a new content-based method for the evaluation of text summarization systems without human models which is used to produce system rankings. The research is carried out using a new content-based evaluation framework called FRESA to compute a variety of divergences among probability distributions. We apply our comparison framework to various well-established content-based evaluation measures in text summarization such as COVERAGE, RESPONSIVENESS, PYRAMIDS and ROUGE studying their associations in various text summarization tasks including generic multi-document summarization in English and French, focus-based multi-document summarization in English and generic single-document summarization in French and Spanish.
+
+References :			
+			[1] I. Mani, G. Klein, D. House, L. Hirschman, T. Firmin, and B. Sundheim, "Summac: a text summarization evaluation," Natural Language Engineering, vol. 8, no. 1, pp. 43-68, 2002.
+			[2] P. Over, H. Dang, and D. Harman, "DUC in context," IPM, vol. 43, no. 6, pp. 1506-1520, 2007.
+			[3] Proceedings of the Text Analysis Conference. Gaithesburg, Maryland, USA: NIST, November 17-19 2008.
+			[4] K. Sp arck Jones and J. Galliers, Evaluating Natural Language Processing Systems, An Analysis and Review, ser. Lecture Notes in Computer Science. Springer, 1996, vol. 1083.
+			[5] R. L. Donaway, K. W. Drummey, and L. A. Mather, "A comparison of rankings produced by summarization evaluation measures," in NAACL Workshop on Automatic Summarization, 2000, pp. 69-78.
+			[6] H. Saggion, D. Radev, S. Teufel, and W. Lam, "Meta-evaluation of Summaries in a Cross-lingual Environment using Content-based Metrics," in COLING 2002, Taipei, Taiwan, August 2002, pp. 849-855.
+			[7] D. R. Radev, S. Teufel, H. Saggion, W. Lam, J. Blitzer, H. Qi, A. C  elebi, D. Liu, and E. Dr abek, "Evaluation challenges in large-scale document summarization," in ACL'03, 2003, pp. 375-382.
+			[8] K. Papineni, S. Roukos, T. Ward, , and W. J. Zhu, "BLEU: a method for automatic evaluation of machine translation," in ACL'02, 2002, pp. 311-318.
+			[9] K. Pastra and H. Saggion, "Colouring summaries BLEU," in Evaluation Initiatives in Natural Language Processing. Budapest, Hungary: EACL, 14 April 2003.
+			[10] C.-Y. Lin, "ROUGE: A Package for Automatic Evaluation of Summaries," in Text Summarization Branches Out: ACL-04 Workshop, M.-F. Moens and S. Szpakowicz, Eds., Barcelona, July 2004, pp. 74-81.
+			[11] A. Nenkova and R. J. Passonneau, "Evaluating Content Selection in Summarization: The Pyramid Method," in HLT-NAACL, 2004, pp. 145-152.
+			[12] A. Louis and A. Nenkova, "Automatically Evaluating Content Selection in Summarization without Human Models," in Empirical Methods in Natural Language Processing, Singapore, August 2009, pp. 306-314.
+			[Online]. Available: http://www.aclweb.org/anthology/D/D09/D09-1032
+			[13] J. Lin, "Divergence Measures based on the Shannon Entropy," IEEE Transactions on Information Theory, vol. 37, no. 145-151, 1991.
+			[14] C.-Y. Lin and E. Hovy, "Automatic Evaluation of Summaries Using N-gram Co-occurrence Statistics," in HLT-NAACL. Morristown, NJ, USA: Association for Computational Linguistics, 2003, pp. 71-78.
+			[15] C.-Y. Lin, G. Cao, J. Gao, and J.-Y. Nie, "An information-theoretic approach to automatic evaluation of summaries," in HLT-NAACL, Morristown, USA, 2006, pp. 463-470.
+			[16] S. Kullback and R. Leibler, "On information and sufficiency," Ann. of Math. Stat., vol. 22, no. 1, pp. 79-86, 1951.
+			[17] S. Siegel and N. Castellan, Nonparametric Statistics for the Behavioral Sciences. McGraw-Hill, 1998.
+			[18] C. de Loupy, M. Gu egan, C. Ayache, S. Seng, and J.-M. Torres-Moreno, "A French Human Reference Corpus for multi-documents summarization and sentence compression," in LREC'10, vol. 2, Malta, 2010, p. In press.
+			[19] S. Fernandez, E. SanJuan, and J.-M. Torres-Moreno, "Textual Energy of Associative Memories: performants applications of Enertex algorithm in text summarization and topic segmentation," in MICAI'07, 2007, pp. 861-871.
+			[20] J.-M. Torres-Moreno, P. Vel azquez-Morales, and J.-G. Meunier, "Condens es de textes par des m ethodes num eriques," in JADT'02, vol. 2, St Malo, France, 2002, pp. 723-734.
+			[21] J. Vivaldi, I. da Cunha, J.-M. Torres-Moreno, and P. Vel azquez-Morales, "Automatic summarization using terminological and semantic resources," in LREC'10, vol. 2, Malta, 2010, p. In press.
+			[22] J.-M. Torres-Moreno and J. Ramirez, "REG : un algorithme glouton appliqu e au r esum e automatique de texte," in JADT'10. Rome, 2010, p. In press.
+			[23] V. Yatsko and T. Vishnyakov, "A method for evaluating modern systems of automatic text summarization," Automatic Documentation and Mathematical Linguistics, vol. 41, no. 3, pp. 93-103, 2007.
+			[24] C. D. Manning and H. Sch utze, Foundations of Statistical Natural Language Processing. Cambridge, Massachusetts: The MIT Press, 1999.
+			[25] K. Sp arck Jones, "Automatic summarising: The state of the art," IPM, vol. 43, no. 6, pp. 1449-1481, 2007.
+			[26] I. da Cunha, L. Wanner, and M. T. Cabr e, "Summarization of specialized discourse: The case of medical articles in spanish," Terminology, vol. 13, no. 2, pp. 249-286, 2007.
+			[27] C.-K. Chuah, "Types of lexical substitution in abstracting," in ACL Student Research Workshop. Toulouse, France: Association for Computational Linguistics, 9-11 July 2001 2001, pp. 49-54.
+			[28] K. Owkzarzak and H. T. Dang, "Evaluation of automatic summaries: Metrics under varying data conditions," in UCNLG+Sum'09, Suntec, Singapore, August 2009, pp. 23-30.
+			[29] K. Knight and D. Marcu, "Statistics-based summarization-step one: Sentence compression," in Proceedings of the National Conference on Artificial Intelligence. Menlo Park, CA; Cambridge, MA; London; AAAI Press; MIT Press; 1999, 2000, pp. 703-710. Summary Evaluation with and without References 19 Polibits (42) 2010
+
+Conclusion :
+			This paper has presented a series of experiments in
+			content-based measures that do not rely on the use of model
+			summaries for comparison purposes. We have carried out
+			extensive experimentation with different summarization tasks
+			drawing a clearer picture of tasks where the measures could
+			be applied. This paper makes the following contributions:
+			- We have shown that if we are only interested in ranking
+			summarization systems according to the content of their
+			automatic summaries, there are tasks were models could
+			be subtituted by the full document in the computation of
+			the J S measure obtaining reliable rankings. However,
+			we have also found that the substitution of models
+			by full-documents is not always advisable. We have
+			Summary Evaluation with and without References
+			17 Polibits (42) 2010
+			TABLE II
+			SPEARMAN  OF CONTENT-BASED MEASURES WITH COVERAGE IN DUC'04 TASK 2
+			Mesure COVERAGE p-value
+			ROUGE-2 0.79 p < 0.0050
+			J S 0.68 p < 0.0025
+			TABLE III
+			SPEARMAN  OF CONTENT-BASED MEASURES IN DUC'04 TASK 5
+			Mesure COVERAGE p-value RESPONSIVENESS p-value
+			ROUGE-2 0.78 p < 0.001 0.44 p < 0.05
+			J S 0.40 p < 0.050 -0.18 p < 0.25
+			TABLE IV
+			SPEARMAN  OF CONTENT-BASED MEASURES IN TAC'08 OS TASK
+			Mesure PYRAMIDS p-value RESPONSIVENESS p-value
+			J S -0.13 p < 0.25 -0.14 p < 0.25
+			TABLE V
+			SPEARMAN  OF CONTENT-BASED MEASURES WITH ROUGE IN THE Medicina Cl
+			inica CORPUS (SPANISH)
+			Mesure ROUGE-1 p-value ROUGE-2 p-value ROUGE-SU4 p-value
+			J S 0.56 p < 0.100 0.46 p < 0.100 0.45 p < 0.200
+			J S2 0.88 p < 0.001 0.80 p < 0.002 0.81 p < 0.005
+			J S4 0.88 p < 0.001 0.80 p < 0.002 0.81 p < 0.005
+			J SM 0.82 p < 0.005 0.71 p < 0.020 0.71 p < 0.010
+			found weak correlation among different rankings in
+			complex summarization tasks such as the summarization
+			of biographical information and the summarization of
+			opinions.
+			- We have also carried out large-scale experiments in
+			Spanish and French which show positive medium to
+			strong correlation among system's ranks produced by
+			ROUGE and divergence measures that do not use the
+			model summaries.
+			- We have also presented a new framework, FRESA, for
+			the computation of measures based on J S divergence.
+			Following the ROUGE approach, FRESA package use
+			word uni-grams, 2-grams and skip n-grams computing
+			divergences. This framework will be available to the
+			community for research purposes.
+			Although we have made a number of contributions, this paper
+			leaves many open questions than need to be addressed. In
+			order to verify correlation between ROUGE and J S, in the
+			short term we intend to extend our investigation to other
+			languages such as Portuguese and Chinesse for which we
+			have access to data and summarization technology. We also
+			plan to apply FRESA to the rest of the DUC and TAC
+			summarization tasks, by using several smoothing techniques.
+			As a novel idea, we contemplate the possibility of adapting
+			the evaluation framework for the phrase compression task
+			[29], which, to our knowledge, does not have an efficient
+			evaluation measure. The main idea is to calculate J S from
+			an automatically-compressed sentence taking the complete
+			sentence by reference. In the long term, we plan to incorporate
+			a representation of the task/topic in the calculation of
+			measures. To carry out these comparisons, however, we are
+			dependent on the existence of references.
+			FRESA will also be used in the new question-answer task
+			campaign INEX'2010 (http://www.inex.otago.ac.nz/tracks/qa/
+			qa.asp) for the evaluation of long answers. This task aims
+			to answer a question by extraction and agglomeration of
+			sentences in Wikipedia. This kind of task corresponds
+			to those for which we have found a high correlation
+			among the measures J S and evaluation methods with
+			human intervention. Moreover, the J S calculation will be
+			among the summaries produced and a representative set of
+			relevant passages from Wikipedia. FRESA will be used to
+			compare three types of systems, although different tasks: the
+			multi-document summarizer guided by a query, the search
+			systems targeted information (focused IR) and the question
+			answering systems.
+
+
+Discussion :
+			The departing point for our inquiry into text summarization
+			evaluation has been recent work on the use of content-based
+			evaluation metrics that do not rely on human models but that
+			compare summary content to input content directly [12]. We
+			have some positive and some negative results regarding the
+			direct use of the full document in content-based evaluation.
+			We have verified that in both generic muti-document
+			summarization and in topic-based multi-document
+			summarization in English correlation among measures
+			that use human models (PYRAMIDS, RESPONSIVENESS
+			and ROUGE) and a measure that does not use models
+			(J S divergence) is strong. We have found that correlation
+			among the same measures is weak for summarization of
+			biographical information and summarization of opinions in
+			blogs. We believe that in these cases content-based measures
+			should be considered, in addition to the input document, the
+			summarization task (i.e. text-based representation, description)
+			to better assess the content of the peers [25], the task being a
+			determinant factor in the selection of content for the summary.
+			Our multi-lingual experiments in generic single-document
+			summarization confirm a strong correlation among the
+			J S divergence and ROUGE measures. It is worth noting
+			that ROUGE is in general the chosen framework for
+			presenting content-based evaluation results in non-English
+			summarization.
+			For the experiments in Spanish, we are conscious that we
+			only have one model summary to compare with the peers.
+			Nevertheless, these models are the corresponding abstracts
+			written by the authors. As the experiments in [26] show, the
+			professionals of a specialized domain (as, for example, the
+			medical domain) adopt similar strategies to summarize their
+			texts and they tend to choose roughly the same content chunks
+			for their summaries. Previous studies have shown that author
+			abstracts are able to reformulate content with fidelity [27] and
+			these abstracts are ideal candidates for comparison purposes.
+			Because of this, the summary of the author of a medical article
+			can be taken as reference for summaries evaluation. It is worth
+			noting that there is still debate on the number of models to be
+			used in summarization evaluation [28]. In the French corpus
+			PISTES, we suspect the situation is similar to the Spanish
+			case.
+

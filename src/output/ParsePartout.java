@@ -244,19 +244,19 @@ public class ParsePartout {
 
 		for(int j=0;j<l.length;j++) {
 			if(j>=i.getIntro()[0]&&j<i.getIntro()[1]) {
-				intro+=l[j]+" ";
+				intro+="			"+l[j]+" "+"\n";
 			}
 			if(j>=i.getCorps()[0]&&j<i.getCorps()[1]) {
-				corps+=l[j]+" ";
+				corps+="			"+l[j]+" "+"\n";
 			}
 			if(j>=i.getConclu()[0]&&j<i.getConclu()[1]) {
-				conclu+=l[j]+" ";
+				conclu+="			"+l[j]+" "+"\n";
 			}
 			if(j>=i.getDiscu()[0]&&j<i.getDiscu()[1]) {
-				discu+=l[j]+" ";
+				discu+="			"+l[j]+" "+"\n";
 			}
 			if(j>=i.getReference()) {
-				ref+=l[j]+" ";
+				ref+="			"+l[j]+" "+"\n";
 			}
 		}
 	}

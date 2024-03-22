@@ -7,23 +7,34 @@ public class Index {
     private static int[]corps= {0,0};
     private static int[]conclu= {0,0};
     private static int[]discu= {0,0};
-    private static boolean concluFlag=false;
+    private static boolean concluFlag;
+    private static boolean discuFlag;
     private static int reference=0;
     private static String[]li;
 
     public Index (String tRow) {
+    	intro[0] = 0;
+    	intro[1] = 0;
+    	corps[0] = 0;
+    	corps[1] = 0;
+    	conclu[0] = 0;
+    	conclu[1] = 0;
+    	discu[0] = 0;
+    	discu[1] = 0;
+    	concluFlag=false;
+    	discuFlag=false;
+    	tRow.replace("", "");
         li=tRow.split("\n");
-        for(int i=0;i<li.length;i++) {
-//        	System.out.println(i+li[i]);
-        }
+//        for(int i=0;i<li.length;i++) {
+//        	System.out.println(li[i]);
+//        }
         definirIntro();
         definirCorps();
         chercheConcluDiscu();
-        if(conclu[0]>discu[0]) {
-        	definirDiscuFromConclu();
-        }else {
-        	definirConcluFromDiscu();
-        }
+//        System.out.println("discu : "+ discuFlag);
+//        System.out.println("conclu : "+ concluFlag);
+        if(discuFlag) definirDiscu();
+        if(concluFlag) definirConclu();
         definirReference();
     }
     
@@ -31,7 +42,7 @@ public class Index {
     	//ajout premier index intro
     	for(int i=0; i<li.length; i++) {
 			if(li[i].toUpperCase().contains("INTRODUCTION")){
-				intro[0] = i;
+				intro[0] = i+1;
 				break;
 			}
 		}
@@ -50,96 +61,93 @@ public class Index {
     	}
     }
     public static void chercheConcluDiscu() {
-    	//cherche index conclusion
     	for(int i=corps[0];i<li.length;i++) {
-			if(li[i].toUpperCase().contains("CONCLUSION") && (li[i].split(" ")[0].matches("\\d+")
-					||li[i].split(" ")[0].matches("[I-X]+\\."))) {
-				corps[1]=i-1;
-				conclu[0]=i;
-				concluFlag=true;
-				break;
+    		//cherche index discu
+			if(li[i].toUpperCase().contains("DISCUSSION") && (li[i].split(" ")[0].matches("[0-9]+.?")||li[i].split(" ")[0].matches("[I-X]+\\."))) {
+				corps[1]=i;
+				discu[0]=i+1;
+				discuFlag=true;
 			}
-    	//cherche index discu
-			if(li[i].toUpperCase().startsWith("DISCUSSION")
-					||li[i].toUpperCase().startsWith("ACKNOWLEDGEMENTS")
-					||li[i].toUpperCase().startsWith("ACKNOWLEDGMENTS")) {
-				corps[1]=i-1;
-				discu[0]=i;
-				break;
+	    	//cherche index conclusion
+			else if(li[i].toUpperCase().contains("CONCLUSION") && (li[i].split(" ")[0].matches("[0-9]+.?")||li[i].split(" ")[0].matches("[I-X]+\\."))) {
+				if(!discuFlag) corps[1]=i;
+				conclu[0]=i+1;
+				concluFlag=true;				
 			}
+    	
 		}
     }
-    public static void definirDiscuFromConclu() {
-    	for(int i=conclu[0];i<li.length;i++) {
-    		//cherche index discu
-			if(li[i].toUpperCase().startsWith("ACKNOWLEDGEMENTS")
-					||li[i].toUpperCase().startsWith("ACKNOWLEDGMENTS")
-					||li[i].toUpperCase().startsWith("DISCUSSION")){
-				conclu[1]=i-1;
-				concluFlag=false;
-				discu[0]=i;
+    
+    public static void definirDiscu() {
+    	for(int i=corps[1]+2;i<li.length;i++) {
+    		if(li[i].toUpperCase().startsWith("ACKNOWLEDGEMENT") || li[i].toUpperCase().startsWith("ACKNOWLEDGMENT") 
+					 || li[i].toUpperCase().startsWith("APPENDIX")
+					 || li[i].toUpperCase().startsWith("REFERENCE")
+					 || li[i].matches("[0-9] ([A-Z]|[a-z]|-| )+") 
+					 || li[i].matches("[I-X]+\\. ([A-Z]|[a-z]|-| )+")
+					 || li[i].toUpperCase().contains("CONCLUSION") && (li[i].split(" ")[0].matches("[0-9]+.?")||li[i].split(" ")[0].matches("[I-X]+\\."))) {
+				
+				discu[1]=i;
 				break;
 			}
     	}
     }
-    public static void definirConcluFromDiscu() {
+    public static void definirConclu() {
     	//cherche index conclusion
-    	for(int i=discu[0];i<li.length;i++) {
-			if(li[i].toUpperCase().contains("CONCLUSION") && (li[i].split(" ")[0].matches("\\d+")
-					||li[i].split(" ")[0].matches("[I-X]+\\."))) {
-				discu[1]=i-1;
-				conclu[0]=i;
-				concluFlag=true;
+    	for(int i=corps[1]+2;i<li.length;i++) {
+			if(!li[i].toUpperCase().contains("CONCLUSION") && (li[i].toUpperCase().startsWith("ACKNOWLEDGEMENT") || li[i].toUpperCase().startsWith("ACKNOWLEDGMENT") || li[i].toUpperCase().startsWith("REFERENCE") 
+					 || li[i].matches("[0-9] ([A-Z]|[a-z]|-| )+"))){
+				
+				conclu[1]=i;
 				break;
 			}
     	}
     }
+    
     public static void definirReference() {
     	//definirReference
-    	int startR;
-    	if(concluFlag) {
-    		startR=conclu[0];
-    	}else startR=discu[0];
+    	int startR=0;
+    	if(conclu[1] != 0) startR = conclu[1];
+    	else if(discu[1]!=0) startR = discu[1];
+    	else startR = corps[1];
+    	
     	for(int i=startR;i<li.length;i++) {
-    		if(li[i].toUpperCase().startsWith("REFERENCES")) {
-    			reference=i;
-    			if(concluFlag) {
-    				conclu[1]=i-1;
-    			}else discu[1]=i-1;
+    		if(li[i].toUpperCase().startsWith("REFERENCE")) {
+    			reference=i+1;
     			break;
     		}
     	}
     }
  
 
-    public static int[] getIntro() {
+    public int[] getIntro() {
         return intro;
     }
-    public static void setIntro(int[] intro) {
+    public void setIntro(int[] intro) {
         Index.intro = intro;
     }
-    public static int[] getCorps() {
+    public int[] getCorps() {
         return corps;
     }
-    public static void setCorps(int[] corps) {
+    public void setCorps(int[] corps) {
         Index.corps = corps;
     }
-    public static int[] getConclu() {
+    public int[] getConclu() {
         return conclu;
     }
-    public static void setConclu(int[] conclu) {
+    public void setConclu(int[] conclu) {
         Index.conclu = conclu;
     }
-    public static int getReference() {
+    public int getReference() {
         return reference;
     }
-    public static void setReference(int reference) {
+    public void setReference(int reference) {
         Index.reference = reference;
     }
-    public static int[] getDiscu() {
+    public int[] getDiscu() {
         return discu;
     }
-    public static void setDiscu(int[] discu) {
+    public void setDiscu(int[] discu) {
         Index.discu = discu;
     }
 
