@@ -219,7 +219,10 @@ public class ParsePartout {
 		  "	</auteurs>\n"
 		+ "	<abstract>\n	" + ab.getAbstractParse() + "\n	</abstract>\n"
 		+ "	<introduction>\n	" + intro + "\n	</introduction>\n"
-		+ "	<biblio>\n	" + ref + "\n	</biblio>\n"
+		+ "	<corps>\n	"+ corps.replaceAll("<", "&lt;").replaceAll(">", "&gt;") +"</corps>\n"
+		+ "	<conclusion>\n	"+ conclu.replaceAll("<", "&lt;").replaceAll(">", "&gt;") +"</conclusion>\n"
+		+ "	<discussion>\n	"+ discu.replaceAll("<", "&lt;").replaceAll(">", "&gt;") +"</discussion>\n"
+		+ "	<biblio>\n	" + ref.replaceAll("<", "&lt;").replaceAll(">", "&gt;") + "\n	</biblio>\n"
 		+ "</article>";
 		FileWriter fw = new FileWriter(out);
 		BufferedWriter bw = new BufferedWriter(fw);
