@@ -241,7 +241,7 @@ public class ParsePartout {
 		System.out.println("discu :"+i.getDiscu()[0]+"--"+i.getDiscu()[1]);
 
 		System.out.println("ref :"+i.getReference()+"\n");
-
+		intro="";
 		for(int j=0;j<l.length;j++) {
 			if(j>=i.getIntro()[0]&&j<i.getIntro()[1]) {
 				intro+="			"+l[j]+" "+"\n";
