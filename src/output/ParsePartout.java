@@ -242,6 +242,10 @@ public class ParsePartout {
 
 		System.out.println("ref :"+i.getReference()+"\n");
 		intro="";
+		corps="";
+		conclu="";
+		discu="";
+		ref="";
 		for(int j=0;j<l.length;j++) {
 			if(j>=i.getIntro()[0]&&j<i.getIntro()[1]) {
 				intro+="			"+l[j]+" "+"\n";
