@@ -197,7 +197,7 @@ public class Auteur {
     	}
     	return cpt;
     }
-    public  int getNbAuteurMail(String texte) {
+    public static  int getNbAuteurMail(String texte) {
         //essaie de deviner le nombre d'auteurs dans un texte
         int nb = 0;
         String[]txt = texte.split("\n");
@@ -338,15 +338,18 @@ public class Auteur {
             affiliations.add(matcher.group());
         }
         
-     // Si une des affiliations est vide, prendre la dernière affiliation et lui donner sa valeur
-        for (int i=0;i<affiliations.size();i++) {
-        	System.out.println(affiliations.get(i).toString());
-        	if (affiliations.get(i).isEmpty()) {
-        		affiliations.set(i,affiliations.get(i-1));
-        		System.out.println("ok");
-        	}
+        int numAuthors = Auteur.getNbAuteurMail(text); // Supposons que votre classe Auteur a une méthode statique pour obtenir le nombre d'auteurs
+        int numAffiliations = affiliations.size();
+
+        // Vérifier si le nombre d'affiliations est inférieur au nombre d'auteurs
+        if (numAffiliations < numAuthors) {
+            String lastAffiliation = affiliations.get(numAffiliations - 1); // Récupérer la dernière affiliation
+            // Dupliquer la dernière affiliation jusqu'à ce que le nombre d'affiliations soit égal au nombre d'auteurs
+            while (affiliations.size() < numAuthors) {
+                affiliations.add(lastAffiliation);
+            }
         }
-    
+
         return affiliations;
     }
     //getter et setter
