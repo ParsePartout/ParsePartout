@@ -213,20 +213,29 @@ public class ParsePartout {
 					+  "			<name>"+au.getBonAuteur().get(i)+"</name>\n";
 			if(!au.getMails().isEmpty()) 
 					retour += "			<mail>"+au.getMails().get(i)+"</mail>\n";
-			retour += "		</auteur>\n";
+			if (!au.getAffiliations().isEmpty() && i < au.getAffiliations().size() && !au.getAffiliations().get(i).isEmpty()) 
+                    retour += "            <affiliation>" + au.getAffiliations().get(i) + "</affiliation>\n";
+            retour += "      </auteur>\n";
+					
 		}
+
 		retour+= 
 		  "	</auteurs>\n"
+<<<<<<< Updated upstream
 		+ "	<abstract>\n	" + ab.getAbstractParse() + "\n	</abstract>\n"
 		+ "	<introduction>\n	" + intro + "\n	</introduction>\n"
 		+ "	<corps>\n	"+ corps.replaceAll("<", "&lt;").replaceAll(">", "&gt;") +"</corps>\n"
 		+ "	<conclusion>\n	"+ conclu.replaceAll("<", "&lt;").replaceAll(">", "&gt;") +"</conclusion>\n"
 		+ "	<discussion>\n	"+ discu.replaceAll("<", "&lt;").replaceAll(">", "&gt;") +"</discussion>\n"
 		+ "	<biblio>\n	" + ref.replaceAll("<", "&lt;").replaceAll(">", "&gt;") + "\n	</biblio>\n"
+=======
+		+ "	<abstract>"+ab.getAbstractParse()+"</abstract>\n"
+		+ "	<biblio> </biblio>\n"
+>>>>>>> Stashed changes
 		+ "</article>";
 		FileWriter fw = new FileWriter(out);
 		BufferedWriter bw = new BufferedWriter(fw);
-		bw.append(retour.replaceAll("&", "&amp;"));
+		bw.append(retour);
 		bw.close();
 		fw.close();
 	}

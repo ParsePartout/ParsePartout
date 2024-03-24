@@ -19,6 +19,8 @@ public class Auteur {
 	private static ArrayList<String> bonAuteur;
 	//liste de mail
 	private static ArrayList<String> mails;
+	//liste d'affiliations des auteurs
+	private static ArrayList<String> affiliations;
 	private static String corpusPath;
 	private static File file;
 	
@@ -30,6 +32,7 @@ public class Auteur {
 		auteurMeta=extractAuteur();
 		bonAuteur=compareAuteur(auteurParse,auteurMeta);
 		mails=getMail(texteF);
+		affiliations=parseAffiliations(texteF);
 //		System.out.println(f.getName()+"-->"+bonAuteur+"---->"+mails);
 	}
     public  ArrayList<String> extractAuteur() {
@@ -324,6 +327,28 @@ public class Auteur {
     	
     	return alternateAuthor;
 	}
+    
+    public ArrayList<String> parseAffiliations(String text) {
+        ArrayList<String> affiliations = new ArrayList<>();
+        
+        Pattern affiliationPattern = Pattern.compile(".*(Laboratoire|Lab|École|Institute|University|Université|([A-Z][a-z]* Inc\\.)|Département|Department|Univ.|Research|Universitat|Instituto|Insitut|DA-IICT|LIMSI-CNRS).*");
+        Matcher matcher = affiliationPattern.matcher(text);
+
+        while (matcher.find()) {
+            affiliations.add(matcher.group());
+        }
+        
+     // Si une des affiliations est vide, prendre la dernière affiliation et lui donner sa valeur
+        for (int i=0;i<affiliations.size();i++) {
+        	System.out.println(affiliations.get(i).toString());
+        	if (affiliations.get(i).isEmpty()) {
+        		affiliations.set(i,affiliations.get(i-1));
+        		System.out.println("ok");
+        	}
+        }
+    
+        return affiliations;
+    }
     //getter et setter
 	public  ArrayList<String> getAuteurMeta() {
 		return auteurMeta;
@@ -349,4 +374,10 @@ public class Auteur {
 	public  void setMails(ArrayList<String> mails) { 
 		Auteur.mails = mails; 
 	} 
+	public ArrayList<String> getAffiliations() {
+		return affiliations;
+	}
+	public void setAffiliations(ArrayList<String> affiliations) {
+		Auteur.affiliations = affiliations;
+	}
 }
