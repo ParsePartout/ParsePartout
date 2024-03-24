@@ -54,7 +54,7 @@ public class Index {
 					|| li[i].startsWith("2 ")
 					|| li[i].startsWith("II.")
 					|| li[i].startsWith("1.1")) {
-    			intro[1]=i-1;
+    			intro[1]=i;
     			corps[0]=i;
     			break;
     		}
