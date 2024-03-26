@@ -221,17 +221,12 @@ public class ParsePartout {
 
 		retour+= 
 		  "	</auteurs>\n"
-<<<<<<< Updated upstream
 		+ "	<abstract>\n	" + ab.getAbstractParse() + "\n	</abstract>\n"
 		+ "	<introduction>\n	" + intro + "\n	</introduction>\n"
 		+ "	<corps>\n	"+ corps.replaceAll("<", "&lt;").replaceAll(">", "&gt;") +"</corps>\n"
 		+ "	<conclusion>\n	"+ conclu.replaceAll("<", "&lt;").replaceAll(">", "&gt;") +"</conclusion>\n"
 		+ "	<discussion>\n	"+ discu.replaceAll("<", "&lt;").replaceAll(">", "&gt;") +"</discussion>\n"
 		+ "	<biblio>\n	" + ref.replaceAll("<", "&lt;").replaceAll(">", "&gt;") + "\n	</biblio>\n"
-=======
-		+ "	<abstract>"+ab.getAbstractParse()+"</abstract>\n"
-		+ "	<biblio> </biblio>\n"
->>>>>>> Stashed changes
 		+ "</article>";
 		FileWriter fw = new FileWriter(out);
 		BufferedWriter bw = new BufferedWriter(fw);
