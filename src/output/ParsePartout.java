@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 import extract.Index;
 import extract.StringBuilders;
@@ -248,28 +249,12 @@ public class ParsePartout {
 		System.out.println("discu :"+i.getDiscu()[0]+"--"+i.getDiscu()[1]);
 
 		System.out.println("ref :"+i.getReference()+"\n");
-		intro="";
-		corps="";
-		conclu="";
-		discu="";
-		ref="";
-		for(int j=0;j<l.length;j++) {
-			if(j>=i.getIntro()[0]&&j<i.getIntro()[1]) {
-				intro+="			"+l[j]+" "+"\n";
-			}
-			if(j>=i.getCorps()[0]&&j<i.getCorps()[1]) {
-				corps+="			"+l[j]+" "+"\n";
-			}
-			if(j>=i.getConclu()[0]&&j<i.getConclu()[1]) {
-				conclu+="			"+l[j]+" "+"\n";
-			}
-			if(j>=i.getDiscu()[0]&&j<i.getDiscu()[1]) {
-				discu+="			"+l[j]+" "+"\n";
-			}
-			if(j>=i.getReference()) {
-				ref+="			"+l[j]+" "+"\n";
-			}
-		}
+		intro = String.join("", Arrays.copyOfRange(l, i.getIntro()[0], i.getIntro()[1]));
+		corps = String.join("", Arrays.copyOfRange(l, i.getCorps()[0], i.getCorps()[1]));
+		conclu = String.join("", Arrays.copyOfRange(l, i.getConclu()[0], i.getConclu()[1]));
+		discu = String.join("", Arrays.copyOfRange(l, i.getDiscu()[0], i.getDiscu()[1]));
+		ref = String.join("", Arrays.copyOfRange(l, i.getReference(), l.length));
+		
 	}
 	
 
