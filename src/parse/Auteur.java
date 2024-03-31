@@ -328,29 +328,40 @@ public class Auteur {
     	return alternateAuthor;
 	}
     
-    public ArrayList<String> parseAffiliations(String text) {
+    public static ArrayList<String> parseAffiliations(String text) {
         ArrayList<String> affiliations = new ArrayList<>();
         
-        Pattern affiliationPattern = Pattern.compile(".*(Laboratoire|Lab|École|Institute|University|Université|([A-Z][a-z]* Inc\\.)|Département|Department|Univ.|Research|Universitat|Instituto|Insitut|DA-IICT|LIMSI-CNRS).*");
+        Pattern affiliationPattern = Pattern.compile(".*(Laboratoire|Lab|École|E cole|Institute|University|Université|([A-Z][a-z]* Inc\\.)|Département|Departement|Department|Univ.|Research|Universitat|Instituto|Insitut|DA-IICT|LIMSI-CNRS).*");
         Matcher matcher = affiliationPattern.matcher(text);
 
         while (matcher.find()) {
-            affiliations.add(matcher.group());
+            String affiliation = matcher.group();
+            affiliations.add(removeAuteursMails(affiliation));
         }
         
-        int numAuthors = Auteur.getNbAuteurMail(text); // Supposons que votre classe Auteur a une méthode statique pour obtenir le nombre d'auteurs
+        int numAuthors = Auteur.getNbAuteurMail(text); // 
         int numAffiliations = affiliations.size();
-
-        // Vérifier si le nombre d'affiliations est inférieur au nombre d'auteurs
+        
+        // Vérifie si le nombre d'affiliations est inférieur au nombre d'auteurs
         if (numAffiliations < numAuthors) {
-            String lastAffiliation = affiliations.get(numAffiliations - 1); // Récupérer la dernière affiliation
-            // Dupliquer la dernière affiliation jusqu'à ce que le nombre d'affiliations soit égal au nombre d'auteurs
+            String lastAffiliation = affiliations.get(numAffiliations - 1); // Récupére la dernière affiliation
+            // Duplique la dernière affiliation jusqu'à ce que le nombre d'affiliations soit égal au nombre d'auteurs
             while (affiliations.size() < numAuthors) {
                 affiliations.add(lastAffiliation);
             }
         }
 
         return affiliations;
+    }
+
+    private static String removeAuteursMails(String affiliation) {
+        for (String auteur : bonAuteur) {
+            affiliation = affiliation.replaceAll(auteur, "");
+        }
+        for (String mail : mails) {
+            affiliation = affiliation.replaceAll(mail, "");
+        }
+        return affiliation.trim();
     }
     //getter et setter
 	public  ArrayList<String> getAuteurMeta() {
