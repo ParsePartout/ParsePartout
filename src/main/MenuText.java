@@ -114,10 +114,6 @@ public class MenuText extends JFrame {
         for(JCheckBox jcb : checkPDF) {
         	jcb.addItemListener(itemListener);
             gbc.gridy+=1;
-        	if(gbc.gridy==15) {
-        		gbc.gridy=1;
-        		gbc.gridx+=1;
-        	}
             selectPanel.add(jcb, gbc);
         }
         this.add(button, BorderLayout.SOUTH);
