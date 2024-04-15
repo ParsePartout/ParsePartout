@@ -4,19 +4,19 @@
 	<auteurs>
 		<auteur>
 			<name>Tomas Mikolov</name>
-            <affiliation>Tomas Mikolov Google Inc., Mountain View, CA</affiliation>
+            <affiliation>Google Inc., Mountain View, CA</affiliation>
       </auteur>
 		<auteur>
 			<name>Greg Corrado</name>
-            <affiliation>Greg Corrado Google Inc., Mountain View, CA</affiliation>
+            <affiliation>Google Inc., Mountain View, CA</affiliation>
       </auteur>
 		<auteur>
 			<name>Kai Chen</name>
-            <affiliation>Kai Chen Google Inc., Mountain View, CA</affiliation>
+            <affiliation>Google Inc., Mountain View, CA</affiliation>
       </auteur>
 		<auteur>
 			<name>Jeffrey Dean</name>
-            <affiliation>Jeffrey Dean Google Inc., Mountain View, CA</affiliation>
+            <affiliation>Google Inc., Mountain View, CA</affiliation>
       </auteur>
 	</auteurs>
 	<abstract>

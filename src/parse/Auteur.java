@@ -69,6 +69,7 @@ public class Auteur {
         
         StringTokenizer tokenizer = new StringTokenizer(texte, "\n");
         String previousline="";
+
         while (tokenizer.hasMoreTokens()) {
             String line = tokenizer.nextToken();
             if (line.contains("@")) {
@@ -88,10 +89,11 @@ public class Auteur {
 		                        firstname = matcherFirstname.group();
 		                        lastname = matcherLastname.group();
 				            }
-				            
+				            System.out.println(firstname + " " + lastname);
 				            ArrayList<String> alternateAuthor = getAlternateAuthor(firstname,lastname);
 				            for(String author : alternateAuthor) {
-					            int indexArr=(lineSplit[i].indexOf("@")==0)? lineSplit[i].length() : lineSplit[i].indexOf("@") ;
+				            	int indexArr=(lineSplit[i].indexOf("@")==-1)? lineSplit[i].length() : lineSplit[i].indexOf("@");
+					            
 					            if (lineSplit[i].substring(0,indexArr).contains(firstname.toLowerCase()) 
 					            		|| lineSplit[i].substring(0,indexArr).contains(lastname.substring(1).toLowerCase())
 					            		|| lineSplit[i].substring(0,indexArr).contains(author)){
@@ -116,7 +118,7 @@ public class Auteur {
 	                        lastname = matcherLastname.group();
 			            }
 
-			            int indexArr=(line.indexOf("@")==0)? line.length() : line.indexOf("@") ;
+			            int indexArr=(line.indexOf("@")==0)? line.length() : line.indexOf("@");
 				        int indexArrPrevious = (previousline.indexOf("@")==-1)? previousline.length() : previousline.indexOf("@");
 					    if (line.substring(0,indexArr).contains(firstname.toLowerCase()) 
 					    	|| line.substring(0,indexArr).contains(lastname.substring(1).toLowerCase()) 
@@ -236,7 +238,7 @@ public class Auteur {
                     	if(a.contains("{")) {
                     		
                     		String avantArobase=a.split("@")[0];
-                    		System.out.println(avantArobase);
+                    		//System.out.println(avantArobase);
                     	}
 //                        String resultString = a.replaceAll("[()]", "");
 //                        mails.add(resultString);
@@ -315,16 +317,20 @@ public class Auteur {
          
     } 
     public  ArrayList<String> getAlternateAuthor(String firstname, String lastname){
-
     	ArrayList<String>  alternateAuthor = new ArrayList<String>();
     	String[] lastnameTwoParts = lastname.substring(1).split(" ");
 
     	if(lastnameTwoParts.length<2) alternateAuthor.add(firstname.trim().substring(0,1).toLowerCase() + lastname.substring(1,2).toLowerCase()); //Florient Boudin -> fb
-    	else alternateAuthor.add(firstname.substring(0,1).toLowerCase() + lastnameTwoParts[0].substring(0,1).toLowerCase() + lastnameTwoParts[1].substring(0,1).toLowerCase());//Andre F.T. Martins -> afm
+    	else{
+    		System.out.println(firstname + " " + lastname);
+    		alternateAuthor.add(firstname.substring(0,1).toLowerCase() + lastnameTwoParts[0].substring(0,1).toLowerCase() + lastnameTwoParts[1].substring(0,1).toLowerCase());//Andre F.T. Martins -> afm
+    	}
     	if(firstname.length()>3) alternateAuthor.add(firstname.substring(0,3).toLowerCase());
     	if(lastname.length()>3) alternateAuthor.add(lastname.substring(0,3));
+    	alternateAuthor.add((firstname.substring(0,1)+lastname).trim().toLowerCase());
+    	alternateAuthor.add((firstname+lastname.trim().substring(0,1)).trim().toLowerCase());
 
-    	
+
     	return alternateAuthor;
 	}
     
@@ -339,16 +345,20 @@ public class Auteur {
             affiliations.add(removeAuteursMails(affiliation));
         }
         
-        int numAuthors = Auteur.getNbAuteurMail(text); // 
+        int numAuthors = getNbAuteurMail(text); // 
         int numAffiliations = affiliations.size();
         
         // Vérifie si le nombre d'affiliations est inférieur au nombre d'auteurs
         if (numAffiliations < numAuthors) {
-            String lastAffiliation = affiliations.get(numAffiliations - 1); // Récupére la dernière affiliation
-            // Duplique la dernière affiliation jusqu'à ce que le nombre d'affiliations soit égal au nombre d'auteurs
-            while (affiliations.size() < numAuthors) {
-                affiliations.add(lastAffiliation);
+            try{
+            	String lastAffiliation = affiliations.get(numAffiliations - 1); // Récupére la dernière affiliation
+            	while (affiliations.size() < numAuthors) {
+                    affiliations.add(lastAffiliation);
+                }
             }
+            catch(IndexOutOfBoundsException e){}
+            // Duplique la dernière affiliation jusqu'à ce que le nombre d'affiliations soit égal au nombre d'auteurs
+            
         }
 
         return affiliations;

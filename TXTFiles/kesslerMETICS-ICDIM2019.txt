@@ -3,10 +3,9 @@ Nom du fichier :
 Titre :
 			A word embedding approach to explore a collection of discussions of people in psychological distress
 Nombre d'auteur :
- 			4
+ 			3
 Auteurs :
-			Remy Kessler
-			Nicolas Bechet
+			Remy Kessler 2nd Nicolas Bechet
 			Gudrun Ledegen
 			Frederic Pugniere-Saavedra
 Abstract :

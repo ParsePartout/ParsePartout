@@ -10,7 +10,7 @@ public class Main {
 	private static String corpusPath;
 	
 	public Main(String[] args) {
-		MenuText mt = new MenuText(args[1], this);
+		MenuText mt = new MenuText(args[0], this);
 	}
 	
 	 public static void exec(String dir,ArrayList<String> ftp,String out) throws IOException {

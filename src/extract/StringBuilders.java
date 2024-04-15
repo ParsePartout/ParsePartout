@@ -73,7 +73,7 @@ public class StringBuilders {
 	  	   StringBuilder text = new StringBuilder();
 	     	try {
 	     		//commande console, encodage --> Ascii7 permet la gestion des accents    		
-	 	    	String[] command = {"pdftotext","-enc","ASCII7","-l","1", filePath, "-"};
+	 	    	String[] command = {"pdftotext","-enc","ASCII7","-raw","-l","1", filePath, "-"};
 	 	        
 	 	    	//execution de la commande
 	 	        Process process = Runtime.getRuntime().exec(command);

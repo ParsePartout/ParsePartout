@@ -23,7 +23,9 @@ public class Titre {
 	//Methodes d'extraction et de comparaison des titres
 	public  String parseTitre(String texte) {
 		//methode pour retourner le titre du document
-		return texte.split("\n")[0];
+		String t = texte.split("\n")[0].startsWith("arXiv") ? texte.split("\n")[2] : texte.split("\n")[0];
+
+		return t;
 	}
 	public  String extractTitre() {
         String fileName= file.getName();

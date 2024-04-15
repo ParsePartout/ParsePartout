@@ -63,7 +63,7 @@ public class Index {
     public static void chercheConcluDiscu() {
     	for(int i=corps[0];i<li.length;i++) {
     		//cherche index discu
-			if(li[i].toUpperCase().contains("DISCUSSION") && (li[i].split(" ")[0].matches("[0-9]+.?")||li[i].split(" ")[0].matches("[I-X]+\\."))) {
+			if(li[i].toUpperCase().contains("DISCUSSION") && (li[i].split(" ")[0].matches("[0-9]+.?[0-9]?")||li[i].split(" ")[0].matches("[I-X]+\\."))) {
 				corps[1]=i;
 				discu[0]=i+1;
 				discuFlag=true;
@@ -96,7 +96,7 @@ public class Index {
     	//cherche index conclusion
     	for(int i=corps[1]+2;i<li.length;i++) {
 			if(!li[i].toUpperCase().contains("CONCLUSION") && (li[i].toUpperCase().startsWith("ACKNOWLEDGEMENT") || li[i].toUpperCase().startsWith("ACKNOWLEDGMENT") || li[i].toUpperCase().startsWith("REFERENCE") 
-					 || li[i].matches("[0-9] ([A-Z]|[a-z]|-| )+"))){
+					 || li[i].matches("[0-9].? ([A-Z]|[a-z]|-| )+"))){
 				
 				conclu[1]=i;
 				break;
@@ -112,7 +112,7 @@ public class Index {
     	else startR = corps[1];
     	
     	for(int i=startR;i<li.length;i++) {
-    		if(li[i].toUpperCase().startsWith("REFERENCE")) {
+    		if(li[i].toUpperCase().contains("REFERENCE") ) {
     			reference=i+1;
     			break;
     		}

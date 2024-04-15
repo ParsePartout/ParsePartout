@@ -1,0 +1,30 @@
+Skill2vec: Machine Learning Approach for Determining the Relevant Skills from Job Description
+
+Le Van-Duyet me@duyet.net
+
+Vo Minh Quan 95.vominhquan@gmail.com
+
+Dang Quang An an.dang1390@gmail.com
+
+arXiv:1707.09751v3 [cs.CL] 9 Oct 2019
+
+Abstract-- Unsupervise learned word embeddings have seen tremendous success in numerous Natural Language Processing (NLP) tasks in recent years. The main contribution of this paper is to develop a technique called Skill2vec, which applies machine learning techniques in recruitment to enhance the search strategy to find candidates possessing the appropriate skills. Skill2vec is a neural network architecture inspired by Word2vec, developed by Mikolov et al. in 2013. It transforms skills to new vector space, which has the characteristics of calculation and presents skills relationships. We conducted an experiment evaluation manually by a recruitment company's domain experts to demonstrate the effectiveness of our approach.
+I. INTRODUCTION
+Recruiters in information technology domain have met the problem finding appropriate candidates by their skills. In the resume, the candidate may describe one skill in different ways or skills could be replaced by others. The recruiters may not have the domain knowledge to know if one's skills are fit or not, so they can only find ones with matched skills.
+In order to cope with the problem, one should try to find the relatedness of skills. There are some approaches: building a dictionary manually, ontology approach, natural language processing methods, etc. In this study, we apply a word embedding method Word2Vec, using skills from online job post descriptions. We treat skills as terms, job posts as documents and find the relatedness of these skills.
+II. RELATED WORK
+To find relatedness of skills, Simon Hughes [4] from Dice proposed an approach using Latent Semantic Analysis with an assumption that skills are related to skills which occur in the same context, and here contexts are job posts. This approach will build a term-document matrix and use Singular Value Decomposition to reduce the dimensionality. The cons of this approach is that when we have new data coming, we can not update the old term-document matrix, this leads to difficulties in maintaining the model, as the change of trend in this domain is high.
+Google's Data Scientists also face the same problems in Cloud Jobs API [7]. Their solution is to build a skill ontology defining around 50,000 skills in 30 job domain with relationships such as is a, related to, etc. This approach can represent complicate relationships between skills and jobs, but building such an ontology costs so much time and effort.
+To overcome the problem of relevant term, [3] present a new, effective log-based approach to relevant term extraction and term suggestion.
+
+The goal of [2] is to develop an automated system that discovers additional names for an entity given just one of its names, using Latent semantic analysis (LSA) [1]. In the example of authors, the city in India referred to as Bombay in some documents may be referred to as Mumbai in others because its name officially changed from the former to the latter in 1995.
+[5] is the introduction of an ontology-based skills management system at Swiss Life and the lessons learned from the utilisation of the methodology, present a methodology for application-driven development of ontologies that is instantiated by a case study.
+III. WORD2VEC ARCHITECTURE
+Word2Vec is a group of models proposed by Mikolov et al in 2013 [6]. It consists of 2 models: continuous bag-of-words and continuous Skip-gram, both are shallow neural networks that try to learn distributed representations of words with the target is to maximize the accuracy while minimizing the computational complexity. In the continuous bag-of-words architecture, the model predicts the current word from a window of surrounding context words. On the other hand, Skip-gram model try to predict surrounding context words based on the current word. In this work, we focus on Skipgram model as it is known to be better with infrequent words and it also give slightly better result in our experiment.
+The model consists of three layers: input layer, one hidden layer and output layer. The input layer take a word encoded using 1-of-V encoding (also known as one-hot encoding), where V is size of the dictionary. The word is then fed through the linear hidden layer to the output layer, which is a softmax classifier. The output layer will try to predict words within window size before and after current word. Using stochastic gradient descent and back propagation, we train the model until it converges.
+This model takes vector dimensionality and window size as parameters. The author found that increasing the window size improves the quality of the word vector, and yet it increases the computational complexity.
+IV. METHODOLOGY
+A. Data collecting and processing
+Choosing a universal data set for the model is extremely important, the data should be large enough and should have balanced distributions over words (i.e. skills).
+
+
