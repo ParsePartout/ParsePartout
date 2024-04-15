@@ -18,6 +18,7 @@ import javax.swing.JCheckBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 
 public class MenuText extends JFrame {
     private JCheckBox checkText;
@@ -29,7 +30,6 @@ public class MenuText extends JFrame {
     public MenuText(String s,Main m) {
 
     	setTitle("Menu de selection de PDF");
-    	setPreferredSize(new Dimension(500, 500));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         File directory = new File(s);
         // Parcourez les fichiers du répertoire
@@ -71,7 +71,7 @@ public class MenuText extends JFrame {
       	} );
         checkText.addItemListener(itemListener);
         checkXML.addItemListener(itemListener);
-        JLabel label = new JLabel("Cocher les PDF a parser :");
+        JLabel label = new JLabel("Cocher les PDF à parser :");
         // Ajout d'un écouteur d'événement pour le boutton
         JButton button = new JButton("Parser");
         button.addActionListener(new ActionListener() {
@@ -96,7 +96,8 @@ public class MenuText extends JFrame {
         selectPanel.setLayout(gb);
         this.setLayout(new BorderLayout());
         this.add(extensionPanel, BorderLayout.NORTH);
-        this.add(selectPanel, BorderLayout.CENTER);
+        JScrollPane jsp = new JScrollPane(selectPanel);
+        this.add(jsp, BorderLayout.CENTER);
 
         extensionPanel.add(checkText);
         extensionPanel.add(checkXML);
@@ -109,9 +110,14 @@ public class MenuText extends JFrame {
         selectPanel.add(btnDeselectAll, gbc);
         gbc.gridx=1;
         gbc.gridy=0;
+        
         for(JCheckBox jcb : checkPDF) {
         	jcb.addItemListener(itemListener);
             gbc.gridy+=1;
+        	if(gbc.gridy==15) {
+        		gbc.gridy=1;
+        		gbc.gridx+=1;
+        	}
             selectPanel.add(jcb, gbc);
         }
         this.add(button, BorderLayout.SOUTH);
