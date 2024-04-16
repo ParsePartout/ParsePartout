@@ -3,6 +3,7 @@ package main;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
+import java.awt.Graphics;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.event.ActionEvent;
@@ -46,7 +47,9 @@ public class MenuText extends JFrame {
         
         // Création des JCheckBox
         checkText = new JCheckBox("fichier texte");
+        checkText.setSelected(true);
         checkXML = new JCheckBox("fichier XML");
+        checkXML.setSelected(true);
         JButton btnSelectAll= new JButton("Tout sélectionner");
         JButton btnDeselectAll = new JButton("Tout désélectionner");
         // Ajout d'un écouteur d'événement pour les JCheckBox
@@ -176,6 +179,5 @@ public class MenuText extends JFrame {
     public JFrame getFrame() {
     	return this;
     }
-
     
 }
