@@ -3,8 +3,19 @@
 	<title>AUTOMATIC TERM DETECTION: A REVIEW OF CURRENT SYSTEMS*</title>
 	<auteurs>
 		<auteur>
-			<name>La Rambla</name>
-            <affiliation>M. Teresa Cabre Castellvi, Rosa Estopa Bagot, Jordi Vivaldi Palatresi Institut Universitari de Linguistica Aplicada. Universitat Pompeu Fabra</affiliation>
+			<name>Teresa Cabre Castellvi</name>
+			<mail>teresa.cabre@trad.upf.es,</mail>
+            <affiliation>M. , ,  Institut Universitari de Linguistica Aplicada. Universitat Pompeu Fabra</affiliation>
+      </auteur>
+		<auteur>
+			<name>Rosa Estopa Bagot</name>
+			<mail>rosa.estopa@trad.upf.es,</mail>
+            <affiliation>M. , ,  Institut Universitari de Linguistica Aplicada. Universitat Pompeu Fabra</affiliation>
+      </auteur>
+		<auteur>
+			<name>Jordi Vivaldi Palatresi</name>
+			<mail>jorge.vivaldi@info.upf.es</mail>
+            <affiliation>M. , ,  Institut Universitari de Linguistica Aplicada. Universitat Pompeu Fabra</affiliation>
       </auteur>
 	</auteurs>
 	<abstract>

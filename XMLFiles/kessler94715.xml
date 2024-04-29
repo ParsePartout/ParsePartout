@@ -3,20 +3,23 @@
 	<title>Extraction of terminology in the field of construction</title>
 	<auteurs>
 		<auteur>
-			<name>Remy Kessler</name>
-            <affiliation>1st  Universite Bretagne Sud</affiliation>
+			<name>Remy Kessler Universite</name>
+			<mail>remy.kessler@univ-ubs.fr</mail>
+            <affiliation>1st  Bretagne Sud</affiliation>
       </auteur>
 		<auteur>
-			<name>Nicolas Bechet</name>
-            <affiliation>2nd  Universite Bretagne Sud</affiliation>
+			<name>Nicolas Bechet Universite</name>
+			<mail>nicolas.bechet@irisa.fr</mail>
+            <affiliation>2nd  Bretagne Sud</affiliation>
       </auteur>
 		<auteur>
-			<name>Giuseppe Berio</name>
-            <affiliation>3rd  Universite Bretagne Sud</affiliation>
+			<name>Giuseppe Berio Universite</name>
+			<mail>giuseppe.berio@univ-ubs.fr</mail>
+            <affiliation>3rd  Bretagne Sud</affiliation>
       </auteur>
 	</auteurs>
 	<abstract>
-	We describe a corpus analysis method to extract terminology from a collection of technical specifications in the field of construction. Using statistics and word n-grams analysis, we extract the terminology of the domain and then perform pruning steps with linguistic patterns and internet queries to improve the quality of the final terminology. Results are evaluated by using a manual evaluation carried out by 6 experts in the field.
+	Abstract--We describe a corpus analysis method to extract terminology from a collection of technical specifications in the field of construction. Using statistics and word n-grams analysis, we extract the terminology of the domain and then perform pruning steps with linguistic patterns and internet queries to improve the quality of the final terminology. Results are evaluated by using a manual evaluation carried out by 6 experts in the field.
 	</abstract>
 	<introduction>
 	The current era is increasingly influenced by the prominenceof smart data and mobile applications. The work presentedin this paper has been carried out in one industrial project(VOCAGEN) aiming at automating the production of struc-tured data from human machine dialogues. Specifically, thetargeted application drives dialogues with people working ina construction area for populating a database reporting keydata extracted from those dialogues. This application requirescomplex processing for both transcripting speeches but also fordriving dialogues. The first process is required for good speechrecognition in a noisy environment. The second processing isrequired because the database needs to be populated with bothright and complete data; indeed, people tend to apply a broad(colloquial) vocabulary and the transcripted words need to beused for filling in the corresponding data. Additionally, if somedata populate the database, additional data may be requiredfor completeness, thus the dialogue should enable to get thoseadditional data (e.g. if the word "room" is recognised and usedto populate the database, the location of the room must alsobe got; this can be done by driving the dialogue).The application provides people with "hand-free" device,enabling a complete, quick and standardized reporting. Firstusages of this application will be oriented to reporting failuresand problems in constructions.The two processing steps mentioned above require on theone side a "language model" (for transcripting the sentences)and on the other side a "knowledge model" for driving thedialogue and correctly understanding the meaning of the word.The knowledge model is mainly an ontology of the domain (inthis case, the construction domain) providing the standardizedconcepts and their relationships. As well-known, building suchknowledge models needs time and is costly; one of the earlierquestions raised by our industrial partners has been about"how to build, as automaticaly as possible, such a knowledgemodel". This question is closely related to the interest ofquickly adapting the application to other domains (than theconstruction one) for reaching new markets. We developed acomplete methodology and system for partially answering thequestion, focusing on how to extract a relevant terminologyfrom a collection of technical specifications.The rest of the paper is organized as follow. Section IIpresent context of the project. Related work are reviewed inSection III. Section IV presents collected resources and somestatistics about them. Section V describes the methodology de-veloped for extracting relevant terms from collected resources.The details about the evaluation are presented in Section VI-Aand results obtained, are given in Section VI-B.

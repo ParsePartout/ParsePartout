@@ -7,6 +7,9 @@ Nombre d'auteur :
 Auteurs :
 			Hongyan Jing
 			Kathleen R. McKeown
+Mails :
+			kathy@cs.columbia.edu
+			hjing@cs.columbia.edu
 Abstract :
 			We present a cut and paste based text summarizer, which uses operations derived from an analysis of human written abstracts. The summarizer edits extracted sentences, using reduction to remove inessential phrases and combination to merge resuiting phrases together as coherent sentences. Our work includes a statistically based sentence decomposition program that identifies where the phrases of a summary originate in the original document, producing an aligned corpus of summaries and articles which we used to develop the summarizer.
 

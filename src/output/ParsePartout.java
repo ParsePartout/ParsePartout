@@ -37,10 +37,10 @@ public class ParsePartout {
 		homedir = System.getProperty("user.dir");
 		setCorpusPath(homedir + "\\Corpus_2021\\");
 		sb = new StringBuilders(file.getPath());
-		String text=sb.extractPdfToText();
-		String textF=sb.extractPdfToTextFirst();
+		String text=sb.getPdfToText();
+		String textF=sb.getPdfToTextFirstPage();
 		textRaw=sb.extractPdfToTextRaw();
-		t = new Titre(f,text);
+		t = new Titre(f,textF);
 		ab = new Abstrac(text);
 		int debut = getDebutZone(textF,t.getBonTitre());
 		int fin = getFinZone(textF,ab.getAbstractParse());
@@ -51,10 +51,11 @@ public class ParsePartout {
 	}
 	
 	//renvoie l'indice de fin du titre
-	private  int getDebutZone(String textF, String titre) {
+	private int getDebutZone(String textF, String titre) {
 		for(int i=0;i<textF.length();i++) {
 			int j=0;
 			int k=i;
+			
 			while(textF.charAt(k)==titre.charAt(j)) {
 				k+=1;
 				j+=1;
@@ -71,16 +72,18 @@ public class ParsePartout {
 		for(int i=0;i<textF.length();i++) {
 			int j=0;
 			int k=i;
+			
 			while(textF.charAt(k)==abstrac.charAt(j)) {
 				k+=1;
 				j+=1;
-				if(j==abstrac.length()) {
+				if(j==20) {
 					return i;
 				}
 			}
 		}
 		return abstrac.length();
 	}
+	
 	public  String getNom(File f) {
 		//return nom du fichier 
 		return f.getName();
@@ -240,15 +243,15 @@ public class ParsePartout {
 	}
 	public  void setupIndex () throws IOException {
 		String[]l=textRaw.split("\n");
-		System.out.println("intro :"+i.getIntro()[0]+"--"+i.getIntro()[1]);
-		
-		System.out.println("corps :"+i.getCorps()[0]+"--"+i.getCorps()[1]);
+//		System.out.println("intro :"+i.getIntro()[0]+"--"+i.getIntro()[1]);
+//		
+//		System.out.println("corps :"+i.getCorps()[0]+"--"+i.getCorps()[1]);
+//
+//		System.out.println("conclu :"+i.getConclu()[0]+"--"+i.getConclu()[1]);
+//
+//		System.out.println("discu :"+i.getDiscu()[0]+"--"+i.getDiscu()[1]);
 
-		System.out.println("conclu :"+i.getConclu()[0]+"--"+i.getConclu()[1]);
-
-		System.out.println("discu :"+i.getDiscu()[0]+"--"+i.getDiscu()[1]);
-
-		System.out.println("ref :"+i.getReference()+"\n");
+//		System.out.println("ref :"+i.getReference()+"\n");
 		intro = String.join("", Arrays.copyOfRange(l, i.getIntro()[0], i.getIntro()[1]));
 		corps = String.join("", Arrays.copyOfRange(l, i.getCorps()[0], i.getCorps()[1]));
 		conclu = String.join("", Arrays.copyOfRange(l, i.getConclu()[0], i.getConclu()[1]));

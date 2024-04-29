@@ -1,0 +1,94 @@
+Finding Salient Dates for Building Thematic Timelines
+R
+emy Kessler
+LIMSI-CNRS
+Orsay, France
+kessler@limsi.fr
+Xavier Tannier
+Univ. Paris-Sud,
+LIMSI-CNRS
+Orsay, France
+xtannier@limsi.fr
+Caroline Hag
+ege
+Xerox Research Center Europe
+Meylan, France
+hagege@xrce.xerox.com
+V
+eronique Moriceau
+Univ. Paris-Sud, LIMSI-CNRS
+Orsay, France
+moriceau@limsi.fr
+Andr
+e Bittar
+Xerox Research Center Europe
+Meylan, France
+bittar@xrce.xerox.com
+Abstract
+We present an approach for detecting salient
+(important) dates in texts in order to auto-
+matically build event timelines from a search
+query (e.g. the name of an event or person,
+etc.). This work was carried out on a corpus
+of newswire texts in English provided by the
+Agence France Presse (AFP). In order to ex-
+tract salient dates that warrant inclusion in an
+event timeline, we first recognize and normal-
+ize temporal expressions in texts and then use
+a machine-learning approach to extract salient
+dates that relate to a particular topic. We fo-
+cused only on extracting the dates and not the
+events to which they are related.
+1 Introduction
+Our aim here was to build thematic timelines for
+a general domain topic defined by a user query.
+This task, which involves the extraction of important
+events, is related to the tasks of Retrospective Event
+Detection (Yang et al., 1998), or New Event Detec-
+tion, as defined for example in Topic Detection and
+Tracking (TDT) campaigns (Allan, 2002).
+The majority of systems designed to tackle this
+task make use of textual information in a bag-of-
+words manner. They use little temporal informa-
+tion, generally only using document metadata, such
+as the document creation time (DCT). The few sys-
+tems that do make use of temporal information (such
+as the now discontinued Google timeline), only ex-
+tract absolute, full dates (that feature a day, month
+and year). In our corpus, described in Section 3.1,
+we found that only 7% of extracted temporal expres-
+sions are absolute dates.
+We distinguish our work from that of previous re-
+searchers in that we have focused primarily on ex-
+tracted temporal information as opposed to other
+textual content. We show that using linguistic tem-
+poral processing helps extract important events in
+texts. Our system extracts a maximum of temporal
+information and uses only this information to detect
+salient dates for the construction of event timelines.
+Other types of content are used for initial thematic
+document retrieval. Output is a list of dates, ranked
+from most important to least important with respect
+to the given topic. Each date is presented with a set
+of relevant sentences.
+We can see this work as a new, easily evaluable
+task of "date extraction", which is an important com-
+ponent of timeline summarization.
+In what follows, we first review some of the re-
+lated work in Section 2. Section 3 presents the re-
+sources used and gives an overview of the system.
+The system used for temporal analysis is described
+in Section 4, and the strategy used for indexing and
+finding salient dates, as well as the results obtained,
+are given in Section 51.
+2 Related Work
+The ISO-TimeML language (Pustejovsky et al.,
+2010) is a specification language for manual anno-
+tation of temporal information in texts, but, to the
+best of our knowledge, it has not yet actually been
+used in information retrieval systems. Neverthe-
+1This work has been partially funded by French National
+Research Agency (ANR) under project Chronolines (ANR-10-
+CORD-010). We would like to thank the French News Agency
+(AFP) for providing us with the corpus.
+

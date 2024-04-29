@@ -1,9 +1,31 @@
 <article>
 	<preamble>IPM1481.pdf</preamble>
-	<title>This article appeared in a journal published by Elsevier. The attached copy is furnished to the author for internal non-commercial research and education use, including for instruction at the authors institution</title>
+	<title>Author's personal copy</title>
 	<auteurs>
 		<auteur>
 			<name>Remy Kessler</name>
+			<mail>remy.kessler@univ-avignon.fr</mail>
+            <affiliation>a LIA/Universite d'Avignon et des Pays de Vaucluse, 339 chemin des Meinajaries, 84911 Avignon, France</affiliation>
+      </auteur>
+		<auteur>
+			<name>Nicolas Bechet</name>
+			<mail>nicolas.bechet@inria.fr</mail>
+            <affiliation>d LIRMM, CNRS Universite Montpellier 2, 161 rue Ada, 34392 Montpellier, France</affiliation>
+      </auteur>
+		<auteur>
+			<name>Mathieu Roche</name>
+			<mail>mathieu.roche@lirmm.fr</mail>
+            <affiliation>d LIRMM, CNRS Universite Montpellier 2, 161 rue Ada, 34392 Montpellier, France</affiliation>
+      </auteur>
+		<auteur>
+			<name>Juan-Manuel Torres-Moreno</name>
+			<mail>juan-manuel.torres@univ-avignon.fr</mail>
+            <affiliation>d LIRMM, CNRS Universite Montpellier 2, 161 rue Ada, 34392 Montpellier, France</affiliation>
+      </auteur>
+		<auteur>
+			<name>Marc El-Beze</name>
+			<mail>marc.elbeze@univ-avignon.fr</mail>
+            <affiliation>d LIRMM, CNRS Universite Montpellier 2, 161 rue Ada, 34392 Montpellier, France</affiliation>
       </auteur>
 	</auteurs>
 	<abstract>

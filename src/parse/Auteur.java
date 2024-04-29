@@ -31,7 +31,7 @@ public class Auteur {
 		auteurParse=parseAuteur(texte,texteF,debut,fin);
 		auteurMeta=extractAuteur();
 		bonAuteur=compareAuteur(auteurParse,auteurMeta);
-		mails=getMail(texteF);
+		mails=checkMail(texte);
 		affiliations=parseAffiliations(texteF);
 //		System.out.println(f.getName()+"-->"+bonAuteur+"---->"+mails);
 	}
@@ -52,26 +52,26 @@ public class Auteur {
         }
         return al;
     }
-	public  ArrayList<String> parseAuteur(String texte, String texteF, int debut, int fin) {
+	public ArrayList<String> parseAuteur(String texte, String texteF, int debut, int fin) {
         ArrayList<String> potentialAuthors = new ArrayList<>();
         ArrayList<String> authors = new ArrayList<>();
-        Pattern pattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?");
-        
+        Pattern pattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?(.[A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?)?");
+        //System.out.println(texteF.substring(debut, Math.min(texte.length(), fin)));
         //reduit la zone à la fin du titre et le début de l'abstract
-        Matcher matcher = pattern.matcher(texte.substring(debut, Math.min(texte.length(), fin)));
-
+        Matcher matcher = pattern.matcher(texteF.substring(debut, Math.min(texte.length(), fin)));
         while (matcher.find()) {
-        	//System.out.println(matcher.group());
             potentialAuthors.add(matcher.group());
+            //System.out.println(matcher.group());
         }
         Pattern firstnamePattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?");
-        Pattern lastnamePattern = Pattern.compile("( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?");
+        Pattern lastnamePattern = Pattern.compile("( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?(.[A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?)?");
         
         StringTokenizer tokenizer = new StringTokenizer(texte, "\n");
         String previousline="";
-
-        while (tokenizer.hasMoreTokens()) {
+        
+        while (tokenizer.hasMoreTokens() && getNbAuteurMail(texte)>authors.size()) {
             String line = tokenizer.nextToken();
+            
             if (line.contains("@")) {
             	int cbArr=0;
 	            for(int i=0; i<line.length();i++) {
@@ -79,35 +79,42 @@ public class Auteur {
 	            }
 	            if(cbArr>1) {
 	            	String[] lineSplit = line.split(" ");
-	            	for(int i =0;i<cbArr;i++) {
-			            for (String potAuthor : potentialAuthors) {
-							Matcher matcherFirstname = firstnamePattern.matcher(potAuthor);
-				            Matcher matcherLastname = lastnamePattern.matcher(potAuthor);
-				            String firstname = null;
-				            String lastname = null;
-				            if (matcherFirstname.find() && matcherLastname.find()) {
-		                        firstname = matcherFirstname.group();
-		                        lastname = matcherLastname.group();
-				            }
-				            System.out.println(firstname + " " + lastname);
-				            ArrayList<String> alternateAuthor = getAlternateAuthor(firstname,lastname);
-				            for(String author : alternateAuthor) {
-				            	int indexArr=(lineSplit[i].indexOf("@")==-1)? lineSplit[i].length() : lineSplit[i].indexOf("@");
-					            
-					            if (lineSplit[i].substring(0,indexArr).contains(firstname.toLowerCase()) 
-					            		|| lineSplit[i].substring(0,indexArr).contains(lastname.substring(1).toLowerCase())
-					            		|| lineSplit[i].substring(0,indexArr).contains(author)){
-					            	if(!authors.contains(potAuthor))authors.add(potAuthor);					            	
-					            	break;
+	            	for(int i =0;i<lineSplit.length;i++) {
+	            		if(lineSplit[i].contains("@")) {
+				            for (String potAuthor : potentialAuthors) {
+								Matcher matcherFirstname = firstnamePattern.matcher(potAuthor);
+					            Matcher matcherLastname = lastnamePattern.matcher(potAuthor);
+					            String firstname = null;
+					            String lastname = null;
+					            if (matcherFirstname.find() && matcherLastname.find()) {
+			                        firstname = matcherFirstname.group();
+			                        lastname = matcherLastname.group();
 					            }
-				            }
-				        }		        	
+
+					            if(firstname.toLowerCase().contains("cedex") || lastname.toLowerCase().contains("cedex")) break;
+					            
+					            ArrayList<String> alternateAuthor = getAlternateAuthor(firstname,lastname);
+					            for(String author : alternateAuthor) {
+					            	int indexArr=(lineSplit[i].indexOf("@")==-1)? lineSplit[i].length() : lineSplit[i].indexOf("@");
+						            if (lineSplit[i].substring(0,indexArr).contains(firstname.toLowerCase()) 
+						            		|| lineSplit[i].substring(0,indexArr).contains(lastname.substring(1).toLowerCase())
+						            		|| lineSplit[i].substring(0,indexArr).contains(author)){
+						            	
+						            	if(!authors.contains(potAuthor)) {
+						            		authors.add(potAuthor);	
+						            		break;
+						            	}
+						            }
+					            }
+				            //if(getNbAuteurMail(texteF)==authors.size()) break;
+					        }
+	            		}
+	            		
 	            	}
 	            }
 	            else {
-	            	
 	            	for (String potAuthor : potentialAuthors) {
-	            		if(authors.size()>=getNbAuteurMail(texteF)) break;
+	            		if(authors.size()>=getNbAuteurMail(texte)) break;
 	            		//System.out.println(potAuthor);
 						Matcher matcherFirstname = firstnamePattern.matcher(potAuthor);
 			            Matcher matcherLastname = lastnamePattern.matcher(potAuthor);
@@ -117,20 +124,26 @@ public class Auteur {
 	                        firstname = matcherFirstname.group();
 	                        lastname = matcherLastname.group();
 			            }
-
+			            //System.out.println(firstname + "--" + lastname);
 			            int indexArr=(line.indexOf("@")==0)? line.length() : line.indexOf("@");
 				        int indexArrPrevious = (previousline.indexOf("@")==-1)? previousline.length() : previousline.indexOf("@");
 					    if (line.substring(0,indexArr).contains(firstname.toLowerCase()) 
 					    	|| line.substring(0,indexArr).contains(lastname.substring(1).toLowerCase()) 
 				        	|| previousline.substring(0,indexArrPrevious).contains(firstname.toLowerCase()) 
-				        	|| previousline.substring(0,indexArrPrevious).contains(lastname.substring(1).toLowerCase())){	
-					    	
-					    	if(!authors.contains(potAuthor))authors.add(potAuthor);
+				        	|| previousline.substring(0,indexArrPrevious).contains(lastname.substring(1).toLowerCase())){
+					    	if(!authors.contains(potAuthor)) authors.add(potAuthor);
 						    break;
 					        }
+					    if(lastname.substring(1).split(" ").length>1 && (line.substring(0,indexArr).contains(lastname.substring(1).split(" ")[0].toLowerCase()) 
+					    	|| line.substring(0,indexArr).contains(lastname.substring(1).split(" ")[1].toLowerCase()))) {
+
+					    	if(!authors.contains(potAuthor)) authors.add(potAuthor);
+					    	break;
+					    }
+					    	
 			         }
 
-	            	if(getNbAuteurMail(texteF)>authors.size()) {
+	            	if(getNbAuteurMail(texte)>authors.size()) {
 	            		for (String potAuthor : potentialAuthors) {
 		            		
 							Matcher matcherFirstname = firstnamePattern.matcher(potAuthor);
@@ -146,7 +159,9 @@ public class Auteur {
 				            for(String author : alternateAuthor) {
 				            	int indexArr=(line.indexOf("@")==0)? line.length() : line.indexOf("@") ;
 						        if (line.substring(0,indexArr).contains(author)) { 
-						        	if(!authors.contains(potAuthor))authors.add(potAuthor);
+						        	if(!authors.contains(potAuthor)) {
+						        		authors.add(potAuthor);
+						        	}
 						        	break;
 						        }
 				            }
@@ -156,6 +171,8 @@ public class Auteur {
 	        }
             previousline=line;
         }
+        System.out.println("auteurs : ");
+        for(String s : authors) System.out.println(s);
         return authors;
     }
 	private  ArrayList<String> compareAuteur(ArrayList<String> auteurs, ArrayList<String> auteursData) {
@@ -199,94 +216,168 @@ public class Auteur {
     	}
     	return cpt;
     }
-    public static  int getNbAuteurMail(String texte) {
+	public static  int getNbAuteurMail(String texte) {
         //essaie de deviner le nombre d'auteurs dans un texte
         int nb = 0;
         String[]txt = texte.split("\n");
+        String previousLine=txt[0];
         for(String t : txt) {
-//            if(t.contains("abstract")t.contains("introduction")t.contains("Abstract")t.contains("Introduction")t.contains("ABSTRACT")t.contains("INTRODUCTION")) {
-//                return nb;
-//            }
             if(t.contains("@")) {
-                for(int i=0;i<t.length();i++) {
-                    if(String.valueOf(t.charAt(i)).equals("@")) {
-                        nb+=1;
-                    }
+            	String[] spliter=t.split("@");
+                if((spliter[0].contains("{") || spliter[0].contains("(")) && nb==0) {
+                	String[] splitVirgule = spliter[0].replaceAll("[{}]", "").trim().split(",");
+                	boolean flag = true;
+                	for(String s : splitVirgule) {
+                		if(!s.trim().matches("[a-z]([a-z]|\\.|\\-)+")) flag = false;
+                	}
+                	if(flag==true) nb = splitVirgule.length;
                 }
-                String[] spliter=t.split("@");
-                if(spliter[0].contains("{")||spliter[0].contains("(")) {
-                    //System.out.println(spliter[0]);
-                    for(int i=0;i<spliter[0].length();i++) {
-                        if(String.valueOf(t.charAt(i)).equals(",")) {
-                            nb+=1;
-                        }
-                    }
+                if(spliter[0].contains(",")) {
+                	String[] splitVirgule = spliter[0].trim().replaceAll("[()]", "").split(",");
+                	boolean flag = true;
+                	for(String s : splitVirgule) {
+                		if(!s.matches("([A-Z].|[a-z])([a-z]|\\.|\\-|[A-Z].)+")) flag = false;
+                	}
+                	if(flag==true) nb = splitVirgule.length;
+                }
+                
+                if(spliter[0].equals("")) {
+                	if(previousLine.contains(",")) {
+                    	
+	                	String[] splitVirgule = previousLine.trim().replaceAll("[()]", "").split(",");
+	                	boolean flag = true;
+	                	for(String s : splitVirgule) {
+	                		if(!s.matches("[a-z]([a-z]|\\.|\\-)+")) flag = false;
+	                	}
+	                	if(flag==true) nb = splitVirgule.length;
+                	}
+                }
+                String[] tsplit = t.split(" ");
+              	for(String s : tsplit) {
+              		String afterArrobase = s.contains("@")? s.split("@")[1] : "";
+               		if(s.contains("@") && (s.split("@")[0].replaceAll("[().]", "").matches("[a-z]([a-z]|\\.|\\-|\\_)+") 
+               			|| afterArrobase.contains(".com")||afterArrobase.contains(".fr")||afterArrobase.contains(".org")||afterArrobase.contains(".net"))) {
+               			nb+=1;
+               		}
                 }
             }
+            previousLine=t;
         }
         return nb;
     }
     
-    public  ArrayList<String>getMail(String texte){
-        ArrayList<String>mails=new ArrayList<String>();
-        String[]txt = texte.split("\n");
-        for(String t : txt) {
-            if (t.contains("@")) {
-                String[]affinage=t.split(" ");
-                for(String a : affinage) {
-                    if(a.contains("@")) {
-                    	if(a.contains("{")) {
-                    		
-                    		String avantArobase=a.split("@")[0];
-                    		//System.out.println(avantArobase);
-                    	}
-//                        String resultString = a.replaceAll("[()]", "");
-//                        mails.add(resultString);
-                        }
-                    }
-                }
-            }
-
-        
-        return mails;
-    }
+   
     public  ArrayList<String>checkMail(String texte){ 
         ArrayList<String>mail=new ArrayList<String>(); 
         String[]txt = texte.split("\n"); 
+        String previousLine="";
+        int nbMail = getNbAuteurMail(texte);
+        System.out.println(nbMail);
         for(String t : txt) { 
-        	if (t.contains("@")) { 
+        	if(t.contains("@") && !t.split("@")[0].equals("") && getNbAuteurMail(texte)>mail.size()) {
                 if(t.contains("}")) { 
                     String mailAccolade = t.split("}")[1]; 
                     String listePotentialA = t.split("}")[0].replaceAll("[{]", ""); 
                     String[]listeAccolade=listePotentialA.split(","); 
                     for (String a : listeAccolade) { 
-                        if(!mail.contains(a.trim()+mailAccolade)&&getNbAuteurMail(texte)>mail.size())mail.add(cutPoint(a+mailAccolade)); 
+                        if(!(mail.contains(a.trim()+mailAccolade))&&nbMail>mail.size()) mail.add(cutPoint(a+mailAccolade)); 
                     } 
                 } 
-                if(t.contains(")")) { 
+                
+                else if(t.contains(")") && t.split("\\)")[1].trim().startsWith("@")) { 
                     String mailParenthese = t.split("\\)")[1]; 
                     String listePotentialP = t.split("\\)")[0].replaceAll("[(]", ""); 
                     String[]listeParenthese=listePotentialP.split(","); 
-                    for (String p : listeParenthese) { 
+                    for (String p : listeParenthese) {
                     	if(mailParenthese.contains("@")) { 
-                    		if(!mail.contains(p.trim()+mailParenthese)&&getNbAuteurMail(texte)>mail.size())mail.add(cutPoint(p+mailParenthese)); 
+                    		if(!(mail.contains(p.trim()+mailParenthese))&&nbMail>mail.size()) {
+                    			mail.add(cutPoint(p+mailParenthese)); 
+                    		}
                     	} 
+                    }
+                }
+                else if(t.contains(",")&&!t.contains("}")) {
+                	if(!(t.split(" ").length>1)) {
+	                    String mailVirgule = "@"+t.split("@")[1]; 
+	                    String listePotentielVirgule = t.split("@")[0]; 
+	                    String[]listeVirgule=listePotentielVirgule.split(",");
+	                    for(String p : listeVirgule) {
+	                        if(!(mail.contains(p.trim()+mailVirgule))&&nbMail>mail.size()) mail.add(cutPoint(p+mailVirgule));
+	                    }
+                	}
+                	else{
+                		String[] splitLine = t.split(" ");
+                		
+                		for(String elt : splitLine) {
+                			if(elt.contains("@") && nbMail>mail.size()) {
+                				mail.add(elt.replaceAll("[()]", ""));
+                			}
+                		}
+                	}
+
+                }
+                
+                else{
+	                String[]affinage=t.split(" "); 
+	                for(String a : affinage) { 
+	                	if(a.contains("@")) { 
+	                		if(a.contains(")")) {
+	                			if(!(mail.contains(cutPoint(a.replaceAll("[()]",""))))&&nbMail>mail.size()) { 
+	                   				mail.add(cutPoint(a.replaceAll("[()]",""))); 
+	                    			break;
+	                			} 
+	                		} 
+	                		if(!mail.contains(a)&&nbMail>mail.size()) {
+	                			mail.add(cutPoint(a)); 
+	                		}
+	                	}
+	                }
+                }
+                
+            }
+        	else if(t.contains("@") && t.split("@")[0].equals("")) {
+        		String b = t.split("@")[0];
+        		String apresArrobase = t;
+        		t=previousLine;
+        		if(t.contains("}")) { 
+                    String listePotentialA = t.split("}")[0].replaceAll("[{]", ""); 
+                    String[]listeAccolade=listePotentialA.split(","); 
+                    for (String a : listeAccolade) { 
+                        if(!(mail.contains(a.trim()+apresArrobase))&&nbMail>mail.size())mail.add(cutPoint(a+apresArrobase)); 
                     } 
                 } 
+                if(t.contains(")")) { 
+                    String listePotentialP = t.split("\\)")[0].replaceAll("[(]", ""); 
+                    String[]listeParenthese=listePotentialP.split(","); 
+                    for (String p : listeParenthese) { 
+                    		if(!(mail.contains(p.trim()+apresArrobase))&&nbMail>mail.size())mail.add(cutPoint(p+apresArrobase)); 
+                    }
+                    
+                }
+                if(b.contains(",")&&!b.contains("}")) {
+                    String listePotentielVirgule = t.split("@")[0]; 
+                    String[]listeVirgule=listePotentielVirgule.split(",");
+                    for(String p : listeVirgule) {
+                        if(!(mail.contains(p.trim()+apresArrobase))&&nbMail>mail.size())
+                            mail.add(cutPoint(p+apresArrobase));
+                    }
+
+               }
                 String[]affinage=t.split(" "); 
                 for(String a : affinage) { 
                 	if(a.contains("@")) { 
                 		if(a.contains(")")) { 
-                			if(!mail.contains(a.replaceAll("[()]",""))&&getNbAuteurMail(texte)>mail.size()) { 
+                			if(!(mail.contains(cutPoint(a.replaceAll("[()]",""))))&&nbMail>mail.size()) { 
                 				mail.add(cutPoint(a.replaceAll("[()]",""))); 
                 				break; 
                 			} 
                 		} 
-                	if(!mail.contains(a)&&getNbAuteurMail(texte)>mail.size())mail.add(cutPoint(a)); 
+                	if(!(mail.contains(a))&&nbMail>mail.size())mail.add(cutPoint(a)); 
                 	} 
                 } 
-            } 
-        	if(t.contains("Q")&&!texte.contains("@")){ 
+                previousLine=t;
+        	}
+        	if(t.contains("Q") && !texte.contains("@") && mail.size()<1){ 
         		String[]gestionQ=t.split(" "); 
         		int index = getIndex(gestionQ,"Q"); 
         		if(index!=-1) { 
@@ -297,12 +388,17 @@ public class Auteur {
         			} 
         		} 
         		 
-        	} 
-        } 
+        	}
+        	
+        }
+        System.out.println("nombre de mail :"+mail.size());
+        for(String s : mail) {
+            System.out.println(s);
+        }
         return mail; 
     } 
     public  String cutPoint(String t) { 
-    	if (t.endsWith(".")) { 
+    	if (t.endsWith(".") || t.endsWith(",")) { 
             return t.substring(0, t.length() - 1); 
         } else { 
         	t= t.replaceAll(" ",""); 
@@ -320,14 +416,14 @@ public class Auteur {
     	ArrayList<String>  alternateAuthor = new ArrayList<String>();
     	String[] lastnameTwoParts = lastname.substring(1).split(" ");
 
-    	if(lastnameTwoParts.length<2) alternateAuthor.add(firstname.trim().substring(0,1).toLowerCase() + lastname.substring(1,2).toLowerCase()); //Florient Boudin -> fb
+    	if(lastnameTwoParts.length<2) alternateAuthor.add((firstname.trim().substring(0,1).toLowerCase() + lastname.substring(1,2).toLowerCase()).trim()); //Florient Boudin -> fb
     	else{
-    		System.out.println(firstname + " " + lastname);
-    		alternateAuthor.add(firstname.substring(0,1).toLowerCase() + lastnameTwoParts[0].substring(0,1).toLowerCase() + lastnameTwoParts[1].substring(0,1).toLowerCase());//Andre F.T. Martins -> afm
+    		//System.out.println(firstname + " " + lastname);
+    		alternateAuthor.add((firstname.substring(0,1).toLowerCase() + lastnameTwoParts[0].substring(0,1).toLowerCase() + lastnameTwoParts[1].substring(0,1).toLowerCase()).trim());//Andre F.T. Martins -> afm
     	}
-    	if(firstname.length()>3) alternateAuthor.add(firstname.substring(0,3).toLowerCase());
-    	if(lastname.length()>3) alternateAuthor.add(lastname.substring(0,3));
-    	alternateAuthor.add((firstname.substring(0,1)+lastname).trim().toLowerCase());
+    	if(firstname.length()>3) alternateAuthor.add((firstname.substring(0,3).toLowerCase()).trim());
+    	if(lastname.length()>3) alternateAuthor.add((lastname.substring(0,3)).trim());
+    	alternateAuthor.add((firstname.substring(0,1)+lastname).toLowerCase().trim());
     	alternateAuthor.add((firstname+lastname.trim().substring(0,1)).trim().toLowerCase());
 
 

@@ -4,10 +4,12 @@
 	<auteurs>
 		<auteur>
 			<name>Dipanjan Das</name>
+			<mail>dipanjan@cs.cmu.edu</mail>
             <affiliation>Language Technologies Institute Carnegie Mellon University</affiliation>
       </auteur>
 		<auteur>
 			<name>Andre F.T. Martins</name>
+			<mail>afm@cs.cmu.edu</mail>
             <affiliation>Language Technologies Institute Carnegie Mellon University</affiliation>
       </auteur>
 	</auteurs>

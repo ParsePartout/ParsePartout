@@ -9,7 +9,13 @@ Auteurs :
 			Daoud Clarke
 			Jeremy Reffin
 			David Weir
-			Bill Keller
+			Bill Keller Department
+Mails :
+			juliewe@sussex.ac.uk
+			D.Clarke@sussex.ac.uk
+			J.P.Reffin@sussex.ac.uk
+			davidw@sussex.ac.uk
+			billk@sussex.ac.uk
 Abstract :
 			This work is concerned with distinguishing different semantic relations which exist between distributionally similar words. We compare a novel approach based on training a linear Support Vector Machine on pairs of feature vectors with state-of-the-art methods based on distributional similarity. We show that the new supervised approach does better even when there is minimal information about the target words in the training data, giving a 15% reduction in error rate over unsupervised approaches.
 

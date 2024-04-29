@@ -19,6 +19,8 @@ public class StringBuilders {
 			pdfInfo = extractPdfInfo();
 			pdfToText=extractPdfToText();
 			pdfToTextFirstPage=extractPdfToTextFirst();
+			checkPremierePage();
+
 		}
 		
 		//extracteur d'infos
@@ -73,7 +75,7 @@ public class StringBuilders {
 	  	   StringBuilder text = new StringBuilder();
 	     	try {
 	     		//commande console, encodage --> Ascii7 permet la gestion des accents    		
-	 	    	String[] command = {"pdftotext","-enc","ASCII7","-raw","-l","1", filePath, "-"};
+	 	    	String[] command = {"pdftotext","-enc","ASCII7","-l","1", filePath, "-"};
 	 	        
 	 	    	//execution de la commande
 	 	        Process process = Runtime.getRuntime().exec(command);
@@ -114,27 +116,55 @@ public class StringBuilders {
 	    	//retourne le texte en vrac
 	    	return text.toString();
 	    }
-		
+		public String extractPdfToTextTwo() {
+			StringBuilder text = new StringBuilder();
+	    	try {
+	    		//commande console, encodage --> Ascii7 permet la gestion des accents    		
+	        	String toolPath = os.contains("windows") ? homedir + "\\lib\\xpdf-tools-win-4.05\\bin64\\pdftotext" : homedir + "/lib/xpdf-tools-linux-4.05/bin64/pdftotext";
+		    	String[] command = {toolPath,"-raw","-enc","ASCII7","-nopgbrk","-f","2","-l","2", filePath, "-"};
+		    	
+		    	//execution de la commande
+		        Process process = Runtime.getRuntime().exec(command);
+		        BufferedReader reader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+		        String line;
+		        while ((line = reader.readLine()) != null) {
+		            text.append(line).append("\n");
+		        }
+		        process.waitFor();
+	    	} catch (IOException | InterruptedException e) {
+	    		e.printStackTrace();
+	    	}
+	    	
+	    	return text.toString();
+			
+		}
+		public void checkPremierePage() {
+			String[]t=pdfToTextFirstPage.split("\n");
+			if(t[0].split(" ").length>20) {
+				setPdfToTextFirstPage(extractPdfToTextTwo());
+			}
+			
+		}
 	    //getter and setter 
 		public  String getPdfInfo() {
 			return pdfInfo;
 		}
 		public  void setPdfInfo(String pdfInfo) {
-			StringBuilders.pdfInfo = pdfInfo;
+			this.pdfInfo = pdfInfo;
 		}
 		public  String getPdfToText() {
 			return pdfToText;
 		}
 		public  void setPdfToText(String pdfToText) {
-			StringBuilders.pdfToText = pdfToText;
+			this.pdfToText = pdfToText;
 		}
 		public  String getPdfToTextFirstPage() {
 			return pdfToTextFirstPage;
 		}
 		public  void setPdfToTextFirstPage(String pdfToTextFirstPage) {
-			StringBuilders.pdfToTextFirstPage = pdfToTextFirstPage;
+			this.pdfToTextFirstPage = pdfToTextFirstPage;
 		}
 		public  String getHomedir() {
 			return homedir;
 		}
-}	
+}

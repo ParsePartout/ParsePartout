@@ -4,10 +4,12 @@
 	<auteurs>
 		<auteur>
 			<name>Hongyan Jing</name>
+			<mail>kathy@cs.columbia.edu</mail>
             <affiliation>and  Department of Computer Science Columbia University New York, NY 10027, USA hjing, kathyQcs.columbia.edu</affiliation>
       </auteur>
 		<auteur>
 			<name>Kathleen R. McKeown</name>
+			<mail>hjing@cs.columbia.edu</mail>
       </auteur>
 	</auteurs>
 	<abstract>

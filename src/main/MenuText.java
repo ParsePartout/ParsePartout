@@ -49,6 +49,8 @@ public class MenuText extends JFrame {
         checkXML = new JCheckBox("fichier XML");
         JButton btnSelectAll= new JButton("Tout sélectionner");
         JButton btnDeselectAll = new JButton("Tout désélectionner");
+        checkText.setSelected(true);
+        checkXML.setSelected(true);
         // Ajout d'un écouteur d'événement pour les JCheckBox
         ItemListener itemListener = new ItemListener() {
             public void itemStateChanged(ItemEvent e) {

@@ -4,14 +4,17 @@
 	<auteurs>
 		<auteur>
 			<name>Florian Boudin</name>
-            <affiliation>and  Laboratoire Informatique d'Avignon</affiliation>
+			<mail>florian.boudin@univ-avignon.fr</mail>
+            <affiliation>and  Informatique d'Avignon</affiliation>
       </auteur>
 		<auteur>
-			<name>Marc El-Beze</name>
+			<name>Marc El-Beze Laboratoire</name>
+			<mail>marc.elbeze@univ-avignon.fr</mail>
             <affiliation>, E cole Polytechnique de Montreal CP 6079 Succ. Centre Ville H3C 3A7</affiliation>
       </auteur>
 		<auteur>
 			<name>Juan-Manuel Torres-Moreno</name>
+			<mail>juan-manuel.torres@univ-avignon.fr</mail>
             <affiliation>1Document Understanding Conferences are conducted since 2000 by the National Institute of Standards and Technology (NIST), http://www-nlpir.nist.gov</affiliation>
       </auteur>
 	</auteurs>

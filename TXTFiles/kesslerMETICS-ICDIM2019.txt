@@ -3,13 +3,19 @@ Nom du fichier :
 Titre :
 			A word embedding approach to explore a collection of discussions of people in psychological distress
 Nombre d'auteur :
- 			3
+ 			4
 Auteurs :
-			Remy Kessler 2nd Nicolas Bechet
+			Remy Kessler
+			Nicolas Bechet
 			Gudrun Ledegen
 			Frederic Pugniere-Saavedra
+Mails :
+			remy.kessler@univ-ubs.fr
+			nicolas.bechet@irisa.fr
+			gudrun.ledegen@univ-rennes2.fr
+			frederic.pugniere-saavedra@univ-ubs.fr
 Abstract :
-			In order to better adapt to society, an association has developed a web chat application that allows anyone to express and share their concerns and anguishes. Several thousand anonymous conversations have been gathered and form a new corpus of stories about human distress and social violence. We present a method of corpus analysis combining unsupervised learning and word embedding in order to bring out the themes of this particular collection. We compare this approach with a standard algorithm of the literature on a labeled corpus and obtain very good results. An interpretation of the obtained clusters collection confirms the interest of the method.
+			Abstract--In order to better adapt to society, an association has developed a web chat application that allows anyone to express and share their concerns and anguishes. Several thousand anonymous conversations have been gathered and form a new corpus of stories about human distress and social violence. We present a method of corpus analysis combining unsupervised learning and word embedding in order to bring out the themes of this particular collection. We compare this approach with a standard algorithm of the literature on a labeled corpus and obtain very good results. An interpretation of the obtained clusters collection confirms the interest of the method.
 
 Intro :
 			Since the nineties, social suffering has been a theme that hasreceived much attention from public and associative action.Among the consequences, there is an explosion of listeningplaces or socio-technical devices of communication whoseobjectives consist in moderating the various forms of sufferingby the liberation of the speech for a therapeutic purpose [1][2]. As part of the METICS project, a suicide preventionassociation developed an application of web chat to meetthis need. The web chat is an area that allows anyone toexpress and share with a volunteer listener their concerns andanguishes. The main specificity of this device is its anonymousnature. Protected by a pseudonym, the writers are invitedto discuss with a volunteer the problematic aspects of theirexistence. Several thousand anonymous conversations havebeen gathered and form a corpus of unpublished stories abouthuman distress. The purpose of the METICS project is to makevisible the ordinary forms of suffering usually removed fromcommon spaces and to grasp both its modes of enunciation anddigital support. In this study, we want to automatically identifythe reason for coming on the web chat for each participant.Indeed, even if the association provided us with the themeof all the conversations (work, loneliness, violence, racism,addictions, family, etc.), the original reason has not beenpreserved. In what follows, we first review some of the relatedwork in Section II. Section III presents the resources used andgives some statistics about the collection. An overview of thesystem and the strategy for identify the reason for comingon the web chat is given in Section IV. Section V presentsthe experimental protocol, an evaluation of our system and aninterpretation of the final results on the collection of humandistress.

@@ -24,7 +24,7 @@ public class Main {
 	                for (File file : files) {
 	                	
 	                    if (file.isFile() && ftp.contains(file.getName())) {
-	                    	System.out.println(file.getName());
+	                    	System.out.println("\n"+file.getName()+"\n");
 	                    	ParsePartout pp = new ParsePartout(file);
 	                    	if(out.equals("-t")) {
 	                    		File dirText = new File("./TXTFiles/");

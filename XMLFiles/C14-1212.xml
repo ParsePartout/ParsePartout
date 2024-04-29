@@ -4,19 +4,28 @@
 	<auteurs>
 		<auteur>
 			<name>Julie Weeds</name>
-            <affiliation>, , ,  and  Department of Informatics, University of Sussex, Brighton, UK</affiliation>
+			<mail>juliewe@sussex.ac.uk</mail>
+            <affiliation>, , ,  and  of Informatics, University of Sussex, Brighton, UK</affiliation>
       </auteur>
 		<auteur>
 			<name>Daoud Clarke</name>
+			<mail>D.Clarke@sussex.ac.uk</mail>
+            <affiliation>, , ,  and  of Informatics, University of Sussex, Brighton, UK</affiliation>
       </auteur>
 		<auteur>
 			<name>Jeremy Reffin</name>
+			<mail>J.P.Reffin@sussex.ac.uk</mail>
+            <affiliation>, , ,  and  of Informatics, University of Sussex, Brighton, UK</affiliation>
       </auteur>
 		<auteur>
 			<name>David Weir</name>
+			<mail>davidw@sussex.ac.uk</mail>
+            <affiliation>, , ,  and  of Informatics, University of Sussex, Brighton, UK</affiliation>
       </auteur>
 		<auteur>
-			<name>Bill Keller</name>
+			<name>Bill Keller Department</name>
+			<mail>billk@sussex.ac.uk</mail>
+            <affiliation>, , ,  and  of Informatics, University of Sussex, Brighton, UK</affiliation>
       </auteur>
 	</auteurs>
 	<abstract>

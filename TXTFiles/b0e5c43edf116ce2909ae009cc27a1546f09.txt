@@ -8,6 +8,10 @@ Auteurs :
 			Stephen Roller
 			Katrin Erk
 			Gemma Boleda
+Mails :
+			roller@cs.utexas.edu,
+			katrin.erk@mail.utexas.edu,
+			gemma.boleda@upf.edu
 Abstract :
 			We test the Distributional Inclusion Hypothesis, which states that hypernyms tend to occur in a superset of contexts in which their hyponyms are found. We find that this hypothesis only holds when it is applied to relevant dimensions. We propose a robust supervised approach that achieves accuracies of .84 and .85 on two existing datasets and that can be interpreted as selecting the dimensions that are relevant for distributional inclusion.
 

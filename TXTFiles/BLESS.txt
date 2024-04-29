@@ -5,8 +5,11 @@ Titre :
 Nombre d'auteur :
  			2
 Auteurs :
-			Marco Baroni
-			Alessandro Lenci
+			Marco Baroni University
+			Alessandro Lenci University
+Mails :
+			marco.baroni@unitn.it
+			alessandro.lenci@ling.unipi.it
 Abstract :
 			We introduce BLESS, a data set specifically designed for the evaluation of distributional semantic models. BLESS contains a set of tuples instantiating different, explicitly typed semantic relations, plus a number of controlled random tuples. It is thus possible to assess the ability of a model to detect truly related word pairs, as well as to perform in-depth analyses of the types of semantic relations that a model favors. We discuss the motivations for BLESS, describe its construction and structure, and present examples of its usage in the evaluation of distributional semantic models.
 
