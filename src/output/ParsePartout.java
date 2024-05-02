@@ -209,7 +209,7 @@ public class ParsePartout {
 		String retour = 
 		  "<article>\n"
 		+ "	<preamble>"+f.getName()+"</preamble>\n"
-		+ "	<title>"+t.getBonTitre()+"</title>\n"
+		+ "	<titre>"+t.getBonTitre()+"</titre>\n"
 		+ "	<auteurs>\n";
 		
 		for(int i=0; i<au.getBonAuteur().size(); i++ ) {
@@ -225,16 +225,16 @@ public class ParsePartout {
 
 		retour+= 
 		  "	</auteurs>\n"
-		+ "	<abstract>\n	" + ab.getAbstractParse() + "\n	</abstract>\n"
-		+ "	<introduction>\n	" + intro + "\n	</introduction>\n"
-		+ "	<corps>\n	"+ corps.replaceAll("<", "&lt;").replaceAll(">", "&gt;") +"</corps>\n"
-		+ "	<conclusion>\n	"+ conclu.replaceAll("<", "&lt;").replaceAll(">", "&gt;") +"</conclusion>\n"
-		+ "	<discussion>\n	"+ discu.replaceAll("<", "&lt;").replaceAll(">", "&gt;") +"</discussion>\n"
-		+ "	<biblio>\n	" + ref.replaceAll("<", "&lt;").replaceAll(">", "&gt;") + "\n	</biblio>\n"
+		+ "	<abstract>" + ab.getAbstractParse() + "</abstract>\n"
+		+ "	<introduction>" + intro + "</introduction>\n"
+		+ "	<body>"+ corps.replaceAll("<", "&lt;").replaceAll(">", "&gt;") +"</body>\n"
+		+ "	<conclusion>"+ conclu.replaceAll("<", "&lt;").replaceAll(">", "&gt;") +"</conclusion>\n"
+		+ "	<discussion>"+ discu.replaceAll("<", "&lt;").replaceAll(">", "&gt;") +"</discussion>\n"
+		+ "	<biblio>" + ref.replaceAll("<", "&lt;").replaceAll(">", "&gt;") + "</biblio>\n"
 		+ "</article>";
 		FileWriter fw = new FileWriter(out);
 		BufferedWriter bw = new BufferedWriter(fw);
-		bw.append(retour);
+		bw.append(retour.replaceAll("&", "&amp;"));
 		bw.close();
 		fw.close();
 	}
@@ -252,10 +252,11 @@ public class ParsePartout {
 //		System.out.println("discu :"+i.getDiscu()[0]+"--"+i.getDiscu()[1]);
 
 //		System.out.println("ref :"+i.getReference()+"\n");
-		intro = String.join("", Arrays.copyOfRange(l, i.getIntro()[0], i.getIntro()[1]));
+		intro = i.getIntro()[0]==0 ? "N/A" : String.join("", Arrays.copyOfRange(l, i.getIntro()[0], i.getIntro()[1]));
+		System.out.println();
 		corps = String.join("", Arrays.copyOfRange(l, i.getCorps()[0], i.getCorps()[1]));
-		conclu = String.join("", Arrays.copyOfRange(l, i.getConclu()[0], i.getConclu()[1]));
-		discu = String.join("", Arrays.copyOfRange(l, i.getDiscu()[0], i.getDiscu()[1]));
+		conclu = i.getConclu()[0]==0? "N/A" : String.join("", Arrays.copyOfRange(l, i.getConclu()[0], i.getConclu()[1]));
+		discu = i.getDiscu()[0]==0? "N/A" : String.join("", Arrays.copyOfRange(l, i.getDiscu()[0], i.getDiscu()[1]));
 		ref = String.join("", Arrays.copyOfRange(l, i.getReference(), l.length));
 		
 	}

@@ -46,6 +46,7 @@ public class Index {
 				break;
 			}
 		}
+    	
     }
     public static void definirCorps() {
     	//ajout index corps
@@ -59,6 +60,7 @@ public class Index {
     			break;
     		}
     	}
+    	 
     }
     public static void chercheConcluDiscu() {
     	for(int i=corps[0];i<li.length;i++) {
