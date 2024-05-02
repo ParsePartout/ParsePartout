@@ -219,6 +219,7 @@ public class ParsePartout {
 					retour += "			<mail>"+au.getMails().get(i)+"</mail>\n";
 			if (!au.getAffiliations().isEmpty() && i < au.getAffiliations().size() && !au.getAffiliations().get(i).isEmpty()) 
                     retour += "            <affiliation>" + au.getAffiliations().get(i) + "</affiliation>\n";
+			else if(au.getAffiliations().isEmpty())retour += "            <affiliation>" + "N/A" + "</affiliation>\n";
             retour += "      </auteur>\n";
 					
 		}

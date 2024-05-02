@@ -52,9 +52,8 @@ public class Index {
     	//ajout index corps
     	for(int i=intro[0];i<li.length;i++) {
     		if(li[i].startsWith("2.")
-					|| li[i].startsWith("2 ")
-					|| li[i].startsWith("II.")
-					|| li[i].startsWith("1.1")) {
+					|| (li[i].startsWith("2 ") &&li[i].replace("2 ", "").equals(li[i].replace("2 ", "").toUpperCase()))
+					|| li[i].startsWith("II.")){
     			intro[1]=i;
     			corps[0]=i;
     			break;
