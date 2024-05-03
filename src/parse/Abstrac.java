@@ -14,7 +14,7 @@ public class Abstrac {
 
         for(int i=0; i<lines.length; i++) {
             //Si l'abtrsact est en gros titre
-        	
+
             if(lines[i].toUpperCase().equals("ABSTRACT" )){
                 retour = lines[i+1];
                 break;

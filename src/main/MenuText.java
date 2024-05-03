@@ -47,8 +47,8 @@ public class MenuText extends JFrame {
         
         // Création des JCheckBox
         checkText = new JCheckBox("fichier texte");
-        checkText.setSelected(true);
         checkXML = new JCheckBox("fichier XML");
+        checkText.setSelected(true);
         checkXML.setSelected(true);
         JButton btnSelectAll= new JButton("Tout sélectionner");
         JButton btnDeselectAll = new JButton("Tout désélectionner");

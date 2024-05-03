@@ -244,17 +244,7 @@ public class ParsePartout {
 	}
 	public  void setupIndex () throws IOException {
 		String[]l=textRaw.split("\n");
-//		System.out.println("intro :"+i.getIntro()[0]+"--"+i.getIntro()[1]);
-//		
-//		System.out.println("corps :"+i.getCorps()[0]+"--"+i.getCorps()[1]);
-//
-//		System.out.println("conclu :"+i.getConclu()[0]+"--"+i.getConclu()[1]);
-//
-//		System.out.println("discu :"+i.getDiscu()[0]+"--"+i.getDiscu()[1]);
-
-//		System.out.println("ref :"+i.getReference()+"\n");
 		intro = i.getIntro()[0]==0 ? "N/A" : String.join("", Arrays.copyOfRange(l, i.getIntro()[0], i.getIntro()[1]));
-		System.out.println();
 		corps = String.join("", Arrays.copyOfRange(l, i.getCorps()[0], i.getCorps()[1]));
 		conclu = i.getConclu()[0]==0? "N/A" : String.join("", Arrays.copyOfRange(l, i.getConclu()[0], i.getConclu()[1]));
 		discu = i.getDiscu()[0]==0? "N/A" : String.join("", Arrays.copyOfRange(l, i.getDiscu()[0], i.getDiscu()[1]));
