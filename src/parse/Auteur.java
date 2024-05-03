@@ -171,6 +171,11 @@ public class Auteur {
 	        }
             previousline=line;
         }
+        if(authors.size()==0) {
+            for(String a : potentialAuthors) {
+                authors.add(a);
+            }
+        }
         System.out.println("auteurs : ");
         for(String s : authors) System.out.println(s);
         return authors;

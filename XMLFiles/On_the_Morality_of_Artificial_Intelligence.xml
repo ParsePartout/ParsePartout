@@ -3,9 +3,14 @@
 	<titre>On the Morality of Artificial Intelligence</titre>
 	<auteurs>
 		<auteur>
-			<name></name>
+			<name>Alexandra Luccioni</name>
 			<mail>@uantifying</mail>
-            <affiliation>Alexandra Luccioni and Yoshua Bengio Universite de Montreal, Mila</affiliation>
+            <affiliation>and  de Montreal, Mila</affiliation>
+      </auteur>
+		<auteur>
+			<name>Yoshua Bengio Universite</name>
+			<mail>Kammen.@uantifying</mail>
+            <affiliation>1 Artificial Intelligence Leaves the Research Lab</affiliation>
       </auteur>
 	</auteurs>
 	<abstract>Much of the existing research on the social and ethical impact of Artificial Intelligence has been focused on defining ethical principles and guidelines surrounding Machine Learning (ML) and other Artificial Intelligence (AI) algorithms [IEEE, 2017, Jobin et al., 2019]. While this is extremely useful for helping define the appropriate social norms of AI, we believe that it is equally important to discuss both the potential and risks of ML and to inspire the community to use ML for beneficial objectives. In the present article, which is specifically aimed at ML practitioners, we thus focus more on the latter, carrying out an overview of existing high-level ethical frameworks and guidelines, but above all proposing both conceptual and practical principles and guidelines for ML research and deployment, insisting on concrete actions that can be taken by practitioners to pursue a more ethical and moral practice of ML aimed at using AI for social good.</abstract>
