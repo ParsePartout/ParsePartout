@@ -5,7 +5,7 @@ Titre :
 Nombre d'auteur :
  			1
 Auteur :
-			University of Edinburgh
+			 of Edinburgh
 Mail :
 			mikheev@cogsci.ed.ac.uk
 Abstract :

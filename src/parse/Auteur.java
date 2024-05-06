@@ -60,7 +60,7 @@ public class Auteur {
         //reduit la zone à la fin du titre et le début de l'abstract
         Matcher matcher = pattern.matcher(texte.substring(debut, Math.min(texte.length(), fin)));
         while (matcher.find()) {
-            potentialAuthors.add(matcher.group());
+            potentialAuthors.add(matcher.group().replaceAll("University","").replaceAll("Department",""));
             //System.out.println(matcher.group());
         }
         Pattern firstnamePattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?");

@@ -5,8 +5,8 @@ Titre :
 Nombre d'auteur :
  			2
 Auteurs :
-			Marco Baroni University
-			Alessandro Lenci University
+			Marco Baroni 
+			Alessandro Lenci 
 Mails :
 			marco.baroni@unitn.it
 			alessandro.lenci@ling.unipi.it

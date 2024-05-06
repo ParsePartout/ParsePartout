@@ -6,9 +6,9 @@ Nombre d'auteur :
  			4
 Auteurs :
 			Hongyan Jing
-			Kathleen R. McKeown Department
+			Kathleen R. McKeown 
 			Computer Science Columbia
-			University New York
+			 New York
 Mails :
 			kathy@cs.columbia.edu
 			hjing@cs.columbia.edu
