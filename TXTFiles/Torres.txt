@@ -5,8 +5,8 @@ Titre :
 Nombre d'auteur :
  			5
 Auteurs :
-			Juan-Manuel Torres-Moreno
 			Iria da Cunha
+			Juan-Manuel Torres-Moreno
 			Eric SanJuan
 			Horacio Saggion
 			Patricia Velazquez-Morales

@@ -5,7 +5,7 @@ Titre :
 Nombre d'auteur :
  			1
 Auteur :
-			Andrei Mikheev
+			University of Edinburgh
 Mail :
 			mikheev@cogsci.ed.ac.uk
 Abstract :

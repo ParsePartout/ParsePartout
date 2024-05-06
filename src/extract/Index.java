@@ -11,6 +11,7 @@ public class Index {
     private static boolean discuFlag;
     private static int reference=0;
     private static String[]li;
+    private static String tokenIntro;
 
     public Index (String tRow) {
     	intro[0] = 0;
@@ -43,6 +44,7 @@ public class Index {
     	for(int i=0; i<li.length; i++) {
 			if(li[i].toUpperCase().contains("INTRODUCTION")){
 				intro[0] = i+1;
+				tokenIntro = li[i].substring(0,2);
 				break;
 			}
 		}
@@ -51,9 +53,11 @@ public class Index {
     public static void definirCorps() {
     	//ajout index corps
     	for(int i=intro[0];i<li.length;i++) {
-    		if(li[i].startsWith("2.")
-					|| (li[i].startsWith("2 ") &&li[i].replace("2 ", "").equals(li[i].replace("2 ", "").toUpperCase()))
-					|| li[i].startsWith("II.")){
+    		if((li[i].startsWith("2.") && li[i].replace("2. ", "").substring(0,1).equals(li[i].replace("2. ", "").substring(0,1).toUpperCase()) && tokenIntro.matches("[0-9]."))
+					|| (li[i].startsWith("2 ") && li[i].replace("2 ", "").substring(0,1).equals(li[i].replace("2 ", "").substring(0,1).toUpperCase()) && tokenIntro.matches("[0-9] "))
+					|| (li[i].startsWith("II ") && li[i].replace("II ", "").substring(0,1).equals(li[i].replace("II ", "").substring(0,1).toUpperCase()) && tokenIntro.matches("[I-X] "))
+					|| (li[i].startsWith("II.") && li[i].replace("II. ", "").substring(0,1).equals(li[i].replace("II. ", "").substring(0,1).toUpperCase()) && tokenIntro.matches("[I-X]."))){
+    			
     			intro[1]=i;
     			corps[0]=i;
     			break;

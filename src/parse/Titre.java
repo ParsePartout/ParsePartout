@@ -24,7 +24,7 @@ public class Titre {
 	public  String parseTitre(String texte) {
 		//methode pour retourner le titre du document
 		String t = texte.split("\n")[0].startsWith("arXiv") ? texte.split("\n")[2] : texte.split("\n")[0];
-
+		
 		return t;
 	}
 	public  String extractTitre() {

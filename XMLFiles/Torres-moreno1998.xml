@@ -3,9 +3,38 @@
 	<titre>LETTER</titre>
 	<auteurs>
 		<auteur>
-			<name>joe@next.castanet.com Joe Pickert</name>
+			<name>Communicated by Scott Fahlman</name>
 			<mail>7LOL@J*URZWK</mail>
-            <affiliation>J. Manuel Torres Moreno Mirta B. Gordon Departement de Recherche Fondamentale sur la Matiere Condensee, CEA Grenoble, 38054 Grenoble Cedex 9, France</affiliation>
+            <affiliation>J.   de  sur la , CEA Grenoble, 38054  9, France</affiliation>
+      </auteur>
+		<auteur>
+			<name>Efficient Adaptive Learning</name>
+			<mail>FOXPSV@J*URZWK</mail>
+            <affiliation>Neural Computation 10, 1007-1030 (1998) c 1998 Massachusetts Institute of Technology</affiliation>
+      </auteur>
+		<auteur>
+			<name>Classification Tasks</name>
+			<mail>PRUH@J*URZWK</mail>
+      </auteur>
+		<auteur>
+			<name>Binary Units</name>
+			<mail>RU@J*URZWK</mail>
+      </auteur>
+		<auteur>
+			<name>Manuel Torres Moreno</name>
+			<mail>@J*URZWK</mail>
+      </auteur>
+		<auteur>
+			<name>Mirta B. Gordon Departement</name>
+      </auteur>
+		<auteur>
+			<name>Recherche Fondamentale</name>
+      </auteur>
+		<auteur>
+			<name>Matiere Condensee</name>
+      </auteur>
+		<auteur>
+			<name>Grenoble Cedex</name>
       </auteur>
 	</auteurs>
 	<abstract>This article presents a new incremental learning algorithm for classification tasks, called NetLines, which is well adapted for both binary and real-valued input patterns. It generates small, compact feedforward neural networks with one hidden layer of binary units and binary output units. A convergence theorem ensures that solutions with a finite number of hidden units exist for both binary and real-valued input patterns. An implementation for problems with more than two classes, valid for any binary classifier, is proposed. The generalization error and the size of the resulting networks are compared to the best published results on well-known classification benchmarks. Early stopping is shown to decrease overfitting, without improving the generalization performance.</abstract>

@@ -58,7 +58,7 @@ public class Auteur {
         Pattern pattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?(.[A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?)?");
         //System.out.println(texteF.substring(debut, Math.min(texte.length(), fin)));
         //reduit la zone à la fin du titre et le début de l'abstract
-        Matcher matcher = pattern.matcher(texteF.substring(debut, Math.min(texte.length(), fin)));
+        Matcher matcher = pattern.matcher(texte.substring(debut, Math.min(texte.length(), fin)));
         while (matcher.find()) {
             potentialAuthors.add(matcher.group());
             //System.out.println(matcher.group());
@@ -113,33 +113,39 @@ public class Auteur {
 	            	}
 	            }
 	            else {
-	            	for (String potAuthor : potentialAuthors) {
-	            		if(authors.size()>=getNbAuteurMail(texte)) break;
-	            		//System.out.println(potAuthor);
-						Matcher matcherFirstname = firstnamePattern.matcher(potAuthor);
-			            Matcher matcherLastname = lastnamePattern.matcher(potAuthor);
-			            String firstname = null;
-			            String lastname = null;
-			            if (matcherFirstname.find() && matcherLastname.find()) {
-	                        firstname = matcherFirstname.group();
-	                        lastname = matcherLastname.group();
-			            }
-			            //System.out.println(firstname + "--" + lastname);
-			            int indexArr=(line.indexOf("@")==0)? line.length() : line.indexOf("@");
-				        int indexArrPrevious = (previousline.indexOf("@")==-1)? previousline.length() : previousline.indexOf("@");
-					    if (line.substring(0,indexArr).contains(firstname.toLowerCase()) 
-					    	|| line.substring(0,indexArr).contains(lastname.substring(1).toLowerCase()) 
-				        	|| previousline.substring(0,indexArrPrevious).contains(firstname.toLowerCase()) 
-				        	|| previousline.substring(0,indexArrPrevious).contains(lastname.substring(1).toLowerCase())){
-					    	if(!authors.contains(potAuthor)) authors.add(potAuthor);
-						    break;
-					        }
-					    if(lastname.substring(1).split(" ").length>1 && (line.substring(0,indexArr).contains(lastname.substring(1).split(" ")[0].toLowerCase()) 
-					    	|| line.substring(0,indexArr).contains(lastname.substring(1).split(" ")[1].toLowerCase()))) {
-
-					    	if(!authors.contains(potAuthor)) authors.add(potAuthor);
-					    	break;
-					    }
+	            	String[] lineSplit = line.split(" ");
+	            	for(int i =0;i<lineSplit.length;i++) {
+		            	for (String potAuthor : potentialAuthors) {
+		            		if(authors.size()>=getNbAuteurMail(texte)) break;
+		            		//System.out.println(potAuthor);
+							Matcher matcherFirstname = firstnamePattern.matcher(potAuthor);
+				            Matcher matcherLastname = lastnamePattern.matcher(potAuthor);
+				            String firstname = null;
+				            String lastname = null;
+				            if (matcherFirstname.find() && matcherLastname.find()) {
+		                        firstname = matcherFirstname.group();
+		                        lastname = matcherLastname.group();
+				            }
+				            //System.out.println(firstname + "--" + lastname);
+				            int indexArr=(lineSplit[i].indexOf("@")==-1)? lineSplit[i].length() : lineSplit[i].indexOf("@");
+					        int indexArrPrevious = (previousline.indexOf("@")==-1)? previousline.length() : previousline.indexOf("@");
+						    if (lineSplit[i].substring(0,indexArr).contains(firstname.toLowerCase()) 
+						    	|| lineSplit[i].substring(0,indexArr).contains(lastname.substring(1).toLowerCase()) 
+					        	|| previousline.substring(0,indexArrPrevious).contains(firstname.toLowerCase()) 
+					        	|| previousline.substring(0,indexArrPrevious).contains(lastname.substring(1).toLowerCase())){
+						    	if(!authors.contains(potAuthor))authors.add(potAuthor);
+							    break;
+						        }
+						    if(lastname.substring(1).split(" ").length>1 && (lineSplit[i].substring(0,indexArr).contains(lastname.substring(1).split(" ")[0].toLowerCase()) 
+						    	|| lineSplit[i].substring(0,indexArr).contains(lastname.substring(1).split(" ")[1].toLowerCase()))) {
+	
+						    	if(!authors.contains(potAuthor)) {
+	
+						    		authors.add(potAuthor);
+						    	}
+						    	break;
+						    }
+		            	}
 					    	
 			         }
 
@@ -170,6 +176,11 @@ public class Auteur {
 	            }
 	        }
             previousline=line;
+        }
+        if(authors.size()==0) {
+        	for(String a : potentialAuthors) {
+        		authors.add(a);
+        	}
         }
         System.out.println("auteurs : ");
         for(String s : authors) System.out.println(s);
@@ -252,14 +263,19 @@ public class Auteur {
 	                	if(flag==true) nb = splitVirgule.length;
                 	}
                 }
-                String[] tsplit = t.split(" ");
-              	for(String s : tsplit) {
-              		String afterArrobase = s.contains("@")? s.split("@")[1] : "";
-               		if(s.contains("@") && (s.split("@")[0].replaceAll("[().]", "").matches("[a-z]([a-z]|\\.|\\-|\\_)+") 
-               			|| afterArrobase.contains(".com")||afterArrobase.contains(".fr")||afterArrobase.contains(".org")||afterArrobase.contains(".net"))) {
-               			nb+=1;
-               		}
+                try {
+	                String[] tsplit = t.split(" ");
+	              	for(String s : tsplit) {
+	              		String afterArrobase = s.contains("@")? s.split("@")[1] : "";
+	              		
+	              		
+	               		if(s.contains("@") && (s.split("@")[0].replaceAll("[().]", "").matches("[a-z]([a-z]|\\.|\\-|\\_)+") 
+	               			|| afterArrobase.contains(".com")||afterArrobase.contains(".fr")||afterArrobase.contains(".org")||afterArrobase.contains(".net"))) {
+	               			nb+=1;
+	               		}
+	                }
                 }
+              	catch(ArrayIndexOutOfBoundsException e) {}
             }
             previousLine=t;
         }
@@ -272,7 +288,6 @@ public class Auteur {
         String[]txt = texte.split("\n"); 
         String previousLine="";
         int nbMail = getNbAuteurMail(texte);
-        System.out.println(nbMail);
         for(String t : txt) { 
         	if(t.contains("@") && !t.split("@")[0].equals("") && getNbAuteurMail(texte)>mail.size()) {
                 if(t.contains("}")) { 
@@ -384,7 +399,8 @@ public class Auteur {
         			String mailQ = "@"+gestionQ[index].split("Q")[1]; 
         			if(!mail.contains(gestionQ[index])&&bonAuteur.size()>mail.size()) mail.add(cutPoint(gestionQ[index].replaceAll("Q", "@"))); 
         			for(int i=1;i<bonAuteur.size();i++) { 
-            			if(!mail.contains(gestionQ[index-i]+mailQ)&&bonAuteur.size()>mail.size())mail.add(cutPoint(gestionQ[index-i]+mailQ)); 
+            			try{if(!mail.contains(gestionQ[index-i]+mailQ)&&bonAuteur.size()>mail.size())mail.add(cutPoint(gestionQ[index-i]+mailQ));} 
+            			catch(ArrayIndexOutOfBoundsException e) {}
         			} 
         		} 
         		 
@@ -422,7 +438,7 @@ public class Auteur {
     		alternateAuthor.add((firstname.substring(0,1).toLowerCase() + lastnameTwoParts[0].substring(0,1).toLowerCase() + lastnameTwoParts[1].substring(0,1).toLowerCase()).trim());//Andre F.T. Martins -> afm
     	}
     	if(firstname.length()>3) alternateAuthor.add((firstname.substring(0,3).toLowerCase()).trim());
-    	if(lastname.length()>3) alternateAuthor.add((lastname.substring(0,3)).trim());
+    	if(lastname.length()>3) alternateAuthor.add((lastname.trim().substring(0,3)));
     	alternateAuthor.add((firstname.substring(0,1)+lastname).toLowerCase().trim());
     	alternateAuthor.add((firstname+lastname.trim().substring(0,1)).trim().toLowerCase());
 
@@ -433,7 +449,7 @@ public class Auteur {
     public static ArrayList<String> parseAffiliations(String text) {
         ArrayList<String> affiliations = new ArrayList<>();
         
-        Pattern affiliationPattern = Pattern.compile(".*(Laboratoire|Lab|École|E cole|Institute|University|Université|([A-Z][a-z]* Inc\\.)|Département|Departement|Department|Univ.|Research|Universitat|Instituto|Insitut|DA-IICT|LIMSI-CNRS).*");
+        Pattern affiliationPattern = Pattern.compile(".*(Laboratoire|Lab|École|E cole|Universidade|Institute|University|Université|([A-Z][a-z]* Inc\\.)|Département|Departement|Department|Univ.|Research|Universitat|Instituto|Insitut|DA-IICT|LIMSI-CNRS).*");
         Matcher matcher = affiliationPattern.matcher(text);
 
         while (matcher.find()) {

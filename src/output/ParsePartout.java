@@ -42,8 +42,8 @@ public class ParsePartout {
 		textRaw=sb.extractPdfToTextRaw();
 		t = new Titre(f,textF);
 		ab = new Abstrac(text);
-		int debut = getDebutZone(textF,t.getBonTitre());
-		int fin = getFinZone(textF,ab.getAbstractParse());
+		int debut = getDebutZone(text,t.getBonTitre());
+		int fin = getFinZone(text,ab.getAbstractParse());
 		au = new Auteur(f,text,textF, debut, fin);	
 		//on recupere intro/corps/conclu/discu/ref
 		i = new Index(textRaw);
@@ -72,7 +72,6 @@ public class ParsePartout {
 		for(int i=0;i<textF.length();i++) {
 			int j=0;
 			int k=i;
-			
 			while(textF.charAt(k)==abstrac.charAt(j)) {
 				k+=1;
 				j+=1;
@@ -215,8 +214,11 @@ public class ParsePartout {
 		for(int i=0; i<au.getBonAuteur().size(); i++ ) {
 			retour  += "		<auteur>\n"
 					+  "			<name>"+au.getBonAuteur().get(i)+"</name>\n";
-			if(!au.getMails().isEmpty()) 
-					retour += "			<mail>"+au.getMails().get(i)+"</mail>\n";
+			try {
+				if(!au.getMails().isEmpty()) 
+						retour += "			<mail>"+au.getMails().get(i)+"</mail>\n";
+			}
+			catch(IndexOutOfBoundsException e) {}
 			if (!au.getAffiliations().isEmpty() && i < au.getAffiliations().size() && !au.getAffiliations().get(i).isEmpty()) 
                     retour += "            <affiliation>" + au.getAffiliations().get(i) + "</affiliation>\n";
 			else if(au.getAffiliations().isEmpty())retour += "            <affiliation>" + "N/A" + "</affiliation>\n";
@@ -254,7 +256,7 @@ public class ParsePartout {
 
 //		System.out.println("ref :"+i.getReference()+"\n");
 		intro = i.getIntro()[0]==0 ? "N/A" : String.join("", Arrays.copyOfRange(l, i.getIntro()[0], i.getIntro()[1]));
-		System.out.println();
+		
 		corps = String.join("", Arrays.copyOfRange(l, i.getCorps()[0], i.getCorps()[1]));
 		conclu = i.getConclu()[0]==0? "N/A" : String.join("", Arrays.copyOfRange(l, i.getConclu()[0], i.getConclu()[1]));
 		discu = i.getDiscu()[0]==0? "N/A" : String.join("", Arrays.copyOfRange(l, i.getDiscu()[0], i.getDiscu()[1]));

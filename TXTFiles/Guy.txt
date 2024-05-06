@@ -6,8 +6,8 @@ Nombre d'auteur :
  			3
 Auteurs :
 			Le Van-Duyet
-			Vo Minh Quan
 			Dang Quang An
+			Vo Minh Quan
 Mails :
 			me@duyet.net
 			95.vominhquan@gmail.com
