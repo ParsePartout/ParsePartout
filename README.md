@@ -9,7 +9,7 @@ Options :
   -t                   : text output
   -x                   : xml output
 
-Objet : Extraire, trié et afficher les informations d'un pdf scientifiques au format txt ou xml selon la demande de l'user.
+Objet : Extraire, trier et afficher les informations d'un pdf scientifiques au format txt ou xml selon la demande de l'user.
 Technologie utilisée :  Java
 Outils : GitKraken, pdfToText
 
