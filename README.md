@@ -8,3 +8,10 @@ Options :
   -f <file> <number>   : parse the number of pdf files indicated
   -t                   : text output
   -x                   : xml output
+
+Objet : Extraire, trié et afficher les informations d'un pdf scientifiques au format txt ou xml selon la demande de l'user.
+Technologie utilisée :  Java
+Outils : GitKraken, pdfToText
+
+Projet actuellement en cours, livraison le 18/05/2024.
+Sprint en cours : 5.
