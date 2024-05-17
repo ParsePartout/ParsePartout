@@ -66,7 +66,7 @@ public class Auteur {
 	public ArrayList<String> parseAuteur(String texte, String texteF, int debut, int fin) {
         ArrayList<String> potentialAuthors = new ArrayList<>();
         ArrayList<String> authors = new ArrayList<>();
-        Pattern pattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?(.[A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?)?");
+        Pattern pattern = Pattern.compile("([A-Z]. )?[A-Z][a-z]+(-[A-Z][a-z]+)?( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?(.[A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?)?");
         //System.out.println(texteF.substring(debut, Math.min(texte.length(), fin)));
         //reduit la zone à la fin du titre et le début de l'abstract
         Matcher matcher = pattern.matcher(texte.substring(debut, Math.min(texte.length(), fin)));
