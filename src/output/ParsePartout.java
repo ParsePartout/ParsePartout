@@ -101,20 +101,7 @@ public class ParsePartout {
 		}
 		return file;
 	}
-	public  File creationFichierAvecRename(File f,String rename) throws IOException {
-		//crée un fichier dans le dossier préparé + le rename selon le parametre
-		File file = new File("./DejaParséAlorsTuVasFaireQuoi/"+rename+ ".txt");
-		
-		//verifie la creation
-		if(file.exists()) {
-			try {
-				file.createNewFile();
-			}catch(IOException e) {
-				e.printStackTrace();
-			}
-		}
-		return file;
-	}
+	
 	public  void putInfo(File out) throws IOException {
 		//pour remplir le fichier 
 		FileWriter fw = new FileWriter(out);
