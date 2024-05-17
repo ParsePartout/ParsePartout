@@ -8,3 +8,5 @@ Options :
   -f <file> <number>   : parse the number of pdf files indicated
   -t                   : text output
   -x                   : xml output
+
+Main parametre : Corpus_2021
