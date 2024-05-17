@@ -113,23 +113,27 @@ public class Auteur {
 					            if (matcherFirstname.find() && matcherLastname.find()) {
 			                        firstname = matcherFirstname.group();
 			                        lastname = matcherLastname.group();
+			                        
 					            }
-
-					            if(firstname.toLowerCase().contains("cedex") || lastname.toLowerCase().contains("cedex")) break;
 					            
-					            ArrayList<String> alternateAuthor = getAlternateAuthor(firstname,lastname);
-					            for(String author : alternateAuthor) {
-					            	int indexArr=(lineSplit[i].indexOf("@")==-1)? lineSplit[i].length() : lineSplit[i].indexOf("@");
-						            if (lineSplit[i].substring(0,indexArr).contains(firstname.toLowerCase()) 
-						            		|| lineSplit[i].substring(0,indexArr).contains(lastname.substring(1).toLowerCase())
-						            		|| lineSplit[i].substring(0,indexArr).contains(author)){
-						            	
-						            	if(!authors.contains(potAuthor)) {
-						            		authors.add(potAuthor);	
-						            		break;
-						            	}
+					            if(firstname!=null && lastname != null && (firstname.toLowerCase().contains("cedex") || lastname.toLowerCase().contains("cedex"))) break;
+					            
+					            try {
+						            ArrayList<String> alternateAuthor = getAlternateAuthor(firstname,lastname);
+						            for(String author : alternateAuthor) {
+						            	int indexArr=(lineSplit[i].indexOf("@")==-1)? lineSplit[i].length() : lineSplit[i].indexOf("@");
+							            if (lineSplit[i].substring(0,indexArr).contains(firstname.toLowerCase()) 
+							            		|| lineSplit[i].substring(0,indexArr).contains(lastname.substring(1).toLowerCase())
+							            		|| lineSplit[i].substring(0,indexArr).contains(author)){
+							            	
+							            	if(!authors.contains(potAuthor)) {
+							            		authors.add(potAuthor);	
+							            		break;
+							            	}
+							            }
 						            }
 					            }
+					            catch(NullPointerException e) {}
 				            //if(getNbAuteurMail(texteF)==authors.size()) break;
 					        }
 	            		}
@@ -289,8 +293,6 @@ public class Auteur {
 	                String[] tsplit = t.split(" ");
 	              	for(String s : tsplit) {
 	              		String afterArrobase = s.contains("@")? s.split("@")[1] : "";
-	              		
-	              		
 	               		if(s.contains("@") && (s.split("@")[0].replaceAll("[().]", "").matches("[a-z]([a-z]|\\.|\\-|\\_)+") 
 	               			|| afterArrobase.contains(".com")||afterArrobase.contains(".fr")||afterArrobase.contains(".org")||afterArrobase.contains(".net"))) {
 	               			nb+=1;
