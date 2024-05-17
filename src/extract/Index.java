@@ -92,11 +92,12 @@ public class Index {
 					 || li[i].matches("[0-9] ([A-Z]|[a-z]|-| )+") 
 					 || li[i].matches("[I-X]+\\. ([A-Z]|[a-z]|-| )+")
 					 || li[i].toUpperCase().contains("CONCLUSION") && (li[i].split(" ")[0].matches("[0-9]+.?")||li[i].split(" ")[0].matches("[I-X]+\\."))) {
-				
+
 				discu[1]=i;
 				break;
 			}
     	}
+    	
     }
     public static void definirConclu() {
     	//cherche index conclusion

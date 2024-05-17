@@ -115,14 +115,12 @@ public class Auteur {
 			                        lastname = matcherLastname.group();
 			                        
 					            }
-					            
 					            if(firstname!=null && lastname != null && (firstname.toLowerCase().contains("cedex") || lastname.toLowerCase().contains("cedex"))) break;
-					            
 					            try {
 						            ArrayList<String> alternateAuthor = getAlternateAuthor(firstname,lastname);
 						            for(String author : alternateAuthor) {
 						            	int indexArr=(lineSplit[i].indexOf("@")==-1)? lineSplit[i].length() : lineSplit[i].indexOf("@");
-							            if (lineSplit[i].substring(0,indexArr).contains(firstname.toLowerCase()) 
+							            if (lineSplit[i].split(" ")[lineSplit[i].split(" ").length-1].substring(0,indexArr).contains(firstname.toLowerCase()) 
 							            		|| lineSplit[i].substring(0,indexArr).contains(lastname.substring(1).toLowerCase())
 							            		|| lineSplit[i].substring(0,indexArr).contains(author)){
 							            	
@@ -168,7 +166,6 @@ public class Auteur {
 						    	|| lineSplit[i].substring(0,indexArr).contains(lastname.substring(1).split(" ")[1].toLowerCase()))) {
 	
 						    	if(!authors.contains(potAuthor)) {
-	
 						    		authors.add(potAuthor);
 						    	}
 						    	break;
@@ -314,11 +311,11 @@ public class Auteur {
         int nbMail = getNbAuteurMail(texte);
         for(String t : txt) { 
         	if(t.contains("@") && !t.split("@")[0].equals("") && getNbAuteurMail(texte)>mail.size()) {
-                if(t.contains("}")) { 
-                    String mailAccolade = t.split("}")[1]; 
+                if(t.contains("}")) {
+                    String mailAccolade = t.split("}")[1].split(" ")[0]; 
                     String listePotentialA = t.split("}")[0].replaceAll("[{]", ""); 
                     String[]listeAccolade=listePotentialA.split(","); 
-                    for (String a : listeAccolade) { 
+                    for (String a : listeAccolade) {
                         if(!(mail.contains(a.trim()+mailAccolade))&&nbMail>mail.size()) mail.add(cutPoint(a+mailAccolade)); 
                     } 
                 } 
@@ -375,6 +372,7 @@ public class Auteur {
                 
             }
         	else if(t.contains("@") && t.split("@")[0].equals("")) {
+        		
         		String b = t.split("@")[0];
         		String apresArrobase = t;
         		t=previousLine;
@@ -429,6 +427,7 @@ public class Auteur {
         		} 
         		 
         	}
+        	if(nbMail>mail.size() && t.contains("}") && t.split("@").length==3) mail.add((t.split("@")[1]+"@"+t.split("@")[2]).split(" ")[1]);
         	
         }
         return mail; 
