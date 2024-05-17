@@ -3,19 +3,19 @@
 	<titre>Extraction of terminology in the field of construction</titre>
 	<auteurs>
 		<auteur>
-			<name>Remy Kessler Universite</name>
+			<name>Remy Kessler </name>
 			<mail>remy.kessler@univ-ubs.fr</mail>
-            <affiliation>1st  Bretagne Sud</affiliation>
+            <affiliation>Universite Bretagne Sud</affiliation>
       </auteur>
 		<auteur>
-			<name>Nicolas Bechet Universite</name>
+			<name>Nicolas Bechet </name>
 			<mail>nicolas.bechet@irisa.fr</mail>
-            <affiliation>2nd  Bretagne Sud</affiliation>
+            <affiliation>Universite Bretagne Sud</affiliation>
       </auteur>
 		<auteur>
-			<name>Giuseppe Berio Universite</name>
+			<name>Giuseppe Berio </name>
 			<mail>giuseppe.berio@univ-ubs.fr</mail>
-            <affiliation>3rd  Bretagne Sud</affiliation>
+            <affiliation>Universite Bretagne Sud</affiliation>
       </auteur>
 	</auteurs>
 	<abstract>Abstract--We describe a corpus analysis method to extract terminology from a collection of technical specifications in the field of construction. Using statistics and word n-grams analysis, we extract the terminology of the domain and then perform pruning steps with linguistic patterns and internet queries to improve the quality of the final terminology. Results are evaluated by using a manual evaluation carried out by 6 experts in the field.</abstract>

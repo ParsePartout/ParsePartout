@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
+
 public class StringBuilders {
 		private static String pdfInfo;
 		private static String pdfToText;
@@ -20,7 +21,7 @@ public class StringBuilders {
 			pdfToText=extractPdfToText();
 			pdfToTextFirstPage=extractPdfToTextFirst();
 			checkPremierePage();
-
+//			System.out.println(pdfToTextFirstPage);
 		}
 		
 		//extracteur d'infos
@@ -73,9 +74,11 @@ public class StringBuilders {
 	    }
 	    public  String extractPdfToTextFirst() {
 	  	   StringBuilder text = new StringBuilder();
+	  	   
 	     	try {
+	     		String toolPath = os.contains("windows") ? homedir + "\\lib\\xpdf-tools-win-4.05\\bin64\\pdftotext" : homedir + "/lib/xpdf-tools-linux-4.05/bin64/pdftotext";
 	     		//commande console, encodage --> Ascii7 permet la gestion des accents    		
-	 	    	String[] command = {"pdftotext","-enc","ASCII7","-l","1", filePath, "-"};
+	 	    	String[] command = {toolPath,"-enc","ASCII7","-l","1", filePath, "-"};
 	 	        
 	 	    	//execution de la commande
 	 	        Process process = Runtime.getRuntime().exec(command);

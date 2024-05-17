@@ -6,7 +6,7 @@ Nombre d'auteur :
  			2
 Auteurs :
 			Alexandra Luccioni
-			Yoshua Bengio Universite
+			Yoshua Bengio 
 Mails :
 			@uantifying
 			Kammen.@uantifying

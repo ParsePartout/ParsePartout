@@ -5,9 +5,9 @@ Titre :
 Nombre d'auteur :
  			3
 Auteurs :
-			Remy Kessler Universite
-			Nicolas Bechet Universite
-			Giuseppe Berio Universite
+			Remy Kessler 
+			Nicolas Bechet 
+			Giuseppe Berio 
 Mails :
 			remy.kessler@univ-ubs.fr
 			nicolas.bechet@irisa.fr

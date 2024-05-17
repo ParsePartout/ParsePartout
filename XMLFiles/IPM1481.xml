@@ -5,27 +5,27 @@
 		<auteur>
 			<name>Remy Kessler</name>
 			<mail>remy.kessler@univ-avignon.fr</mail>
-            <affiliation>a LIA/Universite d'Avignon et des Pays de Vaucluse, 339 chemin des Meinajaries, 84911 Avignon, France</affiliation>
+            <affiliation>LIA/Universite d'Avignon et des Pays de Vaucluse, 339 chemin des Meinajaries, 84911 Avignon, France</affiliation>
       </auteur>
 		<auteur>
 			<name>Nicolas Bechet</name>
 			<mail>nicolas.bechet@inria.fr</mail>
-            <affiliation>d LIRMM, CNRS Universite Montpellier 2, 161 rue Ada, 34392 Montpellier, France</affiliation>
+            <affiliation>Ecole Polytechnique de Montreal, CP 6079, succ. Centre-ville, Montreal (Quebec) Canada H3C 3A7</affiliation>
       </auteur>
 		<auteur>
 			<name>Mathieu Roche</name>
 			<mail>mathieu.roche@lirmm.fr</mail>
-            <affiliation>d LIRMM, CNRS Universite Montpellier 2, 161 rue Ada, 34392 Montpellier, France</affiliation>
+            <affiliation>INRIA Domaine de Voluceau, BP 105, 78153 Le Chesnay Cedex, France</affiliation>
       </auteur>
 		<auteur>
 			<name>Juan-Manuel Torres-Moreno</name>
 			<mail>juan-manuel.torres@univ-avignon.fr</mail>
-            <affiliation>d LIRMM, CNRS Universite Montpellier 2, 161 rue Ada, 34392 Montpellier, France</affiliation>
+            <affiliation>LIRMM, CNRS Universite Montpellier 2, 161 rue Ada, 34392 Montpellier, France</affiliation>
       </auteur>
 		<auteur>
 			<name>Marc El-Beze</name>
 			<mail>marc.elbeze@univ-avignon.fr</mail>
-            <affiliation>d LIRMM, CNRS Universite Montpellier 2, 161 rue Ada, 34392 Montpellier, France</affiliation>
+            <affiliation>LIRMM, CNRS Universite Montpellier 2, 161 rue Ada, 34392 Montpellier, France</affiliation>
       </auteur>
 	</auteurs>
 	<abstract>The evolution of the job market has resulted in traditional methods of recruitment becoming insufficient. As it is now necessary to handle volumes of information (mostly in the form of free text) that are impossible to process manually, an analysis and assisted categorization are essential to address this issue. In this paper, we present a combination of the E-Gen and CORTEX systems. E-Gen aims to perform analysis and categorization of job offers together with the responses given by the candidates. E-Gen system strategy is based on vectorial and probabilistic models to solve the problem of profiling applications according to a specific job offer. CORTEX is a statistical automatic summarization system. In this work, E-Gen uses Cortex as a powerful filter to eliminate irrelevant information contained in candidate answers. Our main objective is to develop a system to assist a recruitment consultant and the results obtained by the proposed combination surpass those of E-Gen in standalone mode on this task.</abstract>

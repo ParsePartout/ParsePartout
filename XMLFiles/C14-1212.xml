@@ -5,27 +5,27 @@
 		<auteur>
 			<name>Julie Weeds</name>
 			<mail>juliewe@sussex.ac.uk</mail>
-            <affiliation>, , ,  and Department of Informatics, University of Sussex, Brighton, UK</affiliation>
+            <affiliation>Department of Informatics, University of Sussex, Brighton, UK</affiliation>
       </auteur>
 		<auteur>
 			<name>Daoud Clarke</name>
 			<mail>D.Clarke@sussex.ac.uk</mail>
-            <affiliation>, , ,  and Department of Informatics, University of Sussex, Brighton, UK</affiliation>
+            <affiliation>Department of Informatics, University of Sussex, Brighton, UK</affiliation>
       </auteur>
 		<auteur>
 			<name>Jeremy Reffin</name>
 			<mail>J.P.Reffin@sussex.ac.uk</mail>
-            <affiliation>, , ,  and Department of Informatics, University of Sussex, Brighton, UK</affiliation>
+            <affiliation>Department of Informatics, University of Sussex, Brighton, UK</affiliation>
       </auteur>
 		<auteur>
 			<name>David Weir</name>
 			<mail>davidw@sussex.ac.uk</mail>
-            <affiliation>, , ,  and Department of Informatics, University of Sussex, Brighton, UK</affiliation>
+            <affiliation>Department of Informatics, University of Sussex, Brighton, UK</affiliation>
       </auteur>
 		<auteur>
 			<name>Bill Keller </name>
 			<mail>billk@sussex.ac.uk</mail>
-            <affiliation>, , ,  and Department of Informatics, University of Sussex, Brighton, UK</affiliation>
+            <affiliation>Department of Informatics, University of Sussex, Brighton, UK</affiliation>
       </auteur>
 	</auteurs>
 	<abstract>This work is concerned with distinguishing different semantic relations which exist between distributionally similar words. We compare a novel approach based on training a linear Support Vector Machine on pairs of feature vectors with state-of-the-art methods based on distributional similarity. We show that the new supervised approach does better even when there is minimal information about the target words in the training data, giving a 15% reduction in error rate over unsupervised approaches.</abstract>

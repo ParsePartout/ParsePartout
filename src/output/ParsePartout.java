@@ -15,7 +15,7 @@ import parse.Titre;
 
 /*ParsePartout*/
 public class ParsePartout {
-    
+   
 	private static String homedir;
 	private static String corpusPath;
 	private static StringBuilders sb;

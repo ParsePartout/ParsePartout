@@ -5,19 +5,22 @@
 		<auteur>
 			<name>Hongyan Jing</name>
 			<mail>kathy@cs.columbia.edu</mail>
-            <affiliation>and Department of  University, NY 10027, USA hjing, kathyQcs.columbia.edu</affiliation>
+            <affiliation>Department of  University, NY 10027, USA hjing, kathyQcs.columbia.edu</affiliation>
       </auteur>
 		<auteur>
 			<name>Kathleen R. McKeown </name>
 			<mail>hjing@cs.columbia.edu</mail>
+            <affiliation>Department of  University, NY 10027, USA hjing, kathyQcs.columbia.edu</affiliation>
       </auteur>
 		<auteur>
 			<name>Computer Science Columbia</name>
 			<mail>USA@cs.columbia.edu</mail>
+            <affiliation>Department of  University, NY 10027, USA hjing, kathyQcs.columbia.edu</affiliation>
       </auteur>
 		<auteur>
 			<name> New York</name>
 			<mail>10027@cs.columbia.edu</mail>
+            <affiliation>Department of  University, NY 10027, USA hjing, kathyQcs.columbia.edu</affiliation>
       </auteur>
 	</auteurs>
 	<abstract>We present a cut and paste based text summarizer, which uses operations derived from an analysis of human written abstracts. The summarizer edits extracted sentences, using reduction to remove inessential phrases and combination to merge resuiting phrases together as coherent sentences. Our work includes a statistically based sentence decomposition program that identifies where the phrases of a summary originate in the original document, producing an aligned corpus of summaries and articles which we used to develop the summarizer.</abstract>

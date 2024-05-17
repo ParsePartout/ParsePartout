@@ -21,8 +21,15 @@ public class Auteur {
 	private static ArrayList<String> mails;
 	//liste d'affiliations des auteurs
 	private static ArrayList<String> affiliations;
+	private static ArrayList<String> otherAffiliations;
+	private static ArrayList<String> bonAffiliations;
 	private static String corpusPath;
 	private static File file;
+	private static Map<String, String> indiceAuteur;
+	private static Map<String, String> indiceAffiliation;
+	private static String pf; 
+		
+
 	
 	public Auteur(File f,String texte,String texteF,int debut,int fin) {
 
@@ -33,7 +40,11 @@ public class Auteur {
 		bonAuteur=compareAuteur(auteurParse,auteurMeta);
 		mails=checkMail(texte);
 		affiliations=parseAffiliations(texteF);
-//		System.out.println(f.getName()+"-->"+bonAuteur+"---->"+mails);
+		otherAffiliations=getAlternateAffiliations(texteF);
+		indiceAuteur=parseIndiceAuteur(texteF);
+		indiceAffiliation=parseIndiceAffiliation(texteF);
+		bonAffiliations=compareAffiliations(texteF);
+		pf=texteF;
 	}
     public  ArrayList<String> extractAuteur() {
         ArrayList<String> al= new ArrayList<String>();
@@ -59,9 +70,22 @@ public class Auteur {
         //System.out.println(texteF.substring(debut, Math.min(texte.length(), fin)));
         //reduit la zone à la fin du titre et le début de l'abstract
         Matcher matcher = pattern.matcher(texte.substring(debut, Math.min(texte.length(), fin)));
+        ArrayList<String> mot = new ArrayList<>();
+        mot.add("LIMSI");
+        mot.add("Universite");
+        mot.add("University");
+        mot.add("Univ.");
+        mot.add("Univ");
+        mot.add("Xerox");
+        mot.add("University");
+        mot.add("Department");
+
         while (matcher.find()) {
-            potentialAuthors.add(matcher.group().replaceAll("University","").replaceAll("Department",""));
-            //System.out.println(matcher.group());
+        	String auteur = matcher.group();
+            for (String s : mot) {
+            	auteur = auteur.replaceAll(s,"");
+            }
+            potentialAuthors.add(auteur);
         }
         Pattern firstnamePattern = Pattern.compile("[A-Z][a-z]+(-[A-Z][a-z]+)?");
         Pattern lastnamePattern = Pattern.compile("( ([A-Z].)+)?( [a-z]*)? [A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?(.[A-Z]([A-Z]|[a-z])+(-[A-Z][a-z]+)?)?");
@@ -182,8 +206,6 @@ public class Auteur {
         		authors.add(a);
         	}
         }
-        System.out.println("auteurs : ");
-        for(String s : authors) System.out.println(s);
         return authors;
     }
 	private  ArrayList<String> compareAuteur(ArrayList<String> auteurs, ArrayList<String> auteursData) {
@@ -407,10 +429,6 @@ public class Auteur {
         	}
         	
         }
-        System.out.println("nombre de mail :"+mail.size());
-        for(String s : mail) {
-            System.out.println(s);
-        }
         return mail; 
     } 
     public  String cutPoint(String t) { 
@@ -446,21 +464,130 @@ public class Auteur {
     	return alternateAuthor;
 	}
     
+    public static Map<String, String> parseIndiceAuteur(String text){
+    	ArrayList<String> listLineWithAuthorAndIndice = new ArrayList<>();
+    	Map<String, String> dictionnaire = new HashMap<>();
+    	String ancien = "";
+    	// on récupère le texte jusque l'abstract seulement
+        String [] tabTextSplitInLine = text.split("\n");
+        String textToAbstract = "";
+        for (String s : tabTextSplitInLine) {
+        	if (s.equals("Abstract") || s.equals("ABSTRACT")) break; //contains mieux ??????
+        	textToAbstract += s+"\n";
+        }
+        // on récupère une liste des lignes contenant les auteurs et leurs indices
+        String [] tabTextToAbstractSplitInLine = textToAbstract.split("\n");
+        for (String l : tabTextToAbstractSplitInLine) {
+        	for (String a : bonAuteur) {
+        		if (l.contains(a)) {
+        			if (!listLineWithAuthorAndIndice.contains(l)) {
+        				listLineWithAuthorAndIndice.add(l);
+        			} 			
+        		}
+        	}
+        }
+        for (String l : listLineWithAuthorAndIndice) {
+        	// on split cette ligne à chaque virgule et on remplace les and entre les auteurs par des virgules
+        	l = l.replaceAll(" and ", ",");
+        	String [] tabLineWithAuthorAndIndiceSplit = l.split(",");  
+        	for (String p : tabLineWithAuthorAndIndiceSplit) {
+        		p = p.trim();
+        		// si la partie split de la ligne contenant l'auteur est de longueur 1, alors on rajoute cette partie comme second indice de l'auteur se trouvant dans la partie précédente
+        		if (p.length() ==1 ) {
+        			String h = dictionnaire.get(ancien);
+        			if (h.length()<=3 && !h.equals("")) {
+        				h += ","+p;
+        				dictionnaire.put(ancien, h);
+        			}
+        		}
+        		// on associe l'auteur à son indice dans le dictionnaire 
+        		for ( String q : bonAuteur) {
+        			if (p.contains(q)) {
+        				p = p.replaceAll(q,"");
+        				p = p.trim();
+        				if (p.length()==1 && !p.equals("")) {
+        					ancien = q;
+        					dictionnaire.put(q, p);
+        				}
+        				if (p.length()<=3 && p.contains(",") && !p.equals("")) {
+        					ancien = q;
+        					dictionnaire.put(q, p);
+        				}
+        			}
+        		}
+   
+        	}
+        }
+        for (Map.Entry<String, String> entry : dictionnaire.entrySet()) {
+            System.out.println("Clé : " + entry.getKey() + ", Valeur : " + entry.getValue());
+        }
+        
+    	return dictionnaire;
+    }
+    
+    public static Map<String, String> parseIndiceAffiliation(String text){
+    	ArrayList<String> listLineWithAffiliationAndIndice = new ArrayList<>();
+    	Map<String, String> dictionnaire = new HashMap<>();
+    	// on récupère le texte jusque l'abstract seulement
+        String [] tabTextSplitInLine = text.split("\n");
+        String textToAbstract = "";
+        for (String s : tabTextSplitInLine) {
+        	if (s.equals("Abstract")) break; //contains mieux ??????
+        	textToAbstract += s+"\n";
+        }
+        // on récupère une liste des lignes contenant les affiliations et leurs indices
+        String [] tabTextToAbstractSplitInLine = textToAbstract.split("\n");
+        for (String l : tabTextToAbstractSplitInLine) {
+        	for (String a : affiliations) {
+        		if (l.contains(a)) {
+        			if (!listLineWithAffiliationAndIndice.contains(l)) {
+        				listLineWithAffiliationAndIndice.add(l);
+        			} 			
+        		}
+        	}
+        }        
+        // on récupère les indices et les lignes 
+        for (String l : listLineWithAffiliationAndIndice) {
+        	l= l.trim();
+        	for ( String a : affiliations) {
+        		if(l.contains(a)){
+        			l=l.replaceAll(a, "");
+        			l=l.replaceAll(";", "");
+        			l=l.trim();
+        			if (l.length()<=3 && !l.equals("")) {
+        				dictionnaire.put(l, a);
+        			}
+        		}
+        	}
+        }
+        for (Map.Entry<String, String> entry : dictionnaire.entrySet()) {
+            System.out.println("Clé : " + entry.getKey() + ", Valeur : " + entry.getValue());
+        }
+        
+    	return dictionnaire;
+    }
+     
     public static ArrayList<String> parseAffiliations(String text) {
         ArrayList<String> affiliations = new ArrayList<>();
-        
-        Pattern affiliationPattern = Pattern.compile(".*(Laboratoire|Lab|École|E cole|Universidade|Institute|University|Université|([A-Z][a-z]* Inc\\.)|Département|Departement|Department|Univ.|Research|Universitat|Instituto|Insitut|DA-IICT|LIMSI-CNRS).*");
-        Matcher matcher = affiliationPattern.matcher(text);
+        // on récupère le texte jusque l'abstract seulement
+        String [] tabTextSplitInLine = text.split("\n");
+        String textToAbstract = "";
+        for (String s : tabTextSplitInLine) {
+        	if (s.equals("Abstract")) break;  // contains mieux ??????
+        	textToAbstract += s+"\n";
+        }
+        Pattern affiliationPattern = Pattern.compile(".*(Laboratoire|Lab|École|E cole|Ecole|Universidade|Institute|University|Université|([A-Z][a-z]* Inc\\.)|Département|Departement|Department|Univ.|Research|Universitat|Instituto|Insitut|DA-IICT|LIMSI-CNRS|INRIA).*");
+        Matcher matcher = affiliationPattern.matcher(textToAbstract);
 
         while (matcher.find()) {
             String affiliation = matcher.group();
-            affiliations.add(removeAuteursMails(affiliation));
+            affiliations.add(removeIndices(removeAuteursMails(affiliation)));
         }
         
-        int numAuthors = getNbAuteurMail(text); // 
+        int numAuthors = bonAuteur.size(); // 
         int numAffiliations = affiliations.size();
         
-        // Vérifie si le nombre d'affiliations est inférieur au nombre d'auteurs
+        // on vérifie si le nombre d'affiliations est inférieur au nombre d'auteurs
         if (numAffiliations < numAuthors) {
             try{
             	String lastAffiliation = affiliations.get(numAffiliations - 1); // Récupére la dernière affiliation
@@ -469,22 +596,74 @@ public class Auteur {
                 }
             }
             catch(IndexOutOfBoundsException e){}
-            // Duplique la dernière affiliation jusqu'à ce que le nombre d'affiliations soit égal au nombre d'auteurs
+            // on duplique la dernière affiliation jusqu'à ce que le nombre d'affiliations soit égal au nombre d'auteurs
             
         }
-
         return affiliations;
     }
 
     private static String removeAuteursMails(String affiliation) {
+    	// on enlève les auteurs si il apparaissent au sein de l'affiliation
         for (String auteur : bonAuteur) {
             affiliation = affiliation.replaceAll(auteur, "");
         }
+        // on enlève les mails si ils apparaissent au sein de l'affiliation
         for (String mail : mails) {
             affiliation = affiliation.replaceAll(mail, "");
         }
-        return affiliation.trim();
+        affiliation = affiliation.replaceAll(";", "");
+        affiliation = affiliation.replaceAll("E cole", "Ecole");
+        affiliation = affiliation.replaceAll(" is with", "");
+        
+        return affiliation.trim();	
     }
+    
+    private static String removeIndices(String affiliation) {
+        // on enlève les indexs qui se trouvent en début d'affiliation
+        int indexFirstMaj = 0;
+        for (int i = 0 ; i < affiliation.length(); i++) {
+        	if (Character.isLetter(affiliation.charAt(i))){
+        		if (Character.isUpperCase(affiliation.charAt(i))) {
+        			indexFirstMaj = i;
+        			break;
+        		}
+        	}
+        }
+        String affiliationSansIndice = "";
+        for (int j = 0 ; j < affiliation.length(); j++) {
+        	if (j >= indexFirstMaj) {
+        		affiliationSansIndice += affiliation.charAt(j);
+        	}
+        }
+        return affiliationSansIndice.trim();	
+    }
+    
+    public static ArrayList<String> getAlternateAffiliations(String text) {
+    	ArrayList<String> otherAffiliations = affiliations;
+    	if (indiceAuteur != null && indiceAffiliation != null) { //indiceAuteur != null && indiceAffiliation != null ou !indiceAuteur.isEmpty() && !indiceAffiliation.isEmpty()
+    		System.out.println("---------------");
+    		int i = 0;
+    		for (String a : bonAuteur) {
+    			if (indiceAuteur.containsKey(a)) {
+    				if (indiceAffiliation.containsKey(indiceAuteur.get(a))) {
+    					affiliations.set(i, indiceAffiliation.get(indiceAuteur.get(a)));
+    				}
+    			}
+    			i+=1;
+    		}
+    		return otherAffiliations;
+    	}
+    	
+    	return affiliations;
+    }
+    
+    public static ArrayList<String> compareAffiliations(String text){
+    	if (indiceAuteur != null && indiceAffiliation != null) {
+    		return otherAffiliations;
+    	}
+    	return affiliations;
+    }
+    
     //getter et setter
 	public  ArrayList<String> getAuteurMeta() {
 		return auteurMeta;
@@ -515,5 +694,17 @@ public class Auteur {
 	}
 	public void setAffiliations(ArrayList<String> affiliations) {
 		Auteur.affiliations = affiliations;
+	}
+	public static ArrayList<String> getOtherAffiliations() {
+		return otherAffiliations;
+	}
+	public static void setOtherAffiliations(ArrayList<String> otherAffiliations) {
+		Auteur.otherAffiliations = otherAffiliations;
+	}
+	public static ArrayList<String> getBonAffiliations() {
+		return bonAffiliations;
+	}
+	public static void setBonAffiliations(ArrayList<String> bonAffiliations) {
+		Auteur.bonAffiliations = bonAffiliations;
 	}
 }

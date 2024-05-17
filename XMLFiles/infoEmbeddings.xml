@@ -5,12 +5,12 @@
 		<auteur>
 			<name>Sandip Modha</name>
 			<mail>sjmodha@gmail.com</mail>
-            <affiliation>aDA-IICT Gandhinagar,India;</affiliation>
+            <affiliation>DA-IICT Gandhinagar,India</affiliation>
       </auteur>
 		<auteur>
 			<name>Prasenjit Majumdera</name>
 			<mail>prasenjit.majumder@gmail.com</mail>
-            <affiliation>aDA-IICT Gandhinagar,India;</affiliation>
+            <affiliation>DA-IICT Gandhinagar,India</affiliation>
       </auteur>
 	</auteurs>
 	<abstract>Due to an exponential rise in the social media user base, incidents like hate speech, trolling, cyberbullying are also increasing and that lead hate speech detection problem reshaped into different tasks like Aggression detection, Fact detection. This paper attempt to study the effectiveness of text representation schemes on two tasks namely: User Aggression and Fact Detection from the social media contents. In User Aggression detection, The aim is to identify the level of aggression from the contents generated in the Social media and written in the English, Devanagari Hindi and Romanized Hindi. Aggression levels are categorized into three predefined classes namely: `Non-aggressive`, `Overtly Aggressive`, and `Covertly Aggressive`. During the disaster-related incident, Social media like, Twitter is flooded with millions of posts. In such emergency situations, identification of factual posts is important for organizations involved in the relief operation. We anticipated this problem as a combination of classification and Ranking problem. This paper presents a comparison of various text representation scheme based on BoW techniques, distributed word/sentence representation, transfer learning on classifiers. Weighted F1 score is used as a primary evaluation metric. Results show that text representation using BoW performs better than word embedding on machine learning classifiers. While pre-trained Word embedding techniques perform better on classifiers based on deep neural net. Recent transfer learning model like ELMO, ULMFiT are fine-tuned for the Aggression classification task. However, results are not at par with pretrained word embedding model. Overall, word embedding using fastText produce best weighted F1-score than Word2Vec and Glove. Results are further improved using pre-trained vector model. Statistical significance tests are employed to ensure the significance of the classification results. In the case of lexically different test Dataset, other than training Dataset, deep neural models are more robust and perform substantially better than machine learning classifiers.</abstract>

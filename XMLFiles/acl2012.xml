@@ -3,29 +3,29 @@
 	<titre>Finding Salient Dates for Building Thematic Timelines</titre>
 	<auteurs>
 		<auteur>
-			<name>Remy Kessler LIMSI</name>
+			<name>Remy Kessler </name>
 			<mail>kessler@limsi.fr</mail>
-            <affiliation>-CNRS Orsay, France</affiliation>
+            <affiliation>LIMSI-CNRS Orsay, France</affiliation>
       </auteur>
 		<auteur>
-			<name>Xavier Tannier Univ</name>
+			<name>Xavier Tannier </name>
 			<mail>xtannier@limsi.fr</mail>
-            <affiliation>. Paris-Sud, LIMSI-CNRS</affiliation>
+            <affiliation>Univ. Paris-Sud, LIMSI-CNRS</affiliation>
       </auteur>
 		<auteur>
-			<name>Caroline Hagege Xerox</name>
+			<name>Caroline Hagege </name>
 			<mail>hagege@xrce.xerox.com</mail>
-            <affiliation>Research Center Europe</affiliation>
+            <affiliation>Xerox Research Center Europe</affiliation>
       </auteur>
 		<auteur>
-			<name>Veronique Moriceau Univ</name>
+			<name>Veronique Moriceau </name>
 			<mail>moriceau@limsi.fr</mail>
-            <affiliation>. Paris-Sud, LIMSI-CNRS</affiliation>
+            <affiliation>Univ. Paris-Sud, LIMSI-CNRS</affiliation>
       </auteur>
 		<auteur>
-			<name>Andre Bittar Xerox</name>
+			<name>Andre Bittar </name>
 			<mail>bittar@xrce.xerox.com</mail>
-            <affiliation>Research Center Europe</affiliation>
+            <affiliation>Xerox Research Center Europe</affiliation>
       </auteur>
 	</auteurs>
 	<abstract>We present an approach for detecting salient (important) dates in texts in order to automatically build event timelines from a search query (e.g. the name of an event or person, etc.). This work was carried out on a corpus of newswire texts in English provided by the Agence France Presse (AFP). In order to extract salient dates that warrant inclusion in an event timeline, we first recognize and normalize temporal expressions in texts and then use a machine-learning approach to extract salient dates that relate to a particular topic. We focused only on extracting the dates and not the events to which they are related.</abstract>

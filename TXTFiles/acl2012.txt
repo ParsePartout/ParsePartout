@@ -5,11 +5,11 @@ Titre :
 Nombre d'auteur :
  			5
 Auteurs :
-			Remy Kessler LIMSI
-			Xavier Tannier Univ
-			Caroline Hagege Xerox
-			Veronique Moriceau Univ
-			Andre Bittar Xerox
+			Remy Kessler 
+			Xavier Tannier 
+			Caroline Hagege 
+			Veronique Moriceau 
+			Andre Bittar 
 Mails :
 			kessler@limsi.fr
 			xtannier@limsi.fr

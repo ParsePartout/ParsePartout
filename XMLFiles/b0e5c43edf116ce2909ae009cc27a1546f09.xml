@@ -5,17 +5,17 @@
 		<auteur>
 			<name>Stephen Roller</name>
 			<mail>roller@cs.utexas.edu,</mail>
-            <affiliation>, ,   Department of Computer Science  Department of Linguistics The University of Texas at Austin</affiliation>
+            <affiliation>Department of Computer Science  Department of Linguistics The University of Texas at Austin</affiliation>
       </auteur>
 		<auteur>
 			<name>Katrin Erk</name>
 			<mail>katrin.erk@mail.utexas.edu,</mail>
-            <affiliation>, ,   Department of Computer Science  Department of Linguistics The University of Texas at Austin</affiliation>
+            <affiliation>Department of Computer Science  Department of Linguistics The University of Texas at Austin</affiliation>
       </auteur>
 		<auteur>
 			<name>Gemma Boleda</name>
 			<mail>gemma.boleda@upf.edu</mail>
-            <affiliation>, ,   Department of Computer Science  Department of Linguistics The University of Texas at Austin</affiliation>
+            <affiliation>Department of Computer Science  Department of Linguistics The University of Texas at Austin</affiliation>
       </auteur>
 	</auteurs>
 	<abstract>We test the Distributional Inclusion Hypothesis, which states that hypernyms tend to occur in a superset of contexts in which their hyponyms are found. We find that this hypothesis only holds when it is applied to relevant dimensions. We propose a robust supervised approach that achieves accuracies of .84 and .85 on two existing datasets and that can be interpreted as selecting the dimensions that are relevant for distributional inclusion.</abstract>

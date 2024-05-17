@@ -29,7 +29,7 @@ public class MenuText extends JFrame {
     private String parseToWhat;
     
     public MenuText(String s,Main m) {
-
+    	
     	setTitle("Menu de selection de PDF");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         File directory = new File(s);
