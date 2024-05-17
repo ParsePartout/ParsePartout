@@ -101,7 +101,20 @@ public class ParsePartout {
 		}
 		return file;
 	}
-	
+	public  File creationFichierAvecRename(File f,String rename) throws IOException {
+		//crée un fichier dans le dossier préparé + le rename selon le parametre
+		File file = new File("./DejaParséAlorsTuVasFaireQuoi/"+rename+ ".txt");
+		
+		//verifie la creation
+		if(file.exists()) {
+			try {
+				file.createNewFile();
+			}catch(IOException e) {
+				e.printStackTrace();
+			}
+		}
+		return file;
+	}
 	public  void putInfo(File out) throws IOException {
 		//pour remplir le fichier 
 		FileWriter fw = new FileWriter(out);
@@ -216,22 +229,6 @@ public class ParsePartout {
                     retour += "            <affiliation>" + au.getTrueAffiliations().get(i) + "</affiliation>\n";
             else if(au.getTrueAffiliations().isEmpty())retour += "            <affiliation>" + "N/A" + "</affiliation>\n";
             retour += "      </auteur>\n";
-<<<<<<< Updated upstream
-					
-		}
-		try {
-			retour+= 
-			  "	</auteurs>\n"
-			+ "	<abstract>" + ab.getAbstractParse() + "</abstract>\n"
-			+ "	<introduction>" + intro + "</introduction>\n"
-			+ "	<body>"+ corps.replaceAll("<", "&lt;").replaceAll(">", "&gt;") +"</body>\n"
-			+ "	<conclusion>"+ conclu.replaceAll("<", "&lt;").replaceAll(">", "&gt;") +"</conclusion>\n"
-			+ "	<discussion>"+ discu.replaceAll("<", "&lt;").replaceAll(">", "&gt;") +"</discussion>\n"
-			+ "	<biblio>" + ref.replaceAll("<", "&lt;").replaceAll(">", "&gt;") + "</biblio>\n"
-			+ "</article>";
-		}
-		catch(NullPointerException e) {}
-=======
 
         }
             	
@@ -247,7 +244,6 @@ public class ParsePartout {
 		+ "	<discussion>"+ discu.replaceAll("<", "&lt;").replaceAll(">", "&gt;") +"</discussion>\n"
 		+ "	<biblio>" + ref.replaceAll("<", "&lt;").replaceAll(">", "&gt;") + "</biblio>\n"
 		+ "</article>";
->>>>>>> Stashed changes
 		FileWriter fw = new FileWriter(out);
 		BufferedWriter bw = new BufferedWriter(fw);
 		bw.append(retour.replaceAll("&", "&amp;"));
@@ -258,18 +254,22 @@ public class ParsePartout {
 		return f;
 	}
 	public  void setupIndex () throws IOException {
-		
-			String[]l=textRaw.split("\n");
-	
-			intro = i.getIntro()[0]==0 ? "N/A" : String.join("", Arrays.copyOfRange(l, i.getIntro()[0], i.getIntro()[1]));
-			
-			corps = String.join("", Arrays.copyOfRange(l, i.getCorps()[0], i.getCorps()[1]));
-			conclu = (i.getConclu()[0]==0 || i.getConclu()[1]==0)? "N/A" : String.join("", Arrays.copyOfRange(l, i.getConclu()[0], i.getConclu()[1]));
-			discu = (i.getDiscu()[0]==0 || i.getDiscu()[1]==0)? "N/A" : String.join("", Arrays.copyOfRange(l, i.getDiscu()[0], i.getDiscu()[1]));
-			
-			
+		String[]l=textRaw.split("\n");
+//		System.out.println("intro :"+i.getIntro()[0]+"--"+i.getIntro()[1]);
+//		
+//		System.out.println("corps :"+i.getCorps()[0]+"--"+i.getCorps()[1]);
+//
+//		System.out.println("conclu :"+i.getConclu()[0]+"--"+i.getConclu()[1]);
+//
+//		System.out.println("discu :"+i.getDiscu()[0]+"--"+i.getDiscu()[1]);
 
-			ref = String.join("", Arrays.copyOfRange(l, i.getReference(), l.length));
+//		System.out.println("ref :"+i.getReference()+"\n");
+		intro = i.getIntro()[0]==0 ? "N/A" : String.join("", Arrays.copyOfRange(l, i.getIntro()[0], i.getIntro()[1]));
+		
+		corps = String.join("", Arrays.copyOfRange(l, i.getCorps()[0], i.getCorps()[1]));
+		conclu = i.getConclu()[0]==0? "N/A" : String.join("", Arrays.copyOfRange(l, i.getConclu()[0], i.getConclu()[1]));
+		discu = i.getDiscu()[0]==0? "N/A" : String.join("", Arrays.copyOfRange(l, i.getDiscu()[0], i.getDiscu()[1]));
+		ref = String.join("", Arrays.copyOfRange(l, i.getReference(), l.length));
 		
 	}
 	
