@@ -2,19 +2,19 @@
 	<preamble>Guy.pdf</preamble>
 	<titre>Skill2vec: Machine Learning Approach for Determining the Relevant Skills from Job Description</titre>
 	<auteurs>
-		<auteur>
-			<name>Le Van-Duyet</name>
-			<mail>me@duyet.net</mail>
+        <auteur>
+            <name>Le Van-Duyet</name>
+            <mail>me@duyet.net</mail>
             <affiliation>N/A</affiliation>
       </auteur>
-		<auteur>
-			<name>Dang Quang An</name>
-			<mail>95.vominhquan@gmail.com</mail>
+        <auteur>
+            <name>Dang Quang An</name>
+            <mail>95.vominhquan@gmail.com</mail>
             <affiliation>N/A</affiliation>
       </auteur>
-		<auteur>
-			<name>Vo Minh Quan</name>
-			<mail>an.dang1390@gmail.com</mail>
+        <auteur>
+            <name>Vo Minh Quan</name>
+            <mail>an.dang1390@gmail.com</mail>
             <affiliation>N/A</affiliation>
       </auteur>
 	</auteurs>

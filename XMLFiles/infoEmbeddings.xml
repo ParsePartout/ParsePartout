@@ -2,14 +2,14 @@
 	<preamble>infoEmbeddings.pdf</preamble>
 	<titre>An Empirical Evaluation of Text Representation Schemes on Multilingual Social Web to Filter the Textual Aggression</titre>
 	<auteurs>
-		<auteur>
-			<name>Sandip Modha</name>
-			<mail>sjmodha@gmail.com</mail>
+        <auteur>
+            <name>Sandip Modha</name>
+            <mail>sjmodha@gmail.com</mail>
             <affiliation>DA-IICT Gandhinagar,India</affiliation>
       </auteur>
-		<auteur>
-			<name>Prasenjit Majumdera</name>
-			<mail>prasenjit.majumder@gmail.com</mail>
+        <auteur>
+            <name>Prasenjit Majumdera</name>
+            <mail>prasenjit.majumder@gmail.com</mail>
             <affiliation>DA-IICT Gandhinagar,India</affiliation>
       </auteur>
 	</auteurs>

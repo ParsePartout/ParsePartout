@@ -21,7 +21,6 @@ public class StringBuilders {
 			pdfToText=extractPdfToText();
 			pdfToTextFirstPage=extractPdfToTextFirst();
 			checkPremierePage();
-//			System.out.println(pdfToTextFirstPage);
 		}
 		
 		//extracteur d'infos

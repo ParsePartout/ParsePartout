@@ -2,14 +2,14 @@
 	<preamble>On_the_Morality_of_Artificial_Intelligence.pdf</preamble>
 	<titre>On the Morality of Artificial Intelligence</titre>
 	<auteurs>
-		<auteur>
-			<name>Alexandra Luccioni</name>
-			<mail>@uantifying</mail>
+        <auteur>
+            <name>Alexandra Luccioni</name>
+            <mail>@uantifying</mail>
             <affiliation>Universite de Montreal, Mila</affiliation>
       </auteur>
-		<auteur>
-			<name>Yoshua Bengio </name>
-			<mail>Kammen.@uantifying</mail>
+        <auteur>
+            <name>Yoshua Bengio </name>
+            <mail>Kammen.@uantifying</mail>
             <affiliation>Universite de Montreal, Mila</affiliation>
       </auteur>
 	</auteurs>

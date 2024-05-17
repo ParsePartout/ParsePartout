@@ -2,14 +2,14 @@
 	<preamble>BLESS.pdf</preamble>
 	<titre>How we BLESSed distributional semantic evaluation</titre>
 	<auteurs>
-		<auteur>
-			<name>Marco Baroni </name>
-			<mail>marco.baroni@unitn.it</mail>
+        <auteur>
+            <name>Marco Baroni </name>
+            <mail>marco.baroni@unitn.it</mail>
             <affiliation>University of Trento</affiliation>
       </auteur>
-		<auteur>
-			<name>Alessandro Lenci </name>
-			<mail>alessandro.lenci@ling.unipi.it</mail>
+        <auteur>
+            <name>Alessandro Lenci </name>
+            <mail>alessandro.lenci@ling.unipi.it</mail>
             <affiliation>University of Pisa</affiliation>
       </auteur>
 	</auteurs>

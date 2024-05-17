@@ -5,7 +5,7 @@ Titre :
 Nombre d'auteur :
  			3
 Auteurs :
-			Teresa Cabre Castellvi
+			M. Teresa Cabre Castellvi
 			Rosa Estopa Bagot
 			Jordi Vivaldi Palatresi
 Mails :

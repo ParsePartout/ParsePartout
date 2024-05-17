@@ -9,7 +9,7 @@ Auteurs :
 			Efficient Adaptive Learning
 			Classification Tasks
 			Binary Units
-			Manuel Torres Moreno
+			J. Manuel Torres Moreno
 			Mirta B. Gordon Departement
 			Recherche Fondamentale
 			Matiere Condensee

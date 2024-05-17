@@ -2,19 +2,19 @@
 	<preamble>Iria_Juan-Manuel_Gerardo.pdf</preamble>
 	<titre>On the Development of the RST Spanish Treebank</titre>
 	<auteurs>
-		<auteur>
-			<name>Iria da Cunha Institute</name>
-			<mail>iria.dacunha@upf.edu</mail>
+        <auteur>
+            <name>Iria da Cunha Institute</name>
+            <mail>iria.dacunha@upf.edu</mail>
             <affiliation>Applied Linguistics (UPF), Spain Instituto de Ingenieria (UNAM), Mexico Laboratoire Informatique d'Avignon (UAPV), France</affiliation>
       </auteur>
-		<auteur>
-			<name>Juan-Manuel Torres-Moreno Laboratoire</name>
-			<mail>juan-manuel.torres@univavignon.fr</mail>
+        <auteur>
+            <name>Juan-Manuel Torres-Moreno Laboratoire</name>
+            <mail>juan-manuel.torres@univavignon.fr</mail>
             <affiliation>Informatique d'Avignon (UAPV), France</affiliation>
       </auteur>
-		<auteur>
-			<name>Gerardo Sierra Instituto</name>
-			<mail>gsierram@iingen.unam</mail>
+        <auteur>
+            <name>Gerardo Sierra Instituto</name>
+            <mail>gsierram@iingen.unam</mail>
             <affiliation>Instituto de Ingenieria (UNAM), Mexico</affiliation>
       </auteur>
 	</auteurs>

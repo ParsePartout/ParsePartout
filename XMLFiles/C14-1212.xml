@@ -2,29 +2,29 @@
 	<preamble>C14-1212.pdf</preamble>
 	<titre>Learning to Distinguish Hypernyms and Co-Hyponyms</titre>
 	<auteurs>
-		<auteur>
-			<name>Julie Weeds</name>
-			<mail>juliewe@sussex.ac.uk</mail>
+        <auteur>
+            <name>Julie Weeds</name>
+            <mail>juliewe@sussex.ac.uk</mail>
             <affiliation>Department of Informatics, University of Sussex, Brighton, UK</affiliation>
       </auteur>
-		<auteur>
-			<name>Daoud Clarke</name>
-			<mail>D.Clarke@sussex.ac.uk</mail>
+        <auteur>
+            <name>Daoud Clarke</name>
+            <mail>D.Clarke@sussex.ac.uk</mail>
             <affiliation>Department of Informatics, University of Sussex, Brighton, UK</affiliation>
       </auteur>
-		<auteur>
-			<name>Jeremy Reffin</name>
-			<mail>J.P.Reffin@sussex.ac.uk</mail>
+        <auteur>
+            <name>Jeremy Reffin</name>
+            <mail>J.P.Reffin@sussex.ac.uk</mail>
             <affiliation>Department of Informatics, University of Sussex, Brighton, UK</affiliation>
       </auteur>
-		<auteur>
-			<name>David Weir</name>
-			<mail>davidw@sussex.ac.uk</mail>
+        <auteur>
+            <name>David Weir</name>
+            <mail>davidw@sussex.ac.uk</mail>
             <affiliation>Department of Informatics, University of Sussex, Brighton, UK</affiliation>
       </auteur>
-		<auteur>
-			<name>Bill Keller </name>
-			<mail>billk@sussex.ac.uk</mail>
+        <auteur>
+            <name>Bill Keller </name>
+            <mail>billk@sussex.ac.uk</mail>
             <affiliation>Department of Informatics, University of Sussex, Brighton, UK</affiliation>
       </auteur>
 	</auteurs>

@@ -2,29 +2,29 @@
 	<preamble>Nasr.pdf</preamble>
 	<titre>MACAON An NLP Tool Suite for Processing Word Lattices</titre>
 	<auteurs>
-		<auteur>
-			<name>Alexis Nasr</name>
-			<mail>alexis.nasr@lif.univ-mrs.fr</mail>
+        <auteur>
+            <name>Alexis Nasr</name>
+            <mail>alexis.nasr@lif.univ-mrs.fr</mail>
             <affiliation>Laboratoire d'Informatique Fondamentale de Marseille- CNRS - UMR 6166 Universite Aix-Marseille</affiliation>
       </auteur>
-		<auteur>
-			<name>Frederic Bechet</name>
-			<mail>frederic.bechet@lif.univ-mrs.fr</mail>
+        <auteur>
+            <name>Frederic Bechet</name>
+            <mail>frederic.bechet@lif.univ-mrs.fr</mail>
             <affiliation>Laboratoire d'Informatique Fondamentale de Marseille- CNRS - UMR 6166 Universite Aix-Marseille</affiliation>
       </auteur>
-		<auteur>
-			<name>Jean-Francois Rey</name>
-			<mail>jean-francois.rey@lif.univ-mrs.fr</mail>
+        <auteur>
+            <name>Jean-Francois Rey</name>
+            <mail>jean-francois.rey@lif.univ-mrs.fr</mail>
             <affiliation>Laboratoire d'Informatique Fondamentale de Marseille- CNRS - UMR 6166 Universite Aix-Marseille</affiliation>
       </auteur>
-		<auteur>
-			<name>Benoit Favre</name>
-			<mail>benoit.favre@lif.univ-mrs.fr</mail>
+        <auteur>
+            <name>Benoit Favre</name>
+            <mail>benoit.favre@lif.univ-mrs.fr</mail>
             <affiliation>Laboratoire d'Informatique Fondamentale de Marseille- CNRS - UMR 6166 Universite Aix-Marseille</affiliation>
       </auteur>
-		<auteur>
-			<name>Joseph Le Roux</name>
-			<mail>joseph.le.roux@lif.univ-mrs.fr</mail>
+        <auteur>
+            <name>Joseph Le Roux</name>
+            <mail>joseph.le.roux@lif.univ-mrs.fr</mail>
             <affiliation>Laboratoire d'Informatique Fondamentale de Marseille- CNRS - UMR 6166 Universite Aix-Marseille</affiliation>
       </auteur>
 	</auteurs>

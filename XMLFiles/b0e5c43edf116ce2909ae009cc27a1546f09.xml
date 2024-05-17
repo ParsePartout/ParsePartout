@@ -2,19 +2,19 @@
 	<preamble>b0e5c43edf116ce2909ae009cc27a1546f09.pdf</preamble>
 	<titre>Inclusive yet Selective: Supervised Distributional Hypernymy Detection</titre>
 	<auteurs>
-		<auteur>
-			<name>Stephen Roller</name>
-			<mail>roller@cs.utexas.edu,</mail>
+        <auteur>
+            <name>Stephen Roller</name>
+            <mail>roller@cs.utexas.edu,</mail>
             <affiliation>Department of Computer Science  Department of Linguistics The University of Texas at Austin</affiliation>
       </auteur>
-		<auteur>
-			<name>Katrin Erk</name>
-			<mail>katrin.erk@mail.utexas.edu,</mail>
+        <auteur>
+            <name>Katrin Erk</name>
+            <mail>katrin.erk@mail.utexas.edu,</mail>
             <affiliation>Department of Computer Science  Department of Linguistics The University of Texas at Austin</affiliation>
       </auteur>
-		<auteur>
-			<name>Gemma Boleda</name>
-			<mail>gemma.boleda@upf.edu</mail>
+        <auteur>
+            <name>Gemma Boleda</name>
+            <mail>gemma.boleda@upf.edu</mail>
             <affiliation>Department of Computer Science  Department of Linguistics The University of Texas at Austin</affiliation>
       </auteur>
 	</auteurs>

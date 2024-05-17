@@ -2,30 +2,30 @@
 	<preamble>Torres.pdf</preamble>
 	<titre>Summary Evaluation with and without References</titre>
 	<auteurs>
-		<auteur>
-			<name>Iria da Cunha</name>
-			<mail>juan-manuel.torres@univ-avignon.fr.</mail>
-            <affiliation>N/A</affiliation>
+        <auteur>
+            <name>Iria da Cunha</name>
+            <mail>juan-manuel.torres@univ-avignon.fr.</mail>
+            <affiliation>LIA/Universite d'Avignon, France and E cole Polytechnique de Montreal, Canada (.</affiliation>
       </auteur>
-		<auteur>
-			<name>Juan-Manuel Torres-Moreno</name>
-			<mail>eric.sanjuan@univ-avignon.fr.</mail>
-            <affiliation>N/A</affiliation>
+        <auteur>
+            <name>Juan-Manuel Torres-Moreno</name>
+            <mail>eric.sanjuan@univ-avignon.fr.</mail>
+            <affiliation>LIA/Universite d'Avignon, France (.</affiliation>
       </auteur>
-		<auteur>
-			<name>Eric SanJuan</name>
-			<mail>horacio.saggion@upf.edu.</mail>
-            <affiliation>N/A</affiliation>
+        <auteur>
+            <name>Eric SanJuan</name>
+            <mail>horacio.saggion@upf.edu.</mail>
+            <affiliation>DTIC/Universitat Pompeu Fabra, Spain (.</affiliation>
       </auteur>
-		<auteur>
-			<name>Horacio Saggion</name>
-			<mail>iria.dacunha@upf.edu.</mail>
-            <affiliation>N/A</affiliation>
+        <auteur>
+            <name>Horacio Saggion</name>
+            <mail>iria.dacunha@upf.edu.</mail>
+            <affiliation>IULA/Universitat Pompeu Fabra, Spain LIA/Universite d'Avignon, France and Instituto de Ingenieria/UNAM, Mexico (.</affiliation>
       </auteur>
-		<auteur>
-			<name>Patricia Velazquez-Morales</name>
-			<mail>velazquez@yahoo.com.</mail>
-            <affiliation>N/A</affiliation>
+        <auteur>
+            <name>Patricia Velazquez-Morales</name>
+            <mail>velazquez@yahoo.com.</mail>
+            <affiliation>VM Labs, France (patricia .</affiliation>
       </auteur>
 	</auteurs>
 	<abstract>Abstract--We study a new content-based method for the evaluation of text summarization systems without human models which is used to produce system rankings. The research is carried out using a new content-based evaluation framework called FRESA to compute a variety of divergences among probability distributions. We apply our comparison framework to various well-established content-based evaluation measures in text summarization such as COVERAGE, RESPONSIVENESS, PYRAMIDS and ROUGE studying their associations in various text summarization tasks including generic multi-document summarization in English and French, focus-based multi-document summarization in English and generic single-document summarization in French and Spanish.</abstract>

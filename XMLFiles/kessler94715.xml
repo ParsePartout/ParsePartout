@@ -2,19 +2,19 @@
 	<preamble>kessler94715.pdf</preamble>
 	<titre>Extraction of terminology in the field of construction</titre>
 	<auteurs>
-		<auteur>
-			<name>Remy Kessler </name>
-			<mail>remy.kessler@univ-ubs.fr</mail>
+        <auteur>
+            <name>Remy Kessler </name>
+            <mail>remy.kessler@univ-ubs.fr</mail>
             <affiliation>Universite Bretagne Sud</affiliation>
       </auteur>
-		<auteur>
-			<name>Nicolas Bechet </name>
-			<mail>nicolas.bechet@irisa.fr</mail>
+        <auteur>
+            <name>Nicolas Bechet </name>
+            <mail>nicolas.bechet@irisa.fr</mail>
             <affiliation>Universite Bretagne Sud</affiliation>
       </auteur>
-		<auteur>
-			<name>Giuseppe Berio </name>
-			<mail>giuseppe.berio@univ-ubs.fr</mail>
+        <auteur>
+            <name>Giuseppe Berio </name>
+            <mail>giuseppe.berio@univ-ubs.fr</mail>
             <affiliation>Universite Bretagne Sud</affiliation>
       </auteur>
 	</auteurs>

@@ -2,24 +2,24 @@
 	<preamble>kesslerMETICS-ICDIM2019.pdf</preamble>
 	<titre>A word embedding approach to explore a collection of discussions of people in psychological distress</titre>
 	<auteurs>
-		<auteur>
-			<name>Remy Kessler</name>
-			<mail>remy.kessler@univ-ubs.fr</mail>
+        <auteur>
+            <name>Remy Kessler</name>
+            <mail>remy.kessler@univ-ubs.fr</mail>
             <affiliation>Universite Bretagne Sud Universite Bretagne Sud</affiliation>
       </auteur>
-		<auteur>
-			<name>Nicolas Bechet</name>
-			<mail>nicolas.bechet@irisa.fr</mail>
+        <auteur>
+            <name>Nicolas Bechet</name>
+            <mail>nicolas.bechet@irisa.fr</mail>
             <affiliation>Universite Rennes II</affiliation>
       </auteur>
-		<auteur>
-			<name>Gudrun Ledegen</name>
-			<mail>gudrun.ledegen@univ-rennes2.fr</mail>
+        <auteur>
+            <name>Gudrun Ledegen</name>
+            <mail>gudrun.ledegen@univ-rennes2.fr</mail>
             <affiliation>Universite Bretagne Sud</affiliation>
       </auteur>
-		<auteur>
-			<name>Frederic Pugniere-Saavedra</name>
-			<mail>frederic.pugniere-saavedra@univ-ubs.fr</mail>
+        <auteur>
+            <name>Frederic Pugniere-Saavedra</name>
+            <mail>frederic.pugniere-saavedra@univ-ubs.fr</mail>
             <affiliation>Universite Bretagne Sud</affiliation>
       </auteur>
 	</auteurs>

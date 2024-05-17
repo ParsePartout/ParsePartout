@@ -2,24 +2,24 @@
 	<preamble>Mikolov.pdf</preamble>
 	<titre>Efficient Estimation of Word Representations in Vector Space</titre>
 	<auteurs>
-		<auteur>
-			<name>Tomas Mikolov Google</name>
-			<mail>tmikolov@google.com</mail>
+        <auteur>
+            <name>Tomas Mikolov Google</name>
+            <mail>tmikolov@google.com</mail>
             <affiliation>Inc., Mountain View, CA</affiliation>
       </auteur>
-		<auteur>
-			<name>Greg Corrado Google</name>
-			<mail>gcorrado@google.com</mail>
+        <auteur>
+            <name>Greg Corrado Google</name>
+            <mail>gcorrado@google.com</mail>
             <affiliation>Inc., Mountain View, CA</affiliation>
       </auteur>
-		<auteur>
-			<name>Kai Chen Google</name>
-			<mail>kaichen@google.com</mail>
+        <auteur>
+            <name>Kai Chen Google</name>
+            <mail>kaichen@google.com</mail>
             <affiliation>Inc., Mountain View, CA</affiliation>
       </auteur>
-		<auteur>
-			<name>Jeffrey Dean Google</name>
-			<mail>jeff@google.com</mail>
+        <auteur>
+            <name>Jeffrey Dean Google</name>
+            <mail>jeff@google.com</mail>
             <affiliation>Inc., Mountain View, CA</affiliation>
       </auteur>
 	</auteurs>

@@ -2,29 +2,29 @@
 	<preamble>IPM1481.pdf</preamble>
 	<titre>Author's personal copy</titre>
 	<auteurs>
-		<auteur>
-			<name>Remy Kessler</name>
-			<mail>remy.kessler@univ-avignon.fr</mail>
+        <auteur>
+            <name>Remy Kessler</name>
+            <mail>remy.kessler@univ-avignon.fr</mail>
             <affiliation>LIA/Universite d'Avignon et des Pays de Vaucluse, 339 chemin des Meinajaries, 84911 Avignon, France</affiliation>
       </auteur>
-		<auteur>
-			<name>Nicolas Bechet</name>
-			<mail>nicolas.bechet@inria.fr</mail>
+        <auteur>
+            <name>Nicolas Bechet</name>
+            <mail>nicolas.bechet@inria.fr</mail>
             <affiliation>Ecole Polytechnique de Montreal, CP 6079, succ. Centre-ville, Montreal (Quebec) Canada H3C 3A7</affiliation>
       </auteur>
-		<auteur>
-			<name>Mathieu Roche</name>
-			<mail>mathieu.roche@lirmm.fr</mail>
+        <auteur>
+            <name>Mathieu Roche</name>
+            <mail>mathieu.roche@lirmm.fr</mail>
             <affiliation>INRIA Domaine de Voluceau, BP 105, 78153 Le Chesnay Cedex, France</affiliation>
       </auteur>
-		<auteur>
-			<name>Juan-Manuel Torres-Moreno</name>
-			<mail>juan-manuel.torres@univ-avignon.fr</mail>
+        <auteur>
+            <name>Juan-Manuel Torres-Moreno</name>
+            <mail>juan-manuel.torres@univ-avignon.fr</mail>
             <affiliation>LIRMM, CNRS Universite Montpellier 2, 161 rue Ada, 34392 Montpellier, France</affiliation>
       </auteur>
-		<auteur>
-			<name>Marc El-Beze</name>
-			<mail>marc.elbeze@univ-avignon.fr</mail>
+        <auteur>
+            <name>Marc El-Beze</name>
+            <mail>marc.elbeze@univ-avignon.fr</mail>
             <affiliation>LIRMM, CNRS Universite Montpellier 2, 161 rue Ada, 34392 Montpellier, France</affiliation>
       </auteur>
 	</auteurs>

@@ -2,29 +2,29 @@
 	<preamble>acl2012.pdf</preamble>
 	<titre>Finding Salient Dates for Building Thematic Timelines</titre>
 	<auteurs>
-		<auteur>
-			<name>Remy Kessler </name>
-			<mail>kessler@limsi.fr</mail>
+        <auteur>
+            <name>Remy Kessler </name>
+            <mail>kessler@limsi.fr</mail>
             <affiliation>LIMSI-CNRS Orsay, France</affiliation>
       </auteur>
-		<auteur>
-			<name>Xavier Tannier </name>
-			<mail>xtannier@limsi.fr</mail>
+        <auteur>
+            <name>Xavier Tannier </name>
+            <mail>xtannier@limsi.fr</mail>
             <affiliation>Univ. Paris-Sud, LIMSI-CNRS</affiliation>
       </auteur>
-		<auteur>
-			<name>Caroline Hagege </name>
-			<mail>hagege@xrce.xerox.com</mail>
+        <auteur>
+            <name>Caroline Hagege </name>
+            <mail>hagege@xrce.xerox.com</mail>
             <affiliation>Xerox Research Center Europe</affiliation>
       </auteur>
-		<auteur>
-			<name>Veronique Moriceau </name>
-			<mail>moriceau@limsi.fr</mail>
+        <auteur>
+            <name>Veronique Moriceau </name>
+            <mail>moriceau@limsi.fr</mail>
             <affiliation>Univ. Paris-Sud, LIMSI-CNRS</affiliation>
       </auteur>
-		<auteur>
-			<name>Andre Bittar </name>
-			<mail>bittar@xrce.xerox.com</mail>
+        <auteur>
+            <name>Andre Bittar </name>
+            <mail>bittar@xrce.xerox.com</mail>
             <affiliation>Xerox Research Center Europe</affiliation>
       </auteur>
 	</auteurs>

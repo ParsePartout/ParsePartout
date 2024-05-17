@@ -192,6 +192,12 @@ public class ParsePartout {
 	}
 	
 	public  void toXML(File out) throws IOException {
+
+		
+		
+		
+		
+		
 		String retour = 
 		  "<article>\n"
 		+ "	<preamble>"+f.getName()+"</preamble>\n"
@@ -199,17 +205,18 @@ public class ParsePartout {
 		+ "	<auteurs>\n";
 		
 		for(int i=0; i<au.getBonAuteur().size(); i++ ) {
-			retour  += "		<auteur>\n"
-					+  "			<name>"+au.getBonAuteur().get(i)+"</name>\n";
-			try {
-				if(!au.getMails().isEmpty()) 
-						retour += "			<mail>"+au.getMails().get(i)+"</mail>\n";
-			}
-			catch(IndexOutOfBoundsException e) {}
-			if (!au.getAffiliations().isEmpty() && i < au.getAffiliations().size() && !au.getAffiliations().get(i).isEmpty()) 
-                    retour += "            <affiliation>" + au.getAffiliations().get(i) + "</affiliation>\n";
-			else if(au.getAffiliations().isEmpty())retour += "            <affiliation>" + "N/A" + "</affiliation>\n";
+            retour  += "        <auteur>\n"
+                    +  "            <name>"+au.getBonAuteur().get(i)+"</name>\n";
+            try {
+                if(!au.getMails().isEmpty()) 
+                        retour += "            <mail>"+au.getMails().get(i)+"</mail>\n";
+            }
+            catch(IndexOutOfBoundsException e) {}
+            if (!au.getTrueAffiliations().isEmpty() && i < au.getTrueAffiliations().size() && !au.getTrueAffiliations().get(i).isEmpty()) 
+                    retour += "            <affiliation>" + au.getTrueAffiliations().get(i) + "</affiliation>\n";
+            else if(au.getTrueAffiliations().isEmpty())retour += "            <affiliation>" + "N/A" + "</affiliation>\n";
             retour += "      </auteur>\n";
+<<<<<<< Updated upstream
 					
 		}
 		try {
@@ -224,6 +231,23 @@ public class ParsePartout {
 			+ "</article>";
 		}
 		catch(NullPointerException e) {}
+=======
+
+        }
+            	
+
+
+        
+		retour+=
+		  "	</auteurs>\n"
+		+ "	<abstract>" + ab.getAbstractParse() + "</abstract>\n"
+		+ "	<introduction>" + intro + "</introduction>\n"
+		+ "	<body>"+ corps.replaceAll("<", "&lt;").replaceAll(">", "&gt;") +"</body>\n"
+		+ "	<conclusion>"+ conclu.replaceAll("<", "&lt;").replaceAll(">", "&gt;") +"</conclusion>\n"
+		+ "	<discussion>"+ discu.replaceAll("<", "&lt;").replaceAll(">", "&gt;") +"</discussion>\n"
+		+ "	<biblio>" + ref.replaceAll("<", "&lt;").replaceAll(">", "&gt;") + "</biblio>\n"
+		+ "</article>";
+>>>>>>> Stashed changes
 		FileWriter fw = new FileWriter(out);
 		BufferedWriter bw = new BufferedWriter(fw);
 		bw.append(retour.replaceAll("&", "&amp;"));

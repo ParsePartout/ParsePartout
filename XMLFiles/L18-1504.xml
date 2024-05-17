@@ -2,25 +2,25 @@
 	<preamble>L18-1504.pdf</preamble>
 	<titre>A New Annotated Portuguese/Spanish Corpus for the Multi-Sentence Compression Task</titre>
 	<auteurs>
-		<auteur>
-			<name>Elvys Linhares Pontes</name>
-			<mail>elvys.linhares-pontes@univ-avignon.fr</mail>
-            <affiliation>CERI/LIA, Universite d'Avignon et des Pays de Vaucluse, Avignon, France 2Ecole Polytechnique de Montreal, Montreal, Canada 3Universidade Federal do Ceara, Sobral-CE, Brasil</affiliation>
+        <auteur>
+            <name>Elvys Linhares Pontes</name>
+            <mail>elvys.linhares-pontes@univ-avignon.fr</mail>
+            <affiliation>CERI/LIA, Universite d'Avignon et des Pays de Vaucluse, Avignon, France</affiliation>
       </auteur>
-		<auteur>
-			<name>Juan-Manuel Torres-Moreno</name>
-			<mail>juan-manuel.torres@univ-avignon.fr</mail>
-            <affiliation>CERI/LIA, Universite d'Avignon et des Pays de Vaucluse, Avignon, France 2Ecole Polytechnique de Montreal, Montreal, Canada 3Universidade Federal do Ceara, Sobral-CE, Brasil</affiliation>
+        <auteur>
+            <name>Juan-Manuel Torres-Moreno</name>
+            <mail>juan-manuel.torres@univ-avignon.fr</mail>
+            <affiliation>CERI/LIA, Universite d'Avignon et des Pays de Vaucluse, Avignon, France E cole Polytechnique de Montreal, Montreal, Canada</affiliation>
       </auteur>
-		<auteur>
-			<name>Stephane Huet</name>
-			<mail>stephane.huet@univ-avignon.fr</mail>
-            <affiliation>CERI/LIA, Universite d'Avignon et des Pays de Vaucluse, Avignon, France 2Ecole Polytechnique de Montreal, Montreal, Canada 3Universidade Federal do Ceara, Sobral-CE, Brasil</affiliation>
+        <auteur>
+            <name>Stephane Huet</name>
+            <mail>stephane.huet@univ-avignon.fr</mail>
+            <affiliation>CERI/LIA, Universite d'Avignon et des Pays de Vaucluse, Avignon, France</affiliation>
       </auteur>
-		<auteur>
-			<name>Andrea Carneiro Linhares</name>
-			<mail>andrea.linhares@ufc.br</mail>
-            <affiliation>CERI/LIA, Universite d'Avignon et des Pays de Vaucluse, Avignon, France 2Ecole Polytechnique de Montreal, Montreal, Canada 3Universidade Federal do Ceara, Sobral-CE, Brasil</affiliation>
+        <auteur>
+            <name>Andrea Carneiro Linhares</name>
+            <mail>andrea.linhares@ufc.br</mail>
+            <affiliation>Universidade Federal do Ceara, Sobral-CE, Brasil</affiliation>
       </auteur>
 	</auteurs>
 	<abstract>Abstract Multi-sentence compression aims to generate a short and informative compression from several source sentences that deal with the same topic. In this work, we present a new corpus for the Multi-Sentence Compression (MSC) task in Portuguese and Spanish. We also provide on this corpus a comparison of two state-of-the-art MSC systems.</abstract>
